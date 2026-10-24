@@ -60,13 +60,37 @@ jobs:
           git commit -m "슬라이드 생성: ${{ steps.pick.outputs.post }}" || echo "변경 없음"
           git push
 
-      - name: 인스타그램 게시
+      - name: 슬라이드를 공개 이미지 저장소에 올리기
+        id: images
         if: steps.pick.outputs.post != ''
+        env:
+          IMAGES_REPO: ${{ vars.IMAGES_REPO || 'jg0615121-source/daseot-images' }}
+          IMAGES_TOKEN: ${{ secrets.IMAGES_TOKEN }}
+        run: |
+          if [ -z "$IMAGES_TOKEN" ]; then
+            echo "IMAGES_TOKEN이 없어서 이미지 업로드와 게시를 건너뜀."
+            exit 0
+          fi
+          d=$(basename "${{ steps.pick.outputs.post }}" .json)
+          git clone --depth 1 "https://x-access-token:${IMAGES_TOKEN}@github.com/${IMAGES_REPO}.git" "$RUNNER_TEMP/images"
+          cd "$RUNNER_TEMP/images"
+          mkdir -p "$d" && rm -f "$d"/*.jpg
+          cp "$GITHUB_WORKSPACE/out/$d/"*.jpg "$d/"
+          git config user.name "daseot-bot"
+          git config user.email "daseot-bot@users.noreply.github.com"
+          git add "$d"
+          git commit -m "슬라이드: $d" || echo "변경 없음"
+          git push
+          # 커밋 주소로 고정해야 같은 날짜를 다시 돌려도 예전 캐시 이미지가 안 나감
+          echo "base=https://raw.githubusercontent.com/${IMAGES_REPO}/$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+
+      - name: 인스타그램 게시
+        if: steps.images.outputs.base != ''
         env:
           IG_USER_ID: ${{ secrets.IG_USER_ID }}
           IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
           IG_API_HOST: ${{ vars.IG_API_HOST }}
-          IMAGE_BASE_URL: ${{ vars.IMAGE_BASE_URL }}
+          IMAGE_BASE_URL: ${{ steps.images.outputs.base }}
         run: |
           python scripts/publish.py "${{ steps.pick.outputs.post }}"
           git add posts

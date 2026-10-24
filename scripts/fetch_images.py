@@ -36,6 +36,24 @@ def save(url, dest, referer=None):
     im.save(dest, "JPEG", quality=92)
     return im.size
 
+def pick_cover(post):
+    scores = [it.get("cover_score") for it in post["items"]]
+    if not all(scores):
+        return int(post.get("cover_item", 1))
+    ok = [i for i, sc in enumerate(scores, 1) if sc.get("photo", 0) > 0]
+    if not ok:
+        raise SystemExit("표지로 쓸 사진이 없음 (모든 품목 photo 0점). 이 게시물은 올리지 않음.")
+    total = lambda sc: sum(sc.get(k, 0) for k in ("subject", "photo", "timely", "swipe"))
+    best = max(ok, key=lambda i: (total(scores[i-1]), scores[i-1]["photo"], -i))
+    chosen = int(post.get("cover_item", best))
+    if chosen not in ok:
+        print(f"경고: cover_item {chosen}번은 사진 표지감 0점이라 {best}번으로 바꿈")
+        chosen = best
+    elif chosen != best:
+        print(f"참고: cover_item {chosen}번 (점수 최고는 {best}번)")
+    post["cover_item"] = chosen
+    return chosen
+
 def main(post_path):
     post_path = pathlib.Path(post_path)
     post = json.loads(post_path.read_text(encoding="utf-8"))
@@ -61,9 +79,9 @@ def main(post_path):
                 print(f"경고: {i}번 사진 실패 {e}")
         if not it.get("image"):
             raise SystemExit(f"{i}번 품목 사진을 못 받음. 이 게시물은 올리지 않음.")
-    # 표지: cover_item(1~5)으로 고른 품목 사진 1장. 없으면 1번 품목
+    # 표지: cover_item(1~5)으로 고른 품목 사진 1장. 없으면 cover_score 최고점, 그것도 없으면 1번 품목
     if not post.get("cover_images"):
-        it = post["items"][int(post.get("cover_item", 1)) - 1]
+        it = post["items"][pick_cover(post) - 1]
         post["cover_images"] = [{k: it[k] for k in ("image", "focus", "zoom") if k in it}]
     post_path.write_text(json.dumps(post, ensure_ascii=False, indent=2), encoding="utf-8")
 

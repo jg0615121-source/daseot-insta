@@ -6,8 +6,9 @@
 선택
   IG_API_HOST      기본 graph.instagram.com (페이스북 로그인 토큰이면 graph.facebook.com)
   IG_API_VERSION   기본 v26.0
-  IMAGE_BASE_URL   슬라이드 이미지의 공개 주소 앞부분. 기본값은 이 저장소의 raw 주소
-                   (인스타가 이미지를 직접 가져가야 해서 공개 주소가 필요함)
+  IMAGE_BASE_URL   슬라이드 이미지의 공개 주소 앞부분. {IMAGE_BASE_URL}/날짜/01.jpg 로 가져감.
+                   daily.yml이 공개 저장소 daseot-images에 올린 뒤 그 raw 주소를 넣어줌
+                   (코드 저장소는 비공개라 인스타가 직접 못 가져감)
 사용법: python3 scripts/publish.py posts/2026-10-25.json
 """
 import json, os, sys, time, pathlib, urllib.request, urllib.parse
@@ -40,22 +41,38 @@ def wait_ready(cid):
         time.sleep(5)
     raise SystemExit(f"컨테이너 {cid} 준비 시간 초과")
 
+def check_public(url):
+    # 인스타가 못 가져가는 주소면 API 오류가 애매하게 나오니 먼저 확인
+    for _ in range(6):
+        try:
+            with urllib.request.urlopen(urllib.request.Request(url, method="HEAD"), timeout=30) as r:
+                if r.headers.get("Content-Type", "").startswith("image/"):
+                    return
+        except urllib.error.URLError:
+            pass
+        time.sleep(10)
+    raise SystemExit(f"공개 이미지 주소가 안 열림: {url}")
+
 def main(post_path):
     post_path = pathlib.Path(post_path)
     post = json.loads(post_path.read_text(encoding="utf-8"))
     if not os.environ.get("IG_ACCESS_TOKEN") or not os.environ.get("IG_USER_ID"):
         print("인스타 토큰이 아직 없어서 게시는 건너뜀 (렌더링까지만 완료).")
         return
-    repo = os.environ.get("GITHUB_REPOSITORY", "")
-    branch = os.environ.get("GITHUB_REF_NAME", "main")
-    base = os.environ.get("IMAGE_BASE_URL") or f"https://raw.githubusercontent.com/{repo}/{branch}"
+    if post.get("published_id"):
+        print("이미 게시된 원고라 건너뜀:", post["published_id"])
+        return
+    base = os.environ.get("IMAGE_BASE_URL", "").rstrip("/")
+    if not base:
+        raise SystemExit("IMAGE_BASE_URL이 없음 (공개 이미지 주소가 있어야 게시 가능)")
     slides = sorted((ROOT / "out" / post_path.stem).glob("*.jpg"))
     if not 2 <= len(slides) <= 10:
         raise SystemExit(f"슬라이드 수가 이상함: {len(slides)}장")
+    urls = [f"{base}/{post_path.stem}/{s.name}" for s in slides]
+    check_public(urls[0])
     uid = os.environ["IG_USER_ID"]
     children = []
-    for s in slides:
-        url = f"{base}/{s.relative_to(ROOT).as_posix()}"
+    for url in urls:
         r = call("POST", f"{uid}/media", image_url=url, is_carousel_item="true")
         children.append(r["id"])
     for c in children:

@@ -8,13 +8,18 @@
 2. 원고가 올라오면 GitHub Actions(`.github/workflows/daily.yml`)가
    - `scripts/fetch_images.py`: 기사·보도자료에서 실제 사진을 받아 `assets/날짜/`에 저장
    - `render.py`: `template.html`로 1080x1350 슬라이드 7장을 `out/날짜/`에 생성
-   - `scripts/publish.py`: 인스타그램에 캐러셀로 게시 (토큰이 없으면 이 단계만 건너뜀)
+   - 완성 슬라이드를 공개 저장소 `jg0615121-source/daseot-images`의 `날짜/`에 올림
+   - `scripts/publish.py`: 그 raw 주소로 인스타그램에 캐러셀 게시 (토큰이 없으면 이 단계만 건너뜀, 이미 게시된 원고는 다시 안 올림)
+
+코드 저장소(이곳)는 비공개로 두고, 인스타가 가져갈 이미지 파일만 공개 저장소에 둔다.
 
 ## 인스타 게시를 켜려면
 
-저장소 Settings > Secrets and variables > Actions에 추가:
-- `IG_USER_ID`, `IG_ACCESS_TOKEN` (Secrets)
-- 저장소가 비공개면 인스타가 이미지를 가져갈 수 없으므로, 저장소를 공개로 바꾸거나 `IMAGE_BASE_URL`(Variables)에 공개 이미지 주소를 지정
+Settings > Secrets and variables > Actions 의 Secrets:
+- `IMAGES_TOKEN`: daseot-images 저장소에만 Contents 읽기/쓰기 권한이 있는 fine-grained 토큰
+- `IG_USER_ID`, `IG_ACCESS_TOKEN`: 인스타 프로페셔널 계정 ID와 게시 권한 토큰 (60일마다 갱신)
+
+선택 Variables: `IMAGES_REPO`(기본 jg0615121-source/daseot-images), `IG_API_HOST`
 
 ## 손으로 돌려보기
 
