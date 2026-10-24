@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<style>
+@font-face{font-family:P;src:url(fonts/Pretendard-Medium.woff2);font-weight:500}
+@font-face{font-family:P;src:url(fonts/Pretendard-SemiBold.woff2);font-weight:600}
+@font-face{font-family:P;src:url(fonts/Pretendard-Bold.woff2);font-weight:700}
+@font-face{font-family:P;src:url(fonts/Pretendard-ExtraBold.woff2);font-weight:800}
+@font-face{font-family:P;src:url(fonts/Pretendard-Black.woff2);font-weight:900}
+
+:root{ --k:1; --pad:56px; --accent:#FFE14D; }
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1350px;overflow:hidden;background:#000}
+body{font-family:P,sans-serif;color:#fff;-webkit-font-smoothing:antialiased;word-break:keep-all;letter-spacing:-.03em;position:relative}
+img{display:block;width:100%;height:100%;object-fit:cover}
+
+/* 사진 영역: 한 장 또는 여러 장 콜라주 */
+.bg{position:absolute;inset:0;display:grid;gap:4px;background:#000}
+.bg.n2{grid-template-columns:1fr 1fr}
+.bg.n3{grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr}
+.bg.n3 figure:first-child{grid-row:span 2}
+.bg.n4{grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr}
+.bg figure{overflow:hidden}
+/* 아래쪽 어둡게: 글자가 사진 위에서 읽히도록 */
+.shade{position:absolute;left:0;right:0;bottom:0;height:62%;
+  background:linear-gradient(to bottom,rgba(0,0,0,0) 0%,rgba(0,0,0,.55) 38%,rgba(0,0,0,.86) 100%)}
+.shade.tall{height:75%}
+/* 위쪽도 살짝 어둡게: 로고와 사진 속 글씨가 겹쳐도 읽히게 */
+.topshade{position:absolute;left:0;right:0;top:0;height:190px;background:linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,0))}
+
+.mark{position:absolute;left:var(--pad);top:44px;display:flex;align-items:center;gap:10px;
+  font-weight:800;font-size:26px;letter-spacing:-.04em;text-shadow:0 1px 10px rgba(0,0,0,.45)}
+.mark b{display:inline-grid;place-items:center;width:38px;height:38px;border-radius:50%;
+  background:#fff;color:#000;font-size:24px;font-weight:900;text-shadow:none}
+.credit{position:absolute;right:var(--pad);top:50px;font-weight:600;font-size:19px;opacity:.85;
+  text-shadow:0 1px 8px rgba(0,0,0,.6)}
+
+.foot{position:absolute;left:var(--pad);right:var(--pad);bottom:64px}
+.pill{display:inline-block;background:#fff;color:#000;font-weight:700;font-size:calc(28px * var(--k));
+  padding:9px 18px 10px;border-radius:999px;letter-spacing:-.03em}
+.title{margin-top:20px;font-weight:900;font-size:calc(96px * var(--k));line-height:1.14;letter-spacing:-.06em;
+  text-shadow:0 2px 18px rgba(0,0,0,.35)}
+
+/* 안쪽 슬라이드 */
+.head2{font-weight:900;font-size:calc(72px * var(--k));line-height:1.16;letter-spacing:-.055em;margin-top:18px;
+  text-shadow:0 2px 14px rgba(0,0,0,.35)}
+.box{margin-top:26px;background:#fff;color:#111;border-radius:22px;padding:28px 32px 26px}
+.box p{font-weight:600;font-size:calc(31px * var(--k));line-height:1.5;letter-spacing:-.035em}
+.facts{display:flex;flex-wrap:wrap;gap:10px 10px;margin-top:18px}
+.facts span{font-weight:700;font-size:calc(23px * var(--k));background:#F1F1F1;color:#222;border-radius:10px;padding:7px 13px 8px}
+.facts span em{font-style:normal;color:#8A8A8A;font-weight:600;margin-right:8px}
+.idx{display:inline-block;background:var(--accent);color:#000;font-weight:900;font-size:28px;
+  padding:8px 16px 9px;border-radius:999px}
+
+/* 마지막 슬라이드 */
+.outro{position:absolute;inset:0;background:#0E0E0E;padding:110px var(--pad) 64px;display:flex;flex-direction:column}
+.thumbs{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.thumbs figure{aspect-ratio:3/4.2;border-radius:14px;overflow:hidden;position:relative}
+.thumbs figure span{position:absolute;left:10px;top:10px;width:34px;height:34px;border-radius:50%;background:#fff;color:#000;
+  display:grid;place-items:center;font-weight:900;font-size:20px}
+.ask{margin-top:72px;font-weight:900;font-size:96px;line-height:1.15;letter-spacing:-.06em}
+.todo{margin-top:56px;display:flex;flex-direction:column}
+.todo div{font-weight:700;font-size:40px;color:rgba(255,255,255,.9);padding:26px 0;border-top:1px solid rgba(255,255,255,.14)}
+.src{margin-top:auto;font-weight:500;font-size:20px;line-height:1.6;color:rgba(255,255,255,.45)}
+.handle{position:absolute;right:var(--pad);bottom:28px;font-weight:600;font-size:20px;color:rgba(255,255,255,.55)}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script>
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const br = s => esc(s).replace(/\n/g,"<br>");
+// focus: 사진에서 보여줄 위치, zoom: 확대 배율 (모델 등 불필요한 부분을 잘라낼 때)
+const fig = (src,focus,zoom) => `<figure><img src="${esc(src)}" style="object-position:${esc(focus||"50% 50%")};transform:scale(${+zoom||1});transform-origin:${esc(focus||"50% 50%")}" alt=""></figure>`;
+const mark = `<div class="mark"><b>5</b>다섯가지</div>`;
+
+function cover(p){
+  const pics = (p.cover_images || p.items.slice(0,1).map(i=>({image:i.image,focus:i.focus}))).slice(0,4);
+  return `<div class="bg n${pics.length}">${pics.map(c=>fig(c.image,c.focus,c.zoom)).join("")}</div>
+    <div class="shade"></div><div class="topshade"></div>${mark}
+    <div class="foot"><span class="pill">${esc(p.kicker)}</span><h1 class="title">${br(p.title)}</h1></div>`;
+}
+function item(p,i){
+  const it = p.items[i];
+  const facts = (it.facts||[]).map(([k,v])=>`<span><em>${esc(k)}</em>${esc(v)}</span>`).join("");
+  return `<div class="bg n1">${fig(it.image,it.focus,it.zoom)}</div>
+    <div class="shade tall"></div><div class="topshade"></div>${mark}
+    ${it.credit?`<div class="credit">${esc(it.credit)}</div>`:""}
+    <div class="foot">
+      <span class="idx">${i+1} / ${p.items.length}</span>
+      <h2 class="head2">${br(it.name)}</h2>
+      <div class="box"><p>${br(it.desc)}</p>${facts?`<div class="facts">${facts}</div>`:""}</div>
+    </div>`;
+}
+function outro(p){
+  return `<section class="outro">${mark}
+    <div class="thumbs">${p.items.map((it,j)=>`<figure><img src="${esc(it.image)}" style="object-position:${esc(it.focus||"50% 50%")};transform:scale(${+it.zoom||1});transform-origin:${esc(it.focus||"50% 50%")}" alt=""><span>${j+1}</span></figure>`).join("")}</div>
+    <h2 class="ask">${br(p.outro.question)}</h2>
+    <div class="todo">${p.outro.lines.map(l=>`<div>${br(l)}</div>`).join("")}</div>
+    <p class="src">출처  ${(p.sources||[]).map(esc).join(" / ")}</p>
+  </section><div class="handle">@${esc(p.handle)}</div>`;
+}
+function render(p, slide){
+  const n = p.items.length, root = document.getElementById("root");
+  root.innerHTML = slide===0 ? cover(p) : slide<=n ? item(p,slide-1) : outro(p);
+  const foot = root.querySelector(".foot");
+  let k = 1; document.documentElement.style.setProperty("--k", k);
+  // 글 덩어리가 사진의 위쪽 40%를 넘어오지 않게 줄임
+  const over = () => foot && foot.getBoundingClientRect().top < 1350*0.42;
+  while (over() && k > 0.74){ k -= 0.02; document.documentElement.style.setProperty("--k", k); }
+  return {k:+k.toFixed(2), fits:!over()};
+}
+window.render = render;
+</script>
+</body>
+</html>

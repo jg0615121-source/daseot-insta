@@ -1,0 +1,74 @@
+name: 오늘의 다섯가지 만들고 올리기
+
+# 매일 아침 Claude가 posts/날짜.json 원고를 올리면 자동으로 실행된다.
+on:
+  push:
+    branches: [main]
+    paths: ["posts/*.json"]
+  workflow_dispatch:
+    inputs:
+      post:
+        description: "다시 돌릴 원고 경로 (예: posts/2026-10-25.json)"
+        required: true
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-post
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: 이번에 바뀐 원고 찾기
+        id: pick
+        run: |
+          if [ -n "${{ github.event.inputs.post }}" ]; then
+            echo "post=${{ github.event.inputs.post }}" >> "$GITHUB_OUTPUT"
+          else
+            f=$(git diff --name-only HEAD~1 HEAD -- 'posts/*.json' | tail -1)
+            echo "post=$f" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: 준비
+        if: steps.pick.outputs.post != ''
+        run: |
+          pip install playwright pillow
+          python -m playwright install --with-deps chromium
+
+      - name: 실물 사진 받기
+        if: steps.pick.outputs.post != ''
+        run: python scripts/fetch_images.py "${{ steps.pick.outputs.post }}"
+
+      - name: 슬라이드 만들기
+        if: steps.pick.outputs.post != ''
+        run: python render.py "${{ steps.pick.outputs.post }}"
+
+      - name: 사진과 슬라이드 저장
+        if: steps.pick.outputs.post != ''
+        run: |
+          git config user.name "daseot-bot"
+          git config user.email "daseot-bot@users.noreply.github.com"
+          git add assets out posts
+          git commit -m "슬라이드 생성: ${{ steps.pick.outputs.post }}" || echo "변경 없음"
+          git push
+
+      - name: 인스타그램 게시
+        if: steps.pick.outputs.post != ''
+        env:
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          IG_API_HOST: ${{ vars.IG_API_HOST }}
+          IMAGE_BASE_URL: ${{ vars.IMAGE_BASE_URL }}
+        run: |
+          python scripts/publish.py "${{ steps.pick.outputs.post }}"
+          git add posts
+          git commit -m "게시 기록: ${{ steps.pick.outputs.post }}" || true
+          git push || true
