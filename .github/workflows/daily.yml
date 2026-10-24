@@ -42,6 +42,7 @@ jobs:
         run: |
           pip install playwright pillow
           python -m playwright install --with-deps chromium
+          which ffmpeg || (sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg)
 
       - name: 실물 사진 받기
         if: steps.pick.outputs.post != ''
@@ -50,6 +51,10 @@ jobs:
       - name: 슬라이드 만들기
         if: steps.pick.outputs.post != ''
         run: python render.py "${{ steps.pick.outputs.post }}"
+
+      - name: 릴스 영상 만들기
+        if: steps.pick.outputs.post != ''
+        run: python scripts/make_reel.py "${{ steps.pick.outputs.post }}" || echo "릴스 생성 실패 (게시물은 그대로 진행)"
 
       - name: 사진과 슬라이드 저장
         if: steps.pick.outputs.post != ''
@@ -78,8 +83,9 @@ jobs:
           export GIT_SSH_COMMAND="ssh -i $key -o IdentitiesOnly=yes -o StrictHostKeyChecking=accept-new"
           git clone --depth 1 "git@github.com:${IMAGES_REPO}.git" "$RUNNER_TEMP/images"
           cd "$RUNNER_TEMP/images"
-          mkdir -p "$d" && rm -f "$d"/*.jpg
+          mkdir -p "$d" && rm -f "$d"/*.jpg "$d"/reel.mp4
           cp "$GITHUB_WORKSPACE/out/$d/"*.jpg "$d/"
+          cp "$GITHUB_WORKSPACE/out/$d/reel.mp4" "$d/" 2>/dev/null || true
           git config user.name "daseot-bot"
           git config user.email "daseot-bot@users.noreply.github.com"
           git add "$d"
