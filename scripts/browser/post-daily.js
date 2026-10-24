@@ -5,7 +5,7 @@
 const fs = require('fs'), path = require('path'), { execSync } = require('child_process');
 const { chromium } = require('playwright-core');
 const HOME = __dirname, LOG = path.join(HOME, 'post.log'), DRY = process.env.DRY === '1';
-const REEL_DAYS = [1]; // 0=일 1=월 … 릴스 올릴 요일
+const REEL_DAYS = (process.env.REEL_DAYS || '1').split(',').map(Number); // 0=일 1=월 … 릴스 올릴 요일
 const log = m => { fs.appendFileSync(LOG, new Date().toISOString() + ' ' + m + '\n'); console.log(m); };
 const day = process.argv[2] || new Date(Date.now() + 9 * 3600e3).toISOString().slice(0, 10);
 const mark = k => path.join(HOME, 'posted', day + k + '.done');
