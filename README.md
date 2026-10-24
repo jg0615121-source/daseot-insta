@@ -16,7 +16,7 @@
 ## 인스타 게시를 켜려면
 
 Settings > Secrets and variables > Actions 의 Secrets:
-- `IMAGES_TOKEN`: daseot-images 저장소에만 Contents 읽기/쓰기 권한이 있는 fine-grained 토큰
+- `IMAGES_DEPLOY_KEY`: daseot-images 저장소에 쓰기 권한 배포 키로 등록된 SSH 개인 키 (등록 완료)
 - `IG_USER_ID`, `IG_ACCESS_TOKEN`: 인스타 프로페셔널 계정 ID와 게시 권한 토큰 (60일마다 갱신)
 
 선택 Variables: `IMAGES_REPO`(기본 jg0615121-source/daseot-images), `IG_API_HOST`

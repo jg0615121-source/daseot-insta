@@ -65,14 +65,18 @@ jobs:
         if: steps.pick.outputs.post != ''
         env:
           IMAGES_REPO: ${{ vars.IMAGES_REPO || 'jg0615121-source/daseot-images' }}
-          IMAGES_TOKEN: ${{ secrets.IMAGES_TOKEN }}
+          # daseot-images 저장소에만 쓰기 권한이 있는 배포 키
+          IMAGES_DEPLOY_KEY: ${{ secrets.IMAGES_DEPLOY_KEY }}
         run: |
-          if [ -z "$IMAGES_TOKEN" ]; then
-            echo "IMAGES_TOKEN이 없어서 이미지 업로드와 게시를 건너뜀."
+          if [ -z "$IMAGES_DEPLOY_KEY" ]; then
+            echo "IMAGES_DEPLOY_KEY가 없어서 이미지 업로드와 게시를 건너뜀."
             exit 0
           fi
           d=$(basename "${{ steps.pick.outputs.post }}" .json)
-          git clone --depth 1 "https://x-access-token:${IMAGES_TOKEN}@github.com/${IMAGES_REPO}.git" "$RUNNER_TEMP/images"
+          key="$RUNNER_TEMP/images_key"
+          printf '%s\n' "$IMAGES_DEPLOY_KEY" > "$key" && chmod 600 "$key"
+          export GIT_SSH_COMMAND="ssh -i $key -o IdentitiesOnly=yes -o StrictHostKeyChecking=accept-new"
+          git clone --depth 1 "git@github.com:${IMAGES_REPO}.git" "$RUNNER_TEMP/images"
           cd "$RUNNER_TEMP/images"
           mkdir -p "$d" && rm -f "$d"/*.jpg
           cp "$GITHUB_WORKSPACE/out/$d/"*.jpg "$d/"
