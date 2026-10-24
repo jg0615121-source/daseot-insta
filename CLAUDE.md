@@ -14,5 +14,5 @@
 - 작성자 이메일: 262959588+jg0615121-source@users.noreply.github.com (개인 메일 쓰지 않음)
 
 ## 인스타 게시 (API 받기 전 임시)
-- 사용자 PC 작업 스케줄러 '다섯가지 인스타 게시'가 매일 11:30~21:30 매시간 `%LOCALAPPDATA%\daseot-browser\post-daily.js` 실행 → 브라우저(Edge, 전용 프로필)로 오늘 슬라이드 게시. 기록은 같은 폴더 post.log, 게시한 날은 posted\날짜.done.
+- 사용자 PC 작업 스케줄러 '다섯가지 인스타 게시'가 매일 07:30~21:30 매시간 `%LOCALAPPDATA%\daseot-browser\post-daily.js` 실행 (원본은 저장소 scripts/browser/post-daily.js, 고치면 PC에 다시 내려받기). 해시태그는 첫 댓글, 월요일엔 릴스도 → 브라우저(Edge, 전용 프로필)로 오늘 슬라이드 게시. 기록은 같은 폴더 post.log, 게시한 날은 posted\날짜.done.
 - IG_USER_ID/IG_ACCESS_TOKEN 시크릿을 넣어 API 게시를 켜는 날, 이 작업 스케줄러를 끌 것 (안 끄면 두 번 올라감).
