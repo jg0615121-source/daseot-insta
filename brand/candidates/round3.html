@@ -1,0 +1,54 @@
+<html><head><style>
+@font-face{font-family:P;src:url(file:///home/user/daseot-insta/fonts/Pretendard-Black.woff2);font-weight:900}
+*{margin:0}body{background:#eee;padding:40px}.row{display:flex;gap:40px}
+.c{width:640px;height:640px;overflow:hidden}
+</style></head><body><div class="row">
+
+<!-- 1 주사위 마스코트 -->
+<svg class="c" id="M1" viewBox="0 0 640 640">
+ <defs>
+  <radialGradient id="bg1" cx="50%" cy="40%" r="70%"><stop offset="0" stop-color="#4C6BFF"/><stop offset="1" stop-color="#2440E0"/></radialGradient>
+  <linearGradient id="body" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#EEF1FF"/></linearGradient>
+ </defs>
+ <rect width="640" height="640" fill="url(#bg1)"/>
+ <ellipse cx="320" cy="520" rx="170" ry="26" fill="#1A2FB0" opacity=".55"/>
+ <g transform="rotate(-8 320 320)">
+  <!-- 옆면(두께) -->
+  <rect x="140" y="160" width="360" height="360" rx="92" fill="#C9D2FF" stroke="#0F1640" stroke-width="16"/>
+  <!-- 앞면 -->
+  <rect x="140" y="130" width="360" height="350" rx="92" fill="url(#body)" stroke="#0F1640" stroke-width="16"/>
+  <!-- 하이라이트 -->
+  <path d="M190 190 q10 -32 48 -36" fill="none" stroke="#fff" stroke-width="18" stroke-linecap="round"/>
+  <!-- 눈 (위 두 눈) -->
+  <g fill="#0F1640"><ellipse cx="240" cy="250" rx="30" ry="36"/><ellipse cx="400" cy="250" rx="30" ry="36"/></g>
+  <g fill="#fff"><circle cx="250" cy="236" r="10"/><circle cx="410" cy="236" r="10"/></g>
+  <!-- 볼 (아래 두 눈) -->
+  <g fill="#FF6B8A"><ellipse cx="226" cy="370" rx="30" ry="20"/><ellipse cx="414" cy="370" rx="30" ry="20"/></g>
+  <!-- 입 (가운데 눈) -->
+  <path d="M290 318 q30 38 60 0 z" fill="#0F1640" stroke="#0F1640" stroke-width="10" stroke-linejoin="round"/>
+  <path d="M305 336 q15 12 30 0" fill="#FF6B8A"/>
+ </g>
+</svg>
+
+<!-- 2 앱아이콘형 기하 5 -->
+<svg class="c" id="M2" viewBox="0 0 640 640">
+ <defs>
+  <linearGradient id="bg2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF7A45"/><stop offset=".55" stop-color="#FF3D6E"/><stop offset="1" stop-color="#B23CFF"/></linearGradient>
+  <linearGradient id="gl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".35"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+  <mask id="m5"><rect width="640" height="640" fill="#fff"/><circle cx="330" cy="382" r="44" fill="#000"/></mask>
+ </defs>
+ <rect width="640" height="640" fill="url(#bg2)"/>
+ <ellipse cx="320" cy="90" rx="380" ry="200" fill="url(#gl)"/>
+ <path transform="translate(-14 0)" d="M418 182 H250 V322 A104 104 0 1 1 246 446" fill="none" stroke="#fff" stroke-width="66" stroke-linecap="round" stroke-linejoin="round"/>
+ <circle cx="320" cy="384" r="24" fill="#FFE14D"/>
+</svg>
+
+<!-- 3 말풍선 라인 아이콘 -->
+<svg class="c" id="M3" viewBox="0 0 640 640">
+ <defs><linearGradient id="st" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2F54FF"/><stop offset="1" stop-color="#00C2A8"/></linearGradient></defs>
+ <rect width="640" height="640" fill="#FAFAF7"/>
+ <path d="M200 170 h240 a90 90 0 0 1 90 90 v80 a90 90 0 0 1 -90 90 h-120 l-78 66 v-66 h-42 a90 90 0 0 1 -90 -90 v-80 a90 90 0 0 1 90 -90 z" fill="none" stroke="url(#st)" stroke-width="40" stroke-linejoin="round"/>
+ <g fill="url(#st)"><circle cx="210" cy="300" r="22"/><circle cx="265" cy="300" r="22"/><circle cx="320" cy="300" r="22"/><circle cx="375" cy="300" r="22"/></g>
+ <circle cx="430" cy="300" r="22" fill="#FF3D6E"/>
+</svg>
+</div></body></html>
