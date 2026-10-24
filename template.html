@@ -76,7 +76,8 @@ const fig = (src,focus,zoom) => `<figure><img src="${esc(src)}" style="object-po
 const mark = `<div class="mark"><b>5</b>다섯가지</div>`;
 
 function cover(p){
-  const pics = (p.cover_images || p.items.slice(0,1).map(i=>({image:i.image,focus:i.focus}))).slice(0,4);
+  // 표지는 기본적으로 사진 1장 (다 보여주면 안 넘겨봄). cover_images로 바꿀 수 있음
+  const pics = (p.cover_images && p.cover_images.length ? p.cover_images : [p.items[0]]).slice(0,4);
   return `<div class="bg n${pics.length}">${pics.map(c=>fig(c.image,c.focus,c.zoom)).join("")}</div>
     <div class="shade"></div><div class="topshade"></div>${mark}
     <div class="foot"><span class="pill">${esc(p.kicker)}</span><h1 class="title">${br(p.title)}</h1></div>`;

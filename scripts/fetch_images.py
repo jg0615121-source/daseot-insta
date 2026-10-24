@@ -61,10 +61,10 @@ def main(post_path):
                 print(f"경고: {i}번 사진 실패 {e}")
         if not it.get("image"):
             raise SystemExit(f"{i}번 품목 사진을 못 받음. 이 게시물은 올리지 않음.")
-    # 표지: 지정 안 했으면 앞의 4장으로 콜라주
+    # 표지: cover_item(1~5)으로 고른 품목 사진 1장. 없으면 1번 품목
     if not post.get("cover_images"):
-        post["cover_images"] = [{"image": it["image"], "focus": it.get("focus", "50% 50%")}
-                                for it in post["items"][:4]]
+        it = post["items"][int(post.get("cover_item", 1)) - 1]
+        post["cover_images"] = [{k: it[k] for k in ("image", "focus", "zoom") if k in it}]
     post_path.write_text(json.dumps(post, ensure_ascii=False, indent=2), encoding="utf-8")
 
 if __name__ == "__main__":
