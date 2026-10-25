@@ -8,11 +8,11 @@
   "items": [
     {
       "name": "페이커 우표\n반나절 만에 매진",
-      "source_url": "https://www.inven.co.kr/webzine/news/?news=322507",
-      "image_url": "https://static.inven.co.kr/column/2026/10/23/news/i1540301645.jpg",
-      "focus": "50% 50%",
+      "source_url": "https://www.news1.kr/industry/distribution/6329632",
+      "image_url": "https://image.news1.kr/system/photos/2026/10/10/8151989/high.jpg/dims/optimize",
+      "focus": "50% 40%",
       "zoom": 1,
-      "credit": "사진 우정사업본부 제공",
+      "credit": "사진 뉴스1",
       "cover_score": {
         "subject": 3,
         "photo": 2,
@@ -38,11 +38,11 @@
     },
     {
       "name": "극장판 치이카와\n11일째 1위",
-      "source_url": "https://www.econovill.com/news/articleView.html?idxno=754711",
-      "image_url": "https://cdn.econovill.com/news/photo/202610/754711_731589_116.jpg",
+      "source_url": "https://isplus.com/article/view/isp202610050071",
+      "image_url": "https://isp.edailystatic.com/data/isp/image/2026/10/05/isp20261005000083.1280x.0.jpg",
       "focus": "50% 50%",
       "zoom": 1,
-      "credit": "사진 배급사 제공",
+      "credit": "사진 CJ ENM 제공",
       "cover_score": {
         "subject": 3,
         "photo": 2,
@@ -162,10 +162,11 @@
   },
   "sources": [
     "인벤 10.23",
+    "뉴스1 10.23",
     "이코노믹리뷰 10.25",
     "뉴스토마토 10.21",
     "스타뉴스 10.25",
     "SBS 10.25"
   ],
-  "caption": "지난주 화제 이슈 정리, 모르면 대화 안 되는 다섯가지 🔥\n\n우체국 오픈런부터 300만원대 폴더블 아이폰,\n극장가를 접수한 치이카와까지\n월요일에 할 얘기 다섯 개 모아봄\n\n1 페이커 기념우표 14만 장, 반나절 만에 사실상 매진\n2 극장판 치이카와 누적 211만, 11일 연속 1위\n3 아이폰 듀오 10.23 국내 출시, 329만원부터\n4 크러쉬X아이유 '삐그덕' 유튜브 일간 뮤비 1위\n5 안세영 프랑스오픈 3연패, 시즌 10번째 우승\n\n점심에 수다 떨 친구한테 보내기\n나중에 꺼내 보려면 저장 📌\n\n출처: 인벤, 이코노믹리뷰, 뉴스토마토, 스타뉴스, SBS\n#다섯가지 #주간이슈 #핫이슈 #페이커 #아이폰듀오"
+  "caption": "지난주 화제 이슈 정리, 모르면 대화 안 되는 다섯가지 🔥\n\n우체국 오픈런부터 300만원대 폴더블 아이폰,\n극장가를 접수한 치이카와까지\n월요일에 할 얘기 다섯 개 모아봄\n\n1 페이커 기념우표 14만 장, 반나절 만에 사실상 매진\n2 극장판 치이카와 누적 211만, 11일 연속 1위\n3 아이폰 듀오 10.23 국내 출시, 329만원부터\n4 크러쉬X아이유 '삐그덕' 유튜브 일간 뮤비 1위\n5 안세영 프랑스오픈 3연패, 시즌 10번째 우승\n\n점심에 수다 떨 친구한테 보내기\n나중에 꺼내 보려면 저장 📌\n\n출처: 인벤, 뉴스1, 이코노믹리뷰, 뉴스토마토, 스타뉴스, SBS\n#다섯가지 #주간이슈 #핫이슈 #페이커 #아이폰듀오"
 }
