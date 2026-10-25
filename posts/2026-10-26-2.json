@@ -1,0 +1,169 @@
+{
+  "handle": "daseot.today",
+  "date": "2026-10-26",
+  "category": "팝업",
+  "kicker": "월요일 팝업 다섯가지 ✦",
+  "title": "이번주 안 가면\n[후회]할 팝업 5",
+  "cover_item": 2,
+  "items": [
+    {
+      "name": "카메라 처방해주는\n서촌 한약방",
+      "source_url": "https://www.reviewtimes.co.kr/news/articleView.html?idxno=13149",
+      "image_url": "https://cdn.reviewtimes.co.kr/news/photo/202610/13149_82167_452.jpg",
+      "focus": "50% 55%",
+      "zoom": 1,
+      "credit": "사진 캐논코리아 제공",
+      "cover_score": {
+        "subject": 3,
+        "photo": 2,
+        "timely": 2,
+        "swipe": 1,
+        "total": 8
+      },
+      "desc": "촬영 습관 문진표를 쓰면 공간 4곳에서 카메라랑 렌즈를 직접 써보게 해줘. 찍은 사진 한 장은 바로 뽑아줘.",
+      "facts": [
+        [
+          "기간",
+          "~11.1"
+        ],
+        [
+          "평일",
+          "11~19시"
+        ],
+        [
+          "주말",
+          "10~20시"
+        ]
+      ]
+    },
+    {
+      "name": "롤드컵 트로피 팝업\n잠실 이어 성수까지",
+      "source_url": "https://www.etoday.co.kr/news/view/2639603",
+      "image_url": "https://img.etoday.co.kr/pto_db/2026/10/20261023193148_2406279_1200_900.jpg",
+      "focus": "50% 50%",
+      "zoom": 1,
+      "credit": "사진 롯데백화점 제공",
+      "cover_score": {
+        "subject": 3,
+        "photo": 3,
+        "timely": 2,
+        "swipe": 1,
+        "total": 9
+      },
+      "desc": "8m짜리 트로피 앞에서 사진 찍고 LCK 네 팀 응원 문구도 남길 수 있어. 성수는 올리브영N 성수 트렌드팟에서 열려.",
+      "facts": [
+        [
+          "잠실",
+          "~11.1"
+        ],
+        [
+          "성수",
+          "10.29~11.8"
+        ]
+      ]
+    },
+    {
+      "name": "코치 무신사 팝업\n서울숲에 열림",
+      "source_url": "https://fashionseoul.com/276398",
+      "image_url": "https://fashionseoul.com/wp-content/uploads/2026/10/20261021_coach-1.jpg",
+      "focus": "50% 45%",
+      "zoom": 1,
+      "credit": "사진 코치 제공",
+      "cover_score": {
+        "subject": 2,
+        "photo": 3,
+        "timely": 1,
+        "swipe": 1,
+        "total": 7
+      },
+      "desc": "공연장처럼 꾸민 건물에서 리스닝 부스로 내 플레이리스트를 만들어. 구매하면 이니셜 각인 태그를 무료로 달아줘.",
+      "facts": [
+        [
+          "어디",
+          "서울숲"
+        ],
+        [
+          "기간",
+          "~11.7"
+        ],
+        [
+          "증정",
+          "솜사탕"
+        ]
+      ]
+    },
+    {
+      "name": "보넥도 쁘넥도 팝업\n더현대에 열림",
+      "source_url": "https://www.topstarnews.net/news/articleView.html?idxno=16253647",
+      "image_url": "https://cdn.topstarnews.net/news/photo/202610/16253647_2062154_628.jpg",
+      "focus": "50% 50%",
+      "zoom": 1,
+      "credit": "사진 KOZ엔터테인먼트 제공",
+      "cover_score": {
+        "subject": 2,
+        "photo": 3,
+        "timely": 1,
+        "swipe": 1,
+        "total": 7
+      },
+      "desc": "멤버들 ASMR을 듣는 청음존이랑 쁘넥도 방을 몰래 엿보는 핍홀이 있어. 온라인 사전 예약하고 가야 해.",
+      "facts": [
+        [
+          "어디",
+          "더현대 B1"
+        ],
+        [
+          "기간",
+          "~11.3"
+        ],
+        [
+          "입장",
+          "사전 예약"
+        ]
+      ]
+    },
+    {
+      "name": "영조 생일카페가\n대학로에 열림",
+      "source_url": "https://www.ajunews.com/view/20261022155523781",
+      "image_url": "https://image.ajunews.com/content/image/2026/10/22/20261022155558942493.jpg",
+      "focus": "50% 50%",
+      "zoom": 1,
+      "credit": "사진 뮤지컬 '쉐도우' 포스터",
+      "cover_score": {
+        "subject": 1,
+        "photo": 1,
+        "timely": 2,
+        "swipe": 1,
+        "total": 5
+      },
+      "desc": "뮤지컬 쉐도우가 영조 생일 기념으로 여는 카페야. 곶감·딸기 디저트에 뒤주 모형 만들기 굿즈까지 있어.",
+      "facts": [
+        [
+          "기간",
+          "10.31~11.1"
+        ],
+        [
+          "어디",
+          "대학로 필더스페이스"
+        ]
+      ]
+    }
+  ],
+  "outro": {
+    "question": "다섯 개 중에\n하나만 간다면?",
+    "lines": [
+      "번호로 댓글 남겨줘",
+      "이번 주말 같이 갈 친구한테 보내기",
+      "저장해두고 주말에 꺼내보기"
+    ]
+  },
+  "sources": [
+    "리뷰타임스 10.23",
+    "이투데이 10.25",
+    "인벤 10.16",
+    "패션서울 10.21",
+    "톱스타뉴스 10.21",
+    "아주경제 10.22"
+  ],
+  "caption": "이번주 팝업스토어 정리, 안 가면 후회할 서울 팝업 다섯가지 ✨\n\n잠실에 이어 성수까지 오는 롤드컵 팝업부터\n카메라를 처방해주는 서촌 한약방, 영조 생일카페까지\n이번 주에 가야 하는 곳만 모아봄\n\n1 캐논 사진 한방당 서촌, 11.1까지\n2 라이엇 뮤직&월즈 팝업 잠실 11.1까지, 성수 10.29 오픈\n3 코치 LIVE YOUR STORY 무신사 스페이스 서울숲, 11.7까지\n4 보넥도 쁘넥도 팝업 더현대 서울 B1, 11.3까지\n5 뮤지컬 쉐도우 영조 생일카페 대학로, 10.31~11.1\n\n이번 주말 같이 갈 친구한테 보내기\n나중에 꺼내 보려면 저장 📌\n\n출처: 리뷰타임스, 이투데이, 인벤, 패션서울, 톱스타뉴스, 아주경제\n#다섯가지 #팝업스토어 #서울팝업 #롤드컵팝업 #캐논"
+}
