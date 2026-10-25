@@ -1,0 +1,171 @@
+{
+  "handle": "daseot.today",
+  "date": "2026-10-26",
+  "category": "화제",
+  "kicker": "월요일 화제 다섯가지 ✦",
+  "title": "지난주 놓쳤으면\n[대화 안 됨] 5",
+  "cover_item": 3,
+  "items": [
+    {
+      "name": "페이커 우표\n반나절 만에 매진",
+      "source_url": "https://www.inven.co.kr/webzine/news/?news=322507",
+      "image_url": "https://static.inven.co.kr/column/2026/10/23/news/i1540301645.jpg",
+      "focus": "50% 50%",
+      "zoom": 1,
+      "credit": "사진 우정사업본부 제공",
+      "cover_score": {
+        "subject": 3,
+        "photo": 2,
+        "timely": 2,
+        "swipe": 1,
+        "total": 8
+      },
+      "desc": "서울중앙우체국 앞엔 전날 밤부터 400명 넘게 줄 섰대. 인터넷우체국 물량은 오전에 이미 다 나갔어.",
+      "facts": [
+        [
+          "수량",
+          "14만 장"
+        ],
+        [
+          "발행",
+          "10.23"
+        ],
+        [
+          "결과",
+          "반나절 매진"
+        ]
+      ]
+    },
+    {
+      "name": "극장판 치이카와\n11일째 1위",
+      "source_url": "https://www.econovill.com/news/articleView.html?idxno=754711",
+      "image_url": "https://cdn.econovill.com/news/photo/202610/754711_731589_116.jpg",
+      "focus": "50% 50%",
+      "zoom": 1,
+      "credit": "사진 배급사 제공",
+      "cover_score": {
+        "subject": 3,
+        "photo": 2,
+        "timely": 1,
+        "swipe": 1,
+        "total": 7
+      },
+      "desc": "개봉한 지 한 달이 다 돼 가는데 토요일 하루에만 14만 명이 봤어. 2위 영화보다 다섯 배 많은 관객이야.",
+      "facts": [
+        [
+          "누적",
+          "211만 명"
+        ],
+        [
+          "1위",
+          "11일 연속"
+        ],
+        [
+          "개봉",
+          "9.30"
+        ]
+      ]
+    },
+    {
+      "name": "첫 폴더블 아이폰\n한국 출시됨",
+      "source_url": "https://newstomato.com/ReadNews.aspx?no=1317498",
+      "image_url": "https://img.hankyung.com/photo/202609/01.45739083.1.jpg",
+      "focus": "50% 50%",
+      "zoom": 1,
+      "credit": "사진 애플 제공",
+      "cover_score": {
+        "subject": 3,
+        "photo": 3,
+        "timely": 2,
+        "swipe": 1,
+        "total": 9
+      },
+      "desc": "물량이 모자라서 지금 주문하면 내년 1월에나 받는대. 시작가가 329만원인데도 이 정도로 몰렸어.",
+      "facts": [
+        [
+          "가격",
+          "329만원~"
+        ],
+        [
+          "출시",
+          "10.23"
+        ],
+        [
+          "배송",
+          "내년 1월"
+        ]
+      ]
+    },
+    {
+      "name": "크러쉬X아이유\n삐그덕 뮤비 1위",
+      "source_url": "https://www.starnewskorea.com/music/2026/10/25/2026102518470955849",
+      "focus": "50% 30%",
+      "zoom": 1,
+      "credit": "사진 피네이션 제공",
+      "cover_score": {
+        "subject": 3,
+        "photo": 2,
+        "timely": 2,
+        "swipe": 1,
+        "total": 8
+      },
+      "desc": "아이유가 피처링한 크러쉬 신곡이야. 뮤비 공개 다음 날 유튜브 일간 인기 뮤비 차트 1위에 올랐어.",
+      "facts": [
+        [
+          "조회수",
+          "556만 회 돌파"
+        ],
+        [
+          "발매",
+          "10.21 오후 6시"
+        ]
+      ]
+    },
+    {
+      "name": "안세영 시즌 10승\n프랑스오픈 3연패",
+      "source_url": "https://news.sbs.co.kr/news/endPage.do?news_id=N1008814094",
+      "image_url": "https://img.sbs.co.kr/newimg/news/20261025/202234681_1280.jpg",
+      "focus": "50% 35%",
+      "zoom": 1,
+      "credit": "사진 연합뉴스",
+      "cover_score": {
+        "subject": 3,
+        "photo": 2,
+        "timely": 2,
+        "swipe": 0,
+        "total": 7
+      },
+      "desc": "올해 67경기에서 진 건 딱 한 번이야. 결승에서 신두한테 첫 게임을 내주고도 뒤집었어.",
+      "facts": [
+        [
+          "승률",
+          "98.5%"
+        ],
+        [
+          "결승",
+          "10.24"
+        ],
+        [
+          "올해",
+          "66승 1패"
+        ]
+      ]
+    }
+  ],
+  "outro": {
+    "question": "다섯 개 중에\n뭐가 제일 놀라웠어?",
+    "lines": [
+      "번호로 댓글 남겨줘",
+      "점심에 수다 떨 친구한테 보내기",
+      "저장해두고 대화할 때 꺼내보기"
+    ]
+  },
+  "sources": [
+    "인벤 10.23",
+    "이코노믹리뷰 10.25",
+    "뉴스토마토 10.21",
+    "스타뉴스 10.25",
+    "SBS 10.25"
+  ],
+  "caption": "지난주 화제 이슈 정리, 모르면 대화 안 되는 다섯가지 🔥\n\n우체국 오픈런부터 300만원대 폴더블 아이폰,\n극장가를 접수한 치이카와까지\n월요일에 할 얘기 다섯 개 모아봄\n\n1 페이커 기념우표 14만 장, 반나절 만에 사실상 매진\n2 극장판 치이카와 누적 211만, 11일 연속 1위\n3 아이폰 듀오 10.23 국내 출시, 329만원부터\n4 크러쉬X아이유 '삐그덕' 유튜브 일간 뮤비 1위\n5 안세영 프랑스오픈 3연패, 시즌 10번째 우승\n\n점심에 수다 떨 친구한테 보내기\n나중에 꺼내 보려면 저장 📌\n\n출처: 인벤, 이코노믹리뷰, 뉴스토마토, 스타뉴스, SBS\n#다섯가지 #주간이슈 #핫이슈 #페이커 #아이폰듀오"
+}
