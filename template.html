@@ -32,11 +32,12 @@ figure img{display:block;width:100%;height:100%;object-fit:cover}
 .pill{display:inline-block;background:#fff;font-weight:800;font-size:calc(30px * var(--k));
   padding:10px 20px 11px;border-radius:999px;letter-spacing:-.03em;color:var(--b1)}
 .title{margin-top:22px;font-weight:900;font-size:calc(104px * var(--k));line-height:1.12;letter-spacing:-.06em}
-.title b{background:var(--accent);-webkit-background-clip:text;background-clip:text;color:transparent}
+.title b{background:var(--accent);color:#fff;padding:0 .12em;border-radius:.12em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
 
 /* 표지: 사진 한 장을 꽉 채우고, 제목은 다섯 개 묶음 전체를 궁금하게 (내용은 안쪽에서) */
 .cov{position:absolute;inset:0}
-.cov figure{position:absolute;inset:0;overflow:hidden}
+.cov>figure{position:absolute;inset:0;overflow:hidden}
+.cov .photo{top:120px}
 .shade{position:absolute;left:0;right:0;bottom:0;height:62%;
   background:linear-gradient(to bottom,rgba(0,0,0,0) 0%,rgba(0,0,0,.55) 38%,rgba(0,0,0,.88) 100%)}
 .topshade{position:absolute;left:0;right:0;top:0;height:170px;background:linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,0))}
@@ -61,6 +62,9 @@ figure img{display:block;width:100%;height:100%;object-fit:cover}
 .ask{margin-top:72px;font-weight:900;font-size:96px;line-height:1.15;letter-spacing:-.06em}
 .todo{margin-top:56px;display:flex;flex-direction:column}
 .todo div{font-weight:700;font-size:40px;color:rgba(255,255,255,.9);padding:26px 0;border-top:1px solid rgba(255,255,255,.14)}
+/* 공유(DM 보내기)가 비팔로워 도달에 가장 큰 신호라 두 번째 줄(공유 문구)을 버튼처럼 강조 */
+.todo div.send{border:0;margin:6px 0;padding:26px 30px;border-radius:20px;background:var(--accent);color:#fff;font-weight:800}
+.todo div.send+div{border-top:0}
 .src{margin-top:auto;font-weight:500;font-size:20px;line-height:1.6;color:rgba(255,255,255,.45)}
 .handle{position:absolute;right:var(--pad);bottom:28px;font-weight:600;font-size:20px;color:rgba(255,255,255,.55)}
 </style>
@@ -82,8 +86,13 @@ const mark = `<div class="mark">${logo}다섯가지</div>`;
 function cover(p){
   // 사진은 cover_item 품목 1장(fetch_images.py가 cover_images로 채움). 다섯 장 모아 넣으면 아무것도 안 보임
   const c = (p.cover_images && p.cover_images[0]) || p.items[0];
-  return `<section class="cov">${fig(c.image,c.focus,c.zoom)}</section>
-    <div class="shade"></div><div class="topshade"></div>${mark}
+  // 크고 세로에 가까운 사진만 화면을 꽉 채움. 작거나 가로형이면 억지로 키워 자르지 않고 통째로 넣음
+  const full = c.fit === "cover" || (c.w && c.h && Math.min(c.w,c.h) >= 900 && c.w/c.h <= 1.05);
+  const pic = full ? fig(c.image,c.focus,c.zoom)
+    : `<div class="blur" style="background-image:url('${esc(c.image)}')"></div><div class="dim"></div>
+       <div class="photo"><figure data-fit>${img(c.image,c.focus,c.zoom)}</figure></div>`;
+  return `<section class="cov">${pic}</section>
+    ${full?'<div class="shade"></div><div class="topshade"></div>':""}${mark}
     <div class="foot"><span class="pill">${esc(p.kicker)}</span><h1 class="title">${title(p.title)}</h1></div>
     <div class="swipe">넘겨보기 →</div>`;
 }
@@ -115,7 +124,7 @@ function outro(p){
   return `<section class="outro">${mark}
     <div class="thumbs">${p.items.map((it,j)=>`<figure><img src="${esc(it.image)}" style="object-position:${esc(it.focus||"50% 50%")};transform:scale(${+it.zoom||1});transform-origin:${esc(it.focus||"50% 50%")}" alt=""><span>${j+1}</span></figure>`).join("")}</div>
     <h2 class="ask">${br(p.outro.question)}</h2>
-    <div class="todo">${p.outro.lines.map(l=>`<div>${br(l)}</div>`).join("")}</div>
+    <div class="todo">${p.outro.lines.map((l,j)=>`<div${j===1?' class="send"':""}>${j===1?"➜ ":""}${br(l)}</div>`).join("")}</div>
     <p class="src">출처  ${(p.sources||[]).map(esc).join(" / ")}</p>
   </section><div class="handle">@${esc(p.handle)}</div>`;
 }
@@ -124,16 +133,21 @@ function render(p, slide){
   root.innerHTML = slide===0 ? cover(p) : slide<=n ? item(p,slide-1) : outro(p);
   const foot = root.querySelector(".foot");
   let k = 1; document.documentElement.style.setProperty("--k", k);
+  if (slide===0 && root.querySelector("[data-fit]")) return fitPhoto(root, foot, p.cover_images ? p.cover_images[0] : p.items[0]);
   if (slide===0 || slide>n){
     const over = () => foot && foot.getBoundingClientRect().top < 1350*0.56;
     while (over() && k > 0.74){ k -= 0.02; document.documentElement.style.setProperty("--k", k); }
     return {k:+k.toFixed(2), fits:!over()};
   }
-  // 품목 장: 글 덩어리 위에 남는 공간을 사진 칸으로. 사진 칸이 너무 작아지면 글자를 줄임
+  return fitPhoto(root, foot, p.items[slide-1]);
+}
+// 글 덩어리 위에 남는 공간을 사진 칸으로. 사진 칸이 너무 작아지면 글자를 줄임
+function fitPhoto(root, foot, it){
+  let k = 1;
   const room = () => foot.getBoundingClientRect().top - 36 - 120;
   while (room() < 560 && k > 0.74){ k -= 0.02; document.documentElement.style.setProperty("--k", k); }
   const H = Math.min(room(), 760), W = 1080 - 2*56;
-  const [w,h] = photoBox(p.items[slide-1], W, H);
+  const [w,h] = photoBox(it, W, H);
   const box = root.querySelector(".photo"), f = root.querySelector("[data-fit]");
   box.style.setProperty("--ph", H+"px"); f.style.width = w+"px"; f.style.height = h+"px";
   return {k:+k.toFixed(2), fits: room() >= 480};

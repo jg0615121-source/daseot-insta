@@ -41,6 +41,9 @@ def pick_cover(post):
     if not all(scores):
         return int(post.get("cover_item", 1))
     ok = [i for i, sc in enumerate(scores, 1) if sc.get("photo", 0) > 0]
+    # 표지는 화면 전체로 키우니 짧은 쪽 700px 미만 사진은 피함 (흐릿한 표지는 안 멈춤)
+    sharp = [i for i in ok if min(Image.open(ROOT / post["items"][i-1]["image"]).size) >= 700]
+    ok = sharp or ok
     if not ok:
         raise SystemExit("표지로 쓸 사진이 없음 (모든 품목 photo 0점). 이 게시물은 올리지 않음.")
     total = lambda sc: sum(sc.get(k, 0) for k in ("subject", "photo", "timely", "swipe"))

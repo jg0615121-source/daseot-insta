@@ -4,8 +4,8 @@
 
 ## 매일 돌아가는 순서
 
-1. 매일 오전 Claude 예약 작업이 주제를 조사해 `posts/날짜.json` 원고를 올린다 (STYLE_GUIDE.md 기준).
-2. 원고가 올라오면 GitHub Actions(`.github/workflows/daily.yml`)가
+1. 매일 오전 Claude 예약 작업이 주제를 조사해 `posts/날짜.json`(아침 편)과 `posts/날짜-2.json`(저녁 편) 원고를 올린다 (STYLE_GUIDE.md 기준, 초반 성장기 2026-11-22까지 하루 2편).
+2. 원고가 올라오면 GitHub Actions(`.github/workflows/daily.yml`)가 이번에 바뀐 원고마다
    - `scripts/fetch_images.py`: 기사·보도자료에서 실제 사진을 받아 `assets/날짜/`에 저장
    - `render.py`: `template.html`로 1080x1350 슬라이드 7장을 `out/날짜/`에 생성
    - 완성 슬라이드를 공개 저장소 `jg0615121-source/daseot-images`의 `날짜/`에 올림

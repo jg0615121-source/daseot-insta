@@ -1,4 +1,4 @@
-# 벤치마킹·자료 조사 (2026-10-24)
+# 벤치마킹·자료 조사 (2026-10-24, 2026-10-25 보강)
 
 다섯가지 운영에 바로 쓸 것만 추렸다. 마케팅 블로그 수치는 검증 안 된 주장이 많아서 "해볼 것"으로만 적고, 우리 인사이트로 확인한다.
 
@@ -37,3 +37,41 @@
 
 - @20s_mag 외 경쟁 계정(신상·팝업 큐레이션 계정)의 실제 팔로워 수와 반응: 인스타를 자동으로 여러 번 조회하면 계정에 속도 제한(429)이 걸려 멈췄다. 직접 둘러보며 아이디를 알려주면 이 문서에 추가한다.
 - 위 블로그들의 수치(공유가 좋아요보다 3~5배 중요 등)는 공식 발표가 아니다.
+
+## 5. 2026-10-25 보강: 알고리즘과 표지 (첫 게시 반응 보고 다시 조사)
+
+첫 게시물 문제: 사진 속 내용 크기가 안 맞아 뭘 보여주는지 모름 / 표지가 품목 하나라 안쪽과 따로 놂 / 태그 활용 부족.
+
+### 공식 발표로 확인된 것
+| 내용 | 적용 | 근거 |
+|---|---|---|
+| 핵심 순위 신호는 체류 시간, 도달 대비 좋아요, 도달 대비 공유(DM 보내기). 비팔로워 도달엔 공유가 더 큼 (모세리, 2025-01, 이후 재확인) | 마무리 장에서 공유 한 줄을 버튼처럼 가장 크게. 공유 문구는 받을 사람을 콕 집기 | [Kompozy](https://kompozy.io/news/instagram-mosseri-ranking-signals-guidance), [Socialync](https://www.socialync.io/blog/adam-mosseri-shares-instagram-algorithm-2026) |
+| 해시태그 게시물당 최대 5개 (@creators, 2025-12-18) | 캡션 끝 5개: #다섯가지 + 주제 2 + 품목 2. 첫 댓글 방식 폐지 | [Social Media Today](https://www.socialmediatoday.com/news/instagram-implements-new-limits-on-hashtag-use/808309/), [SEO Sherpa](https://seosherpa.com/instagram-cutting-hashtags-from-30-to-5/) |
+| 2026-04-30부터 남의 콘텐츠를 거의 그대로 올리는 계정은 비팔로워 추천 제외 (사진·캐러셀 포함). 의미 있게 바꾼 것은 괜찮음 | 공식 사진 + 우리가 고르고 새로 쓴 요약·비교·날짜/가격 정리. 캡처 금지 | [Tubefilter](https://www.tubefilter.com/2026/04/30/instagram-removes-algorithm-recommendations-repost-content-aggregator/), [PetaPixel](https://petapixel.com/2026/04/30/new-instagram-policies-target-reposted-content/) |
+| 게시를 많이 한다고 도달이 줄지 않음, 정해진 최적 횟수는 없음 | 초반 4주 하루 2편, 이후 인사이트로 조정 | [SocialRails](https://socialrails.com/blog/instagram-posting-frequency-guide) |
+
+### 업계 자료 (검증 안 된 수치는 방향만 참고)
+- Buffer 210만 게시물 분석: 주 3~5회 게시 계정의 팔로워 증가가 주 1~2회의 약 2배. → 초반 빈도 늘림. [SocialRails](https://socialrails.com/blog/instagram-posting-frequency-guide)
+- 인스타 검색은 캡션 글을 읽음. 첫 두 줄에 검색어. → 캡션 첫 줄에 '편의점 신상', '이번주 팝업' 같은 말. [snsmeme](https://snsmeme.com/blog/instagram-seo-essentials-2026-guide)
+- 표지 1장: 답을 숨기고 궁금하게, 피드에서 작게 봐도 글자가 읽혀야 함. 2·3장은 단독으로 노출될 수 있음. [원포인트](https://1point.kr/blog/insights/high-save-cardnews-formula/), [Metricool](https://metricool.com/instagram-carousels/)
+- 사진·캐러셀에 음악을 넣으면 릴스 탭에도 노출될 수 있음. [dataslayer](https://www.dataslayer.ai/blog/instagram-algorithm-2025-complete-guide-for-marketers) → 웹 게시 화면에선 음악을 못 넣음. API 게시로 바꾼 뒤에도 미지원이라 보류.
+
+### 잘된 계정에서 배운 표지
+- 캐릿 인터뷰 (1인 매거진 본투럽): 1년간 표지 스타일을 바꿔 봐도 조회 차이는 작았고, 가장 중요한 건 **글자가 잘 보이는지**. [캐릿](https://www.careet.net/2016)
+- 고구마팜 사례: @seoulhotple '서울숲 총정리' 대신 '서울숲에 가야 하는 이유', @fashion_platform_seoul '나만 알고 싶은' → 묶음 전체를 말하되 답은 숨김. [고구마팜](https://gogumafarm.kr/%EB%8B%A4%EC%9D%8C-%EC%9E%A5%EC%9C%BC%EB%A1%9C-%EB%84%98%EA%B8%B0%EA%B2%8C-%EB%A7%8C%EB%93%9C%EB%8A%94-%EC%8D%B8%EB%84%A4%EC%9D%BC-%EA%B8%B0%ED%9A%8D-%EC%9D%B4%EB%A0%87%EA%B2%8C%EB%A7%8C-%ED%95%98/)
+- 캐릿: 질문형 제목 + 사례 이미지, 핵심 문장에만 색. [GPTers 분석](https://www.gpters.org/media/post/didnt-like-ai-card-1qfekf7peBcro8l)
+- @20s_mag: 사진 한 장 꽉 채움 + 흰 굵은 제목 2줄 + 말풍선 (STYLE_GUIDE 기준 계정).
+
+### 그래서 바꾼 것
+1. 표지: 사진 1장(크고 세로에 가까우면 꽉 채움, 작거나 가로형이면 통째로 넣고 뒤를 흐리게) + 묶음 전체를 말하는 제목 + 강조어 1개 색 박스 + 시리즈 이름 말풍선 + '넘겨보기'. 다섯 장 콜라주는 시험해 보고 버림(아무것도 안 보임).
+2. 품목 장: 사진을 자르지 않고 통째로. 홍보 배너 속 글씨까지 다 보임.
+3. 마무리 장: 공유 한 줄 강조.
+4. 캡션: 첫 줄 검색어, 해시태그 5개, '@@ 태그' 폐지.
+5. 빈도: 하루 2편 (아침 07:30~, 저녁 19:00~), 2026-11-22에 인사이트 보고 재조정.
+
+### 앞으로 볼 숫자 (인사이트)
+- 도달 대비 공유 수, 도달 대비 저장 수, 2번째 장까지 넘긴 비율, 팔로우 전환.
+- 2주마다 상위 3개·하위 3개 게시물의 표지 제목 틀(손해형/선점형/이유형/결론형)을 비교해 STYLE_GUIDE에 반영.
+
+### 아직 못 한 것
+- 인스타 프로필·게시물 직접 수집: 로그인 벽과 봇 차단 때문에 자동으로 하지 않음. 벤치마킹할 계정 아이디를 알려주면 사람이 본 표지를 기준으로 이 문서에 추가.
