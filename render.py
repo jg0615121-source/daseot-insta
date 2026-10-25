@@ -2,6 +2,7 @@
 사용법: python3 render.py posts/2026-10-24.json  -> out/2026-10-24/01.jpg ...
 """
 import json, sys, pathlib
+from PIL import Image
 from playwright.sync_api import sync_playwright
 
 HERE = pathlib.Path(__file__).resolve().parent
@@ -11,6 +12,10 @@ def render(post_path):
     post = json.loads(post_path.read_text(encoding="utf-8"))
     out = HERE / "out" / post_path.stem
     out.mkdir(parents=True, exist_ok=True)
+    # 사진 원본 크기: 템플릿이 사진을 자르지 않고 통째로 넣을 칸 크기를 정하는 데 씀
+    for it in post["items"] + post.get("cover_images", []):
+        if it.get("image") and (HERE / it["image"]).exists():
+            it["w"], it["h"] = Image.open(HERE / it["image"]).size
     total = len(post["items"]) + 2  # 표지 + 다섯 품목 + 마무리
     with sync_playwright() as p:
         b = p.chromium.launch()

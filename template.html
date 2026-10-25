@@ -15,53 +15,66 @@ html,body{width:1080px;height:1350px;overflow:hidden;background:#000}
 body{font-family:P,sans-serif;color:#fff;-webkit-font-smoothing:antialiased;word-break:keep-all;letter-spacing:-.03em;position:relative}
 img{display:block;width:100%;height:100%;object-fit:cover}
 
-/* 사진 영역: 한 장 또는 여러 장 콜라주 */
-.bg{position:absolute;inset:0;display:grid;gap:4px;background:#000}
-.bg.n2{grid-template-columns:1fr 1fr}
-.bg.n3{grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr}
-.bg.n3 figure:first-child{grid-row:span 2}
-.bg.n4{grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr}
-.bg figure{overflow:hidden}
-/* 아래쪽 어둡게: 글자가 사진 위에서 읽히도록 */
-.shade{position:absolute;left:0;right:0;bottom:0;height:62%;
-  background:linear-gradient(to bottom,rgba(0,0,0,0) 0%,rgba(0,0,0,.55) 38%,rgba(0,0,0,.86) 100%)}
-.shade.tall{height:75%}
-/* 위쪽도 살짝 어둡게: 로고와 사진 속 글씨가 겹쳐도 읽히게 */
-.topshade{position:absolute;left:0;right:0;top:0;height:190px;background:linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,0))}
+/* 사진 영역: 가로·세로 비율이 제각각인 보도자료 사진을 잘라내지 않고 통째로 보여준다.
+   뒤에는 같은 사진을 흐리게 깔아 빈 곳을 채운다 */
+.blur{position:absolute;inset:-60px;background-size:cover;background-position:center;filter:blur(46px) saturate(1.3) brightness(.42)}
+.dim{position:absolute;inset:0;background:linear-gradient(rgba(0,0,0,.25),rgba(0,0,0,.15) 40%,rgba(0,0,0,.75) 75%,rgba(0,0,0,.9))}
+.photo{position:absolute;left:var(--pad);right:var(--pad);top:120px;height:var(--ph,700px);display:grid;place-items:center}
+.photo figure{overflow:hidden;border-radius:26px;box-shadow:0 18px 50px rgba(0,0,0,.45);background:#111}
+figure img{display:block;width:100%;height:100%;object-fit:cover}
 
 .mark{position:absolute;left:var(--pad);top:44px;display:flex;align-items:center;gap:10px;
   font-weight:800;font-size:26px;letter-spacing:-.04em;text-shadow:0 1px 10px rgba(0,0,0,.45)}
 .mark svg{width:42px;height:42px;border-radius:50%;background:#FAFAF7;flex:none}
-.credit{position:absolute;right:var(--pad);top:50px;font-weight:600;font-size:19px;opacity:.85;
-  text-shadow:0 1px 8px rgba(0,0,0,.6)}
+.credit{position:absolute;right:var(--pad);top:52px;font-weight:600;font-size:19px;opacity:.8}
 
-.foot{position:absolute;left:var(--pad);right:var(--pad);bottom:64px}
-.pill{display:inline-block;background:#fff;color:#000;font-weight:700;font-size:calc(28px * var(--k));
-  padding:9px 18px 10px;border-radius:999px;letter-spacing:-.03em;color:var(--b1)}
-.title{margin-top:20px;font-weight:900;font-size:calc(96px * var(--k));line-height:1.14;letter-spacing:-.06em;
-  text-shadow:0 2px 18px rgba(0,0,0,.35)}
+.foot{position:absolute;left:var(--pad);right:var(--pad);bottom:60px}
+.pill{display:inline-block;background:#fff;font-weight:800;font-size:calc(30px * var(--k));
+  padding:10px 20px 11px;border-radius:999px;letter-spacing:-.03em;color:var(--b1)}
+.title{margin-top:22px;font-weight:900;font-size:calc(104px * var(--k));line-height:1.12;letter-spacing:-.06em}
+.title b{background:var(--accent);color:#fff;padding:0 .12em;border-radius:.12em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
 
-/* 안쪽 슬라이드 */
-.head2{font-weight:900;font-size:calc(72px * var(--k));line-height:1.16;letter-spacing:-.055em;margin-top:18px;
-  text-shadow:0 2px 14px rgba(0,0,0,.35)}
-.box{margin-top:26px;background:#fff;color:#111;border-radius:22px;padding:28px 32px 26px}
-.box p{font-weight:600;font-size:calc(31px * var(--k));line-height:1.5;letter-spacing:-.035em}
-.facts{display:flex;flex-wrap:wrap;gap:10px 10px;margin-top:18px}
-.facts span{font-weight:700;font-size:calc(23px * var(--k));background:#F1F1F1;color:#222;border-radius:10px;padding:7px 13px 8px}
-.facts span em{font-style:normal;color:#8A8A8A;font-weight:600;margin-right:8px}
-.idx{display:inline-block;background:var(--accent);color:#fff;font-weight:900;font-size:28px;
-  padding:8px 16px 9px;border-radius:999px}
+/* 표지: 사진 한 장을 꽉 채우고, 제목은 다섯 개 묶음 전체를 궁금하게 (내용은 안쪽에서) */
+.cov{position:absolute;inset:0}
+.cov>figure{position:absolute;inset:0;overflow:hidden}
+.cov .photo{top:120px}
+.shade{position:absolute;left:0;right:0;bottom:0;height:62%;
+  background:linear-gradient(to bottom,rgba(0,0,0,0) 0%,rgba(0,0,0,.55) 38%,rgba(0,0,0,.88) 100%)}
+.topshade{position:absolute;left:0;right:0;top:0;height:170px;background:linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,0))}
+.swipe{position:absolute;right:var(--pad);bottom:66px;font-weight:700;font-size:28px;color:rgba(255,255,255,.75)}
 
-/* 마지막 슬라이드 */
-.outro{position:absolute;inset:0;background:#0E0E0E;padding:110px var(--pad) 64px;display:flex;flex-direction:column}
-.thumbs{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
-.thumbs figure{aspect-ratio:3/4.2;border-radius:14px;overflow:hidden;position:relative}
-.thumbs figure span{position:absolute;left:10px;top:10px;width:34px;height:34px;border-radius:50%;background:#fff;color:#000;
-  display:grid;place-items:center;font-weight:900;font-size:20px}
-.ask{margin-top:72px;font-weight:900;font-size:96px;line-height:1.15;letter-spacing:-.06em}
-.todo{margin-top:56px;display:flex;flex-direction:column}
-.todo div{font-weight:700;font-size:40px;color:rgba(255,255,255,.9);padding:26px 0;border-top:1px solid rgba(255,255,255,.14)}
-.src{margin-top:auto;font-weight:500;font-size:20px;line-height:1.6;color:rgba(255,255,255,.45)}
+/* 안쪽 슬라이드: 위는 사진, 아래는 흰 시트(번호 → 제목 → 설명 → 핵심 정보). 가장 중요한 수치를 가장 크게 */
+.prog{position:absolute;right:var(--pad);top:58px;display:flex;gap:8px}
+.prog i{width:34px;height:6px;border-radius:3px;background:rgba(255,255,255,.3)}
+.prog i.on{background:#fff}
+.sheet{position:absolute;left:0;right:0;bottom:0;background:#fff;color:#111;border-radius:44px 44px 0 0;
+  padding:46px var(--pad) 40px}
+.no{font-weight:900;font-size:40px;letter-spacing:-.02em;background:var(--accent);-webkit-background-clip:text;background-clip:text;color:transparent}
+.no small{font-size:26px;color:#B5B5B5;-webkit-text-fill-color:#B5B5B5;margin-left:4px}
+.head2{font-weight:900;font-size:calc(66px * var(--k));line-height:1.15;letter-spacing:-.055em;margin-top:10px}
+.desc{margin-top:18px;font-weight:600;font-size:calc(34px * var(--k));line-height:1.5;letter-spacing:-.035em;color:#4A4A4A}
+.facts{display:flex;margin-top:28px;background:#F4F5F8;border-radius:22px;padding:22px 0}
+.facts div{flex:1;padding:0 26px;border-left:2px solid #E3E5EA;min-width:0}
+.facts div:first-child{border-left:0}
+.facts em{display:block;font-style:normal;font-weight:600;font-size:calc(23px * var(--k));color:#8B8F98}
+.facts b{display:block;margin-top:6px;font-weight:800;font-size:calc(36px * var(--k));letter-spacing:-.04em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.facts b.num{color:var(--b1)}
+.credit2{margin-top:18px;text-align:right;font-weight:500;font-size:19px;color:#A2A6AE}
+
+/* 마지막 슬라이드: 다섯 개 한눈에 다시 보기(저장할 이유) + 질문 + 공유 버튼 */
+.outro{position:absolute;inset:0;background:#0E0E0E;padding:118px var(--pad) 60px;display:flex;flex-direction:column}
+.recap{display:flex;flex-direction:column;gap:14px}
+.recap div{display:flex;align-items:center;gap:22px;background:#1B1B1D;border-radius:22px;padding:14px 22px 14px 14px}
+.recap figure{width:92px;height:92px;border-radius:16px;overflow:hidden;flex:none;background:#000}
+.recap span{flex:none;width:40px;height:40px;border-radius:50%;background:var(--accent);display:grid;place-items:center;font-weight:900;font-size:22px}
+.recap p{flex:1;min-width:0;font-weight:800;font-size:31px;letter-spacing:-.04em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.recap p small{display:block;margin-top:4px;font-weight:600;font-size:23px;color:#9A9AA0}
+.ask{margin-top:44px;font-weight:900;font-size:68px;line-height:1.15;letter-spacing:-.06em}
+.todo{margin-top:26px;display:flex;flex-direction:column}
+.todo div{font-weight:700;font-size:32px;color:rgba(255,255,255,.75);padding:16px 0}
+/* 공유(DM 보내기)가 비팔로워 도달에 가장 큰 신호라 두 번째 줄(공유 문구)을 버튼처럼 강조 */
+.todo div.send{margin:6px 0;padding:24px 30px;border-radius:20px;background:var(--accent);color:#fff;font-weight:800;font-size:34px}
+.src{margin-top:auto;font-weight:500;font-size:19px;line-height:1.6;color:rgba(255,255,255,.4)}
 .handle{position:absolute;right:var(--pad);bottom:28px;font-weight:600;font-size:20px;color:rgba(255,255,255,.55)}
 </style>
 </head>
@@ -71,7 +84,8 @@ img{display:block;width:100%;height:100%;object-fit:cover}
 const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const br = s => esc(s).replace(/\n/g,"<br>");
 // focus: 사진에서 보여줄 위치, zoom: 확대 배율 (모델 등 불필요한 부분을 잘라낼 때)
-const fig = (src,focus,zoom) => `<figure><img src="${esc(src)}" style="object-position:${esc(focus||"50% 50%")};transform:scale(${+zoom||1});transform-origin:${esc(focus||"50% 50%")}" alt=""></figure>`;
+const img = (src,focus,zoom) => `<img src="${esc(src)}" style="object-position:${esc(focus||"50% 50%")};transform:scale(${+zoom||1});transform-origin:${esc(focus||"50% 50%")}" alt="">`;
+const fig = (src,focus,zoom) => `<figure>${img(src,focus,zoom)}</figure>`;
 // 프로필 사진(brand/profile.jpg)과 같은 말풍선 로고
 const logo = `<svg viewBox="0 0 640 640"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2F54FF"/><stop offset="1" stop-color="#00C2A8"/></linearGradient></defs>
   <path d="M200 170 h240 a90 90 0 0 1 90 90 v80 a90 90 0 0 1 -90 90 h-120 l-78 66 v-66 h-42 a90 90 0 0 1 -90 -90 v-80 a90 90 0 0 1 90 -90 z" fill="none" stroke="url(#lg)" stroke-width="44" stroke-linejoin="round"/>
@@ -79,29 +93,56 @@ const logo = `<svg viewBox="0 0 640 640"><defs><linearGradient id="lg" x1="0" y1
 const mark = `<div class="mark">${logo}다섯가지</div>`;
 
 function cover(p){
-  // 표지는 기본적으로 사진 1장 (다 보여주면 안 넘겨봄). cover_images로 바꿀 수 있음
-  const pics = (p.cover_images && p.cover_images.length ? p.cover_images : [p.items[0]]).slice(0,4);
-  return `<div class="bg n${pics.length}">${pics.map(c=>fig(c.image,c.focus,c.zoom)).join("")}</div>
-    <div class="shade"></div><div class="topshade"></div>${mark}
-    <div class="foot"><span class="pill">${esc(p.kicker)}</span><h1 class="title">${br(p.title)}</h1></div>`;
+  // 사진은 cover_item 품목 1장(fetch_images.py가 cover_images로 채움). 다섯 장 모아 넣으면 아무것도 안 보임
+  const c = (p.cover_images && p.cover_images[0]) || p.items[0];
+  // 크고 세로에 가까운 사진만 화면을 꽉 채움. 작거나 가로형이면 억지로 키워 자르지 않고 통째로 넣음
+  const full = c.fit === "cover" || (c.w && c.h && Math.min(c.w,c.h) >= 900 && c.w/c.h <= 1.05);
+  const pic = full ? fig(c.image,c.focus,c.zoom)
+    : `<div class="blur" style="background-image:url('${esc(c.image)}')"></div><div class="dim"></div>
+       <div class="photo"><figure data-fit>${img(c.image,c.focus,c.zoom)}</figure></div>`;
+  return `<section class="cov">${pic}</section>
+    ${full?'<div class="shade"></div><div class="topshade"></div>':""}${mark}
+    <div class="foot"><span class="pill">${esc(p.kicker)}</span><h1 class="title">${title(p.title)}</h1></div>
+    <div class="swipe">넘겨보기 →</div>`;
 }
+// 제목 속 [ ]로 감싼 말은 강조색으로
+const title = s => br(s).replace(/\[([^\]]+)\]/g,"<b>$1</b>");
+// 사진을 통째로 보여줄 칸 크기 계산. fit:"cover"면 칸을 꽉 채워 자름
+function photoBox(it, W, H){
+  const r = (it.w && it.h) ? it.w/it.h : 4/3;
+  if (it.fit === "cover") return [W,H];
+  let w = W, h = W/r;
+  if (h > H){ h = H; w = H*r; }
+  // 칸 비율과 거의 같으면 꽉 채움
+  if (w/W > .9 && h/H > .9) return [W,H];
+  return [Math.round(w), Math.round(h)];
+}
+// 숫자가 든 값(가격, 할인율, 날짜)은 강조색
+const factCell = ([k,v]) => `<div><em>${esc(k)}</em><b${/\d/.test(v)?' class="num"':""}>${esc(v)}</b></div>`;
 function item(p,i){
-  const it = p.items[i];
-  const facts = (it.facts||[]).map(([k,v])=>`<span><em>${esc(k)}</em>${esc(v)}</span>`).join("");
-  return `<div class="bg n1">${fig(it.image,it.focus,it.zoom)}</div>
-    <div class="shade tall"></div><div class="topshade"></div>${mark}
-    ${it.credit?`<div class="credit">${esc(it.credit)}</div>`:""}
-    <div class="foot">
-      <span class="idx">${i+1} / ${p.items.length}</span>
+  const it = p.items[i], n = p.items.length;
+  const prog = p.items.map((_,j)=>`<i${j===i?' class="on"':""}></i>`).join("");
+  return `<div class="blur" style="background-image:url('${esc(it.image)}')"></div><div class="dim"></div>
+    <div class="photo"><figure data-fit>${img(it.image,it.focus,it.zoom)}</figure></div>${mark}<div class="prog">${prog}</div>
+    <div class="sheet foot">
+      <div class="no">${String(i+1).padStart(2,"0")}<small>/ ${String(n).padStart(2,"0")}</small></div>
       <h2 class="head2">${br(it.name)}</h2>
-      <div class="box"><p>${br(it.desc)}</p>${facts?`<div class="facts">${facts}</div>`:""}</div>
+      <p class="desc">${br(it.desc)}</p>
+      ${(it.facts||[]).length?`<div class="facts">${it.facts.map(factCell).join("")}</div>`:""}
+      ${it.credit?`<div class="credit2">${esc(it.credit)}</div>`:""}
     </div>`;
 }
 function outro(p){
+  // 다섯 개를 한 줄씩 다시 보여줌: 이 장만 저장해도 쓸모 있게
+  const rows = p.items.map((it,j)=>{
+    const f = (it.facts||[]).find(([k,v])=>/\d/.test(v)) || (it.facts||[])[0];
+    return `<div><figure>${img(it.image,it.focus,it.zoom)}</figure><span>${j+1}</span>
+      <p>${esc(it.name.replace(/\n/g," "))}${f?`<small>${esc(f[0])} ${esc(f[1])}</small>`:""}</p></div>`;
+  }).join("");
   return `<section class="outro">${mark}
-    <div class="thumbs">${p.items.map((it,j)=>`<figure><img src="${esc(it.image)}" style="object-position:${esc(it.focus||"50% 50%")};transform:scale(${+it.zoom||1});transform-origin:${esc(it.focus||"50% 50%")}" alt=""><span>${j+1}</span></figure>`).join("")}</div>
+    <div class="recap">${rows}</div>
     <h2 class="ask">${br(p.outro.question)}</h2>
-    <div class="todo">${p.outro.lines.map(l=>`<div>${br(l)}</div>`).join("")}</div>
+    <div class="todo">${p.outro.lines.map((l,j)=>`<div${j===1?' class="send"':""}>${j===1?"➜ ":""}${br(l)}</div>`).join("")}</div>
     <p class="src">출처  ${(p.sources||[]).map(esc).join(" / ")}</p>
   </section><div class="handle">@${esc(p.handle)}</div>`;
 }
@@ -110,10 +151,29 @@ function render(p, slide){
   root.innerHTML = slide===0 ? cover(p) : slide<=n ? item(p,slide-1) : outro(p);
   const foot = root.querySelector(".foot");
   let k = 1; document.documentElement.style.setProperty("--k", k);
-  // 글 덩어리가 사진의 위쪽 40%를 넘어오지 않게 줄임
-  const over = () => foot && foot.getBoundingClientRect().top < 1350*0.42;
-  while (over() && k > 0.74){ k -= 0.02; document.documentElement.style.setProperty("--k", k); }
-  return {k:+k.toFixed(2), fits:!over()};
+  if (slide===0 && root.querySelector("[data-fit]")) return fitPhoto(root, foot, p.cover_images ? p.cover_images[0] : p.items[0]);
+  if (slide>n){
+    const o = root.querySelector(".outro");
+    return {k:1, fits: o.scrollHeight <= 1350};
+  }
+  if (slide===0){
+    const over = () => foot && foot.getBoundingClientRect().top < 1350*0.56;
+    while (over() && k > 0.74){ k -= 0.02; document.documentElement.style.setProperty("--k", k); }
+    return {k:+k.toFixed(2), fits:!over()};
+  }
+  return fitPhoto(root, foot, p.items[slide-1]);
+}
+// 글 덩어리 위에 남는 공간을 사진 칸으로. 사진 칸이 너무 작아지면 글자를 줄임
+function fitPhoto(root, foot, it){
+  let k = 1;
+  const gap = foot.classList.contains("sheet") ? 28 : 36;
+  const room = () => foot.getBoundingClientRect().top - gap - 120;
+  while (room() < 520 && k > 0.74){ k -= 0.02; document.documentElement.style.setProperty("--k", k); }
+  const H = Math.min(room(), 760), W = 1080 - 2*56;
+  const [w,h] = photoBox(it, W, H);
+  const box = root.querySelector(".photo"), f = root.querySelector("[data-fit]");
+  box.style.setProperty("--ph", H+"px"); f.style.width = w+"px"; f.style.height = h+"px";
+  return {k:+k.toFixed(2), fits: room() >= 440};
 }
 window.render = render;
 </script>
