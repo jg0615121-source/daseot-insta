@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash",
+      "Read",
+      "Edit",
+      "Write",
+      "WebSearch",
+      "WebFetch",
+      "mcp__Remote_Desktop_Commander",
+      "mcp__plugin_desktop-commander_desktop-commander",
+      "mcp__github",
+      "mcp__claude-code-remote"
+    ]
+  }
+}
