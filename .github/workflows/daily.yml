@@ -25,44 +25,49 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 2
+          fetch-depth: 20
 
       - name: 이번에 바뀐 원고 찾기
         id: pick
+        env:
+          BEFORE: ${{ github.event.before }}
         run: |
+          # 아침 편(날짜.json)과 저녁 편(날짜-2.json)이 한 번에 올라와도 모두 처리
           if [ -n "${{ github.event.inputs.post }}" ]; then
-            echo "post=${{ github.event.inputs.post }}" >> "$GITHUB_OUTPUT"
+            f="${{ github.event.inputs.post }}"
           else
-            f=$(git diff --name-only HEAD~1 HEAD -- 'posts/*.json' | tail -1)
-            echo "post=$f" >> "$GITHUB_OUTPUT"
+            base=HEAD~1
+            git cat-file -e "$BEFORE^{commit}" 2>/dev/null && base=$BEFORE
+            f=$(git diff --name-only --diff-filter=AM "$base" HEAD -- 'posts/*.json' | tr '\n' ' ')
           fi
+          echo "posts=$f" >> "$GITHUB_OUTPUT"
 
       - name: 준비
-        if: steps.pick.outputs.post != ''
+        if: steps.pick.outputs.posts != ''
         run: |
           pip install playwright pillow
           python -m playwright install --with-deps chromium
 
-      - name: 실물 사진 받기
-        if: steps.pick.outputs.post != ''
-        run: python scripts/fetch_images.py "${{ steps.pick.outputs.post }}"
-
-      - name: 슬라이드 만들기
-        if: steps.pick.outputs.post != ''
-        run: python render.py "${{ steps.pick.outputs.post }}"
+      - name: 실물 사진 받고 슬라이드 만들기
+        if: steps.pick.outputs.posts != ''
+        run: |
+          for f in ${{ steps.pick.outputs.posts }}; do
+            python scripts/fetch_images.py "$f"
+            python render.py "$f"
+          done
 
       - name: 사진과 슬라이드 저장
-        if: steps.pick.outputs.post != ''
+        if: steps.pick.outputs.posts != ''
         run: |
           git config user.name "daseot-bot"
           git config user.email "daseot-bot@users.noreply.github.com"
           git add assets out posts
-          git commit -m "슬라이드 생성: ${{ steps.pick.outputs.post }}" || echo "변경 없음"
-          git push
+          git commit -m "슬라이드 생성: ${{ steps.pick.outputs.posts }}" || echo "변경 없음"
+          git pull --rebase && git push
 
       - name: 슬라이드를 공개 이미지 저장소에 올리기
         id: images
-        if: steps.pick.outputs.post != ''
+        if: steps.pick.outputs.posts != ''
         env:
           IMAGES_REPO: ${{ vars.IMAGES_REPO || 'jg0615121-source/daseot-images' }}
           # daseot-images 저장소에만 쓰기 권한이 있는 배포 키
@@ -72,18 +77,20 @@ jobs:
             echo "IMAGES_DEPLOY_KEY가 없어서 이미지 업로드와 게시를 건너뜀."
             exit 0
           fi
-          d=$(basename "${{ steps.pick.outputs.post }}" .json)
           key="$RUNNER_TEMP/images_key"
           printf '%s\n' "$IMAGES_DEPLOY_KEY" > "$key" && chmod 600 "$key"
           export GIT_SSH_COMMAND="ssh -i $key -o IdentitiesOnly=yes -o StrictHostKeyChecking=accept-new"
           git clone --depth 1 "git@github.com:${IMAGES_REPO}.git" "$RUNNER_TEMP/images"
           cd "$RUNNER_TEMP/images"
-          mkdir -p "$d" && rm -f "$d"/*.jpg
-          cp "$GITHUB_WORKSPACE/out/$d/"*.jpg "$d/"
+          for f in ${{ steps.pick.outputs.posts }}; do
+            d=$(basename "$f" .json)
+            mkdir -p "$d" && rm -f "$d"/*.jpg
+            cp "$GITHUB_WORKSPACE/out/$d/"*.jpg "$d/"
+            git add "$d"
+          done
           git config user.name "daseot-bot"
           git config user.email "daseot-bot@users.noreply.github.com"
-          git add "$d"
-          git commit -m "슬라이드: $d" || echo "변경 없음"
+          git commit -m "슬라이드: ${{ steps.pick.outputs.posts }}" || echo "변경 없음"
           git push
           # 커밋 주소로 고정해야 같은 날짜를 다시 돌려도 예전 캐시 이미지가 안 나감
           echo "base=https://raw.githubusercontent.com/${IMAGES_REPO}/$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
@@ -96,7 +103,9 @@ jobs:
           IG_API_HOST: ${{ vars.IG_API_HOST }}
           IMAGE_BASE_URL: ${{ steps.images.outputs.base }}
         run: |
-          python scripts/publish.py "${{ steps.pick.outputs.post }}"
+          for f in ${{ steps.pick.outputs.posts }}; do
+            python scripts/publish.py "$f"
+          done
           git add posts
-          git commit -m "게시 기록: ${{ steps.pick.outputs.post }}" || true
+          git commit -m "게시 기록: ${{ steps.pick.outputs.posts }}" || true
           git push || true
