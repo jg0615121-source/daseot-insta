@@ -1,0 +1,176 @@
+{
+  "handle": "daseot.5",
+  "date": "2026-10-27",
+  "category": "먹거리",
+  "kicker": "화요일 신메뉴 다섯가지 ✦",
+  "title": "[품절] 전에 먹을\n이번주 신상 5",
+  "cover_item": 2,
+  "items": [
+    {
+      "name": "설빙 피자설기\n편의점에 나옴",
+      "source_url": "https://www.specialtimes.co.kr/news/articleView.html?idxno=478302",
+      "image_url": "https://cdn.specialtimes.co.kr/news/photo/202610/478302_468137_3547.jpg",
+      "focus": "50% 50%",
+      "zoom": 1,
+      "credit": "사진 GS리테일 제공",
+      "cover_score": {
+        "subject": 3,
+        "photo": 2,
+        "timely": 2,
+        "swipe": 1,
+        "total": 8
+      },
+      "desc": "피자 도우 대신 백설기를 깔아서 쫀득해. 5,000개만 앱으로 먼저 예약받고, 전자레인지에 돌리면 끝.",
+      "facts": [
+        [
+          "가격",
+          "3,900원"
+        ],
+        [
+          "예약",
+          "~10.31"
+        ],
+        [
+          "매장",
+          "11.5~"
+        ]
+      ]
+    },
+    {
+      "name": "빅맥보다 68% 무거운\n맥도날드 빅아치",
+      "source_url": "https://zdnet.co.kr/view/?no=20261021171656",
+      "image_url": "https://image.zdnet.co.kr/2026/10/21/7bb658411e16bbeca5d98f79897edd2c.jpg",
+      "focus": "50% 50%",
+      "zoom": 1,
+      "credit": "사진 지디넷코리아",
+      "cover_score": {
+        "subject": 3,
+        "photo": 3,
+        "timely": 2,
+        "swipe": 1,
+        "total": 9
+      },
+      "desc": "패티 2장에 치즈 3장, 국내 첫 크리스피 어니언까지 넣었어. 기간 한정이라 언제 빠질지 몰라.",
+      "facts": [
+        [
+          "단품",
+          "12,400원"
+        ],
+        [
+          "출시",
+          "10.22"
+        ],
+        [
+          "무게",
+          "374g"
+        ]
+      ]
+    },
+    {
+      "name": "호빵맨이 진짜\n호빵이 돼서 나옴",
+      "source_url": "https://www.specialtimes.co.kr/news/articleView.html?idxno=476727",
+      "image_url": "https://cdn.specialtimes.co.kr/news/photo/202610/476727_467111_2149.jpg",
+      "focus": "50% 50%",
+      "zoom": 1,
+      "credit": "사진 GS리테일 제공",
+      "cover_score": {
+        "subject": 2,
+        "photo": 2,
+        "timely": 2,
+        "swipe": 1,
+        "total": 7
+      },
+      "desc": "밤단팥이랑 카레 두 가지야. 스티커 100종 중 하나가 랜덤으로 들어 있고, 묶음을 GS페이로 사면 1+1.",
+      "facts": [
+        [
+          "가격",
+          "1,900원"
+        ],
+        [
+          "GS페이",
+          "1+1"
+        ],
+        [
+          "기간",
+          "~10.31"
+        ]
+      ]
+    },
+    {
+      "name": "모찌 속에 파베 초코\nCU 말차 디저트",
+      "source_url": "https://zdnet.co.kr/view/?no=20261026085448",
+      "image_url": "https://image.zdnet.co.kr/2026/10/26/9eadab72d657bcdce0a9f8b5314788e7.jpg",
+      "focus": "50% 50%",
+      "zoom": 1,
+      "credit": "사진 BGF리테일 제공",
+      "cover_score": {
+        "subject": 2,
+        "photo": 2,
+        "timely": 1,
+        "swipe": 1,
+        "total": 6
+      },
+      "desc": "쫀득한 모찌랑 꾸덕한 파베 초콜릿을 한입에 같이 먹는 식감이야. 쌉쌀한 말차가 단맛을 잡아줘.",
+      "facts": [
+        [
+          "가격",
+          "4,500원"
+        ],
+        [
+          "어디",
+          "CU"
+        ],
+        [
+          "출시",
+          "10.22"
+        ]
+      ]
+    },
+    {
+      "name": "세븐일레븐에\n떡 2종 새로 나옴",
+      "source_url": "https://www.kdfnews.com/news/articleView.html?idxno=189912",
+      "image_url": "https://www.kdfnews.com/news/photo/202610/189912_242509_1947.jpg",
+      "focus": "50% 50%",
+      "zoom": 1,
+      "credit": "사진 세븐일레븐 제공",
+      "cover_score": {
+        "subject": 1,
+        "photo": 2,
+        "timely": 2,
+        "swipe": 1,
+        "total": 6
+      },
+      "desc": "단호박 인절미엔 카스텔라 가루를, 흑임자떡엔 팥앙금을 넣었어. 둘 다 국산 찹쌀로 만들었어.",
+      "facts": [
+        [
+          "가격",
+          "3,500원"
+        ],
+        [
+          "출시",
+          "10.29"
+        ],
+        [
+          "어디",
+          "세븐일레븐"
+        ]
+      ]
+    }
+  ],
+  "outro": {
+    "question": "다섯 개 중에\n하나만 먹는다면?",
+    "lines": [
+      "번호로 댓글 남겨줘",
+      "편의점 털러 갈 친구한테 보내기",
+      "저장해두고 편의점 갈 때 꺼내보기"
+    ]
+  },
+  "sources": [
+    "스페셜타임스 10.26",
+    "지디넷코리아 10.21",
+    "스페셜타임스 10.21",
+    "지디넷코리아 10.26",
+    "한국면세뉴스 10.26"
+  ],
+  "caption": "이번주 편의점 신상·신메뉴 정리, 품절 전에 먹어볼 다섯가지 🍡\n\n백설기로 만든 피자부터 빅맥보다 무거운 버거까지\n요즘 대세인 쫀득한 떡 디저트가 편의점에 쏟아지는 중\n가격이랑 날짜만 딱 모아봄\n\n1 GS25 설빙 피자설기 3,900원, 10.31까지 사전예약\n2 맥도날드 빅아치 단품 12,400원, 10.22 출시\n3 GS25 호빵맨 밤단팥호빵 1,900원, GS페이 1+1 10.31까지\n4 CU 모찌 파베 초콜릿 말차맛 4,500원\n5 세븐일레븐 호박인절미떡·흑임자떡 3,500원, 10.29 출시\n\n편의점 털러 갈 친구한테 보내기\n나중에 꺼내 보려면 저장 📌\n\n출처: 스페셜타임스, 지디넷코리아, 한국면세뉴스\n#다섯가지 #편의점신상 #신메뉴 #피자설기 #빅아치"
+}

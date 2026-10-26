@@ -1,0 +1,177 @@
+{
+  "handle": "daseot.5",
+  "date": "2026-10-27",
+  "category": "OTT·드라마",
+  "kicker": "화요일 신작 다섯가지 ✦",
+  "title": "이번주 밤에\n[정주행]할 신작 5",
+  "cover_item": 2,
+  "items": [
+    {
+      "name": "안효섭이 셰프로\n돌아온 요리 드라마",
+      "source_url": "https://www.tenasia.co.kr/article/2026101405064",
+      "image_url": "https://img.tenasia.co.kr/photo/202610/BF.46045897.1.jpg",
+      "focus": "50% 50%",
+      "zoom": 1,
+      "credit": "사진 SLL 제공",
+      "cover_score": {
+        "subject": 3,
+        "photo": 3,
+        "timely": 1,
+        "swipe": 1,
+        "total": 8
+      },
+      "desc": "전 세계 한식 셰프들이 최고 자리를 두고 겨루는 요리 대회 이야기야. 케데헌 진우 목소리 그 배우 맞아.",
+      "facts": [
+        [
+          "채널",
+          "JTBC 토일"
+        ],
+        [
+          "OTT",
+          "디즈니+"
+        ],
+        [
+          "첫방",
+          "10.24"
+        ]
+      ]
+    },
+    {
+      "name": "시급 50배 알바의\n정체는 공포였다",
+      "source_url": "https://www.wikitree.co.kr/articles/1165732",
+      "image_url": "https://cdnweb01.wikitree.co.kr/webdata/editor/202610/13/202610130916334456_ent_ig.jpeg",
+      "focus": "50% 50%",
+      "zoom": 1,
+      "credit": "사진 넷플릭스 제공",
+      "cover_score": {
+        "subject": 3,
+        "photo": 3,
+        "timely": 2,
+        "swipe": 1,
+        "total": 9
+      },
+      "desc": "빚에 쫓기던 청년이 수상한 인력사무소에서 고액 알바를 하다 악몽에 빠져. 이재욱·고민시 주연, 청불이야.",
+      "facts": [
+        [
+          "어디",
+          "넷플릭스"
+        ],
+        [
+          "공개",
+          "10.30"
+        ],
+        [
+          "회차",
+          "8부작"
+        ]
+      ]
+    },
+    {
+      "name": "유연석·서현진\n누가 거짓말일까",
+      "source_url": "https://enews.imbc.com/News/ViewAmp/521059",
+      "image_url": "https://talkimg.imbc.com/TVianUpload/tvian/TViews/image/2026/10/13/aaf96910-042a-405b-9ada-ca9a20d74124.jpg",
+      "focus": "50% 50%",
+      "zoom": 1,
+      "credit": "사진 MBC 제공",
+      "cover_score": {
+        "subject": 3,
+        "photo": 2,
+        "timely": 2,
+        "swipe": 1,
+        "total": 8
+      },
+      "desc": "완벽했던 첫 데이트 뒤 같은 기억을 정반대로 말하는 두 사람의 심리 스릴러야. 둘이 10년 만에 다시 만났어.",
+      "facts": [
+        [
+          "채널",
+          "MBC 금토"
+        ],
+        [
+          "첫방",
+          "10.30"
+        ],
+        [
+          "회차",
+          "12부작"
+        ]
+      ]
+    },
+    {
+      "name": "459만 본 호프\n이제 집에서 봄",
+      "source_url": "https://enews.imbc.com/News/ViewAmp/521347",
+      "image_url": "https://talkimg.imbc.com/TVianUpload/tvian/TViews/image/2026/10/15/f8b33dd5-3682-47be-8757-915940ff537b.jpg",
+      "focus": "50% 50%",
+      "zoom": 1,
+      "credit": "사진 플러스엠 제공",
+      "cover_score": {
+        "subject": 3,
+        "photo": 2,
+        "timely": 1,
+        "swipe": 1,
+        "total": 7
+      },
+      "desc": "DMZ 근처 마을에 호랑이가 나타났다는 소문에서 시작하는 나홍진 영화야. 극장이랑 동시에 유료로 볼 수 있어.",
+      "facts": [
+        [
+          "VOD",
+          "10.21~"
+        ],
+        [
+          "어디",
+          "티빙·쿠플 등"
+        ],
+        [
+          "관객",
+          "459만"
+        ]
+      ]
+    },
+    {
+      "name": "정용화 로맨스\n밑도 끝도 없이, 너다",
+      "source_url": "https://www.wikitree.co.kr/articles/1165585",
+      "image_url": "https://cdnweb01.wikitree.co.kr/webdata/editor/202610/12/202610121519516705_ent_tmdb.webp",
+      "focus": "50% 50%",
+      "zoom": 1,
+      "credit": "사진 Lifetime 제공",
+      "cover_score": {
+        "subject": 2,
+        "photo": 1,
+        "timely": 1,
+        "swipe": 1,
+        "total": 5
+      },
+      "desc": "키스신 안 찍는 톱스타랑 자기가 드라마 여주인공이라 믿는 상속녀의 로맨스야. 한정판 후드티 하나로 꼬여.",
+      "facts": [
+        [
+          "어디",
+          "티빙"
+        ],
+        [
+          "공개",
+          "10.24"
+        ],
+        [
+          "방송",
+          "토일 밤"
+        ]
+      ]
+    }
+  ],
+  "outro": {
+    "question": "다섯 개 중에\n뭐부터 볼래?",
+    "lines": [
+      "번호로 댓글 남겨줘",
+      "주말에 같이 정주행할 친구한테 보내기",
+      "저장해두고 볼 거 없을 때 꺼내보기"
+    ]
+  },
+  "sources": [
+    "텐아시아 10.14",
+    "위키트리 10.13",
+    "iMBC 10.13",
+    "iMBC 10.15",
+    "TV리포트 10.16",
+    "위키트리 10.12"
+  ],
+  "caption": "이번주 OTT 신작·새 드라마 정리, 밤에 정주행할 다섯가지 🍿\n\n넷플릭스 청불 호러부터 안효섭 요리 드라마,\n유연석·서현진 심리 스릴러까지\n이번 주 뭐 볼지 고민 끝\n\n1 파이널 테이블 JTBC 토일, 디즈니+ 10.24 첫방\n2 꿀알바 넷플릭스 10.30 공개, 8부작\n3 라이어 MBC 금토 10.30 첫방, 12부작\n4 호프 극장 동시 VOD 10.21부터\n5 밑도 끝도 없이, 너다 티빙 10.24 공개\n\n주말에 같이 정주행할 친구한테 보내기\n나중에 꺼내 보려면 저장 📌\n\n출처: 텐아시아, 위키트리, iMBC, TV리포트\n#다섯가지 #넷플릭스신작 #드라마추천 #꿀알바 #라이어"
+}
