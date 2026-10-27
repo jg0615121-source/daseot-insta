@@ -1,0 +1,173 @@
+{
+  "handle": "daseot.5",
+  "date": "2026-10-28",
+  "category": "생활",
+  "kicker": "수요일 생활 신상 다섯가지 ✦",
+  "title": "올겨울 집콕템\n이것만 [사면 됨]",
+  "cover_item": 2,
+  "items": [
+    {
+      "name": "다이소 플리스\n5천원에 다 나옴",
+      "source_url": "https://www.wikitree.co.kr/articles/1167710",
+      "image_url": "https://cdnweb01.wikitree.co.kr/webdata/editor/202610/20/img_20261020161146_b8a374bf.jpg",
+      "focus": "50% 50%",
+      "zoom": 1,
+      "credit": "사진 다이소 제공",
+      "cover_score": {
+        "subject": 3,
+        "photo": 2,
+        "timely": 2,
+        "swipe": 1,
+        "total": 8
+      },
+      "desc": "조끼부터 후드집업까지 다 있고 털 긴 플러피 라인도 나왔어. 다이소몰 겨울 기획전은 30일 저녁 6시까지.",
+      "facts": [
+        [
+          "가격",
+          "5,000원"
+        ],
+        [
+          "종류",
+          "조끼·후드 등"
+        ],
+        [
+          "기획전",
+          "~10.30"
+        ]
+      ]
+    },
+    {
+      "name": "춘식이가 칩앤데일\n옷 입고 나옴",
+      "source_url": "https://www.newspim.com/news/view/20261027000409",
+      "image_url": "https://img.newspim.com/news/2026/10/27/2610271021450420.jpg",
+      "focus": "50% 50%",
+      "zoom": 1,
+      "credit": "사진 카카오 제공",
+      "cover_score": {
+        "subject": 3,
+        "photo": 3,
+        "timely": 2,
+        "swipe": 1,
+        "total": 9
+      },
+      "desc": "라이언도 같이 변신했어. 키링 인형에 무릎 담요, 수면 조끼, 파자마까지 있어서 겨울 선물로도 딱이야.",
+      "facts": [
+        [
+          "출시",
+          "10.27"
+        ],
+        [
+          "구성",
+          "12종"
+        ],
+        [
+          "어디",
+          "카카오프렌즈샵"
+        ]
+      ]
+    },
+    {
+      "name": "자주 플란넬 파자마\n커플로 맞춰 입기",
+      "source_url": "https://www.slist.kr/news/articleView.html?idxno=776651",
+      "image_url": "https://cdn.slist.kr/news/photo/202610/776651_1187265_4257.jpg",
+      "focus": "50% 50%",
+      "zoom": 1,
+      "credit": "사진 자주 제공",
+      "cover_score": {
+        "subject": 2,
+        "photo": 2,
+        "timely": 1,
+        "swipe": 1,
+        "total": 6
+      },
+      "desc": "면 100% 기모 플란넬이라 보들보들해. 체크·줄무늬 셔츠형이 남녀 따로 나와서 둘이 맞춰 입기 좋아.",
+      "facts": [
+        [
+          "색상",
+          "남녀 각 8가지"
+        ],
+        [
+          "소재",
+          "면 100% 기모"
+        ]
+      ]
+    },
+    {
+      "name": "책상 밑에 두는\n신일 큐브 히터",
+      "source_url": "https://www.slist.kr/news/articleView.html?idxno=775393",
+      "image_url": "https://cdn.slist.kr/news/photo/202610/775393_1185578_3359.jpg",
+      "focus": "50% 50%",
+      "zoom": 1,
+      "credit": "사진 신일 제공",
+      "cover_score": {
+        "subject": 2,
+        "photo": 2,
+        "timely": 1,
+        "swipe": 1,
+        "total": 6
+      },
+      "desc": "방 온도 따라 세기를 알아서 바꾸고, 앞 30cm 안에 뭐가 오면 멈춰. 세워도 눕혀도 돼서 원룸에 두기 좋아.",
+      "facts": [
+        [
+          "회전",
+          "좌우 70도"
+        ],
+        [
+          "타이머",
+          "최대 10시간"
+        ],
+        [
+          "색상",
+          "화이트·샌드"
+        ]
+      ]
+    },
+    {
+      "name": "손 안 대고 말리는\n제니퍼룸 드라이기",
+      "source_url": "https://www.thebigdata.co.kr/view.php?ud=2026102611001875940a47484cf8_23",
+      "image_url": "https://cgeimage.commutil.kr/phpwas/restmb_allidxmake.php?pp=002&idx=3&simg=202610261101410096600a47484cf82192501880.jpg&nmt=23",
+      "focus": "50% 50%",
+      "zoom": 1,
+      "credit": "사진 락앤락 제공",
+      "cover_score": {
+        "subject": 1,
+        "photo": 2,
+        "timely": 1,
+        "swipe": 1,
+        "total": 5
+      },
+      "desc": "세워 두면 좌우로 돌면서 머리를 말려줘. 무드등 켜지는 3.2L 가습기도 같이 나와서 건조한 방에 딱이야.",
+      "facts": [
+        [
+          "회전",
+          "좌우 30도"
+        ],
+        [
+          "가습기",
+          "3.2L"
+        ],
+        [
+          "공개",
+          "10.26~"
+        ]
+      ]
+    }
+  ],
+  "outro": {
+    "question": "다섯 개 중에\n하나만 산다면?",
+    "lines": [
+      "번호로 댓글 남겨줘",
+      "자취하는 친구한테 보내기",
+      "저장해두고 장 보러 갈 때 꺼내보기"
+    ]
+  },
+  "sources": [
+    "위키트리 10.20",
+    "다이소 뉴스룸 10.26",
+    "뉴스핌 10.27",
+    "싱글리스트 10.27",
+    "싱글리스트 10.22",
+    "빅데이터뉴스 10.26"
+  ],
+  "caption": "이번주 생활 신상·다이소 신상 정리, 올겨울 집콕할 때 이것만 사면 되는 다섯가지 🧣\n\n찬바람 불기 시작해서 방 안 겨울 세팅할 때\n입는 것부터 데우고 말리는 것까지 이번주 새로 나온 것만 모아봄\n\n1 다이소 플리스 5,000원, 다이소몰 겨울 기획전 10.30까지\n2 카카오프렌즈 칩앤데일 협업 12종, 10.27 출시\n3 자주 플란넬 파자마, 남녀 각 8가지 색\n4 신일 에코 팬 큐브 히터, 좌우 70도 회전\n5 제니퍼룸 스탠딩 드라이기·3.2L 가습기, 10.26 공개\n\n자취하는 친구한테 보내기\n나중에 꺼내 보려면 저장 📌\n\n출처: 위키트리, 다이소, 뉴스핌, 싱글리스트, 빅데이터뉴스\n#다섯가지 #다이소신상 #생활용품추천 #다이소플리스 #춘식이"
+}
