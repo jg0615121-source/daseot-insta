@@ -5,7 +5,7 @@
 // 초반엔 하루 두 번: 아침 편 posts/날짜.json(07시~), 저녁 편 posts/날짜-2.json(EVENING_HOUR시~, 기본 19).
 // 해시태그는 캡션 맨 끝에 그대로 둔다 (인스타 검색이 캡션을 읽음, 게시물당 최대 5개).
 // 시험: set DRY=1 && node post-daily.js 2026-10-24  (공유 직전까지만)
-const fs = require('fs'), path = require('path'), { execSync, spawn } = require('child_process');
+const fs = require('fs'), path = require('path'), { execFileSync, spawn } = require('child_process');
 const { chromium } = require('playwright-core');
 const HOME = __dirname, LOG = path.join(HOME, 'post.log'), DRY = process.env.DRY === '1';
 const EVENING_HOUR = +(process.env.EVENING_HOUR || 19);
@@ -50,7 +50,7 @@ async function publish(page, files, text) {
 async function prepare(tok, id) {
   if (fs.existsSync(mark(id))) return null;
   const r = await fetch(`https://api.github.com/repos/jg0615121-source/daseot-insta/contents/posts/${id}.json`,
-    { headers: { Authorization: 'token ' + tok, Accept: 'application/vnd.github.raw' } });
+    { headers: { ...(tok ? { Authorization: 'token ' + tok } : {}), Accept: 'application/vnd.github.raw' } });
   if (!r.ok) { log(id + ' 원고 없음'); return null; }
   const p = await r.json();
   if (p.published_id) { fs.writeFileSync(mark(id), 'api'); return null; }
@@ -77,7 +77,9 @@ async function openEdge() {
 (async () => {
   if (slots.every(id => fs.existsSync(mark(id)))) return;
   fs.mkdirSync(path.join(HOME, 'posted'), { recursive: true });
-  const tok = execSync('gh auth token').toString().trim();
+  // 작업 스케줄러에서 cmd.exe 실행이 막혀(EPERM) 셸 없이 gh를 부르고, 실패해도 공개 저장소라 토큰 없이 진행
+  let tok = '';
+  try { tok = execFileSync('gh', ['auth', 'token'], { windowsHide: true }).toString().trim(); } catch {}
   const todo = [];
   for (const id of slots) { const t = await prepare(tok, id); if (t) todo.push(t); }
   if (!todo.length) return;
