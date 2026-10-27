@@ -7,6 +7,37 @@
   "cover_item": 2,
   "items": [
     {
+      "name": "유니클로 디자이너\n콜라보 니트",
+      "source_url": "https://www.ftoday.co.kr/news/articleView.html?idxno=367752",
+      "image_url": "https://cdn.ftoday.co.kr/news/photo/202610/367752_377631_4417.jpg",
+      "focus": "50% 50%",
+      "zoom": 1,
+      "credit": "사진 유니클로 제공",
+      "cover_score": {
+        "subject": 3,
+        "photo": 2,
+        "timely": 2,
+        "swipe": 1,
+        "total": 8
+      },
+      "desc": "프란체스코 리소랑 만든 두 번째 캡슐이야. 봉제선 없이 짠 메리노 울 니트에 남녀 구분 없는 투톤 디자인.",
+      "facts": [
+        [
+          "출시",
+          "10.30"
+        ],
+        [
+          "소재",
+          "메리노 울"
+        ],
+        [
+          "구성",
+          "니트·비니"
+        ]
+      ],
+      "image": "assets/2026-10-28-2/05.jpg"
+    },
+    {
       "name": "헤라 홀리데이\n눈송이 쿠션 케이스",
       "source_url": "https://www.straightnews.co.kr/news/articleView.html?idxno=313919",
       "image_url": "https://cdn.straightnews.co.kr/news/photo/202610/313919_226424_129.jpg",
@@ -36,37 +67,6 @@
         ]
       ],
       "image": "assets/2026-10-28-2/01.jpg"
-    },
-    {
-      "name": "쓱데이 열흘간\n반값 특가 열림",
-      "source_url": "https://www.ftoday.co.kr/news/articleView.html?idxno=368012",
-      "image_url": "https://cdn.ftoday.co.kr/news/photo/202610/368012_377928_2846.jpg",
-      "focus": "50% 50%",
-      "zoom": 1,
-      "credit": "사진 신세계 제공",
-      "cover_score": {
-        "subject": 2,
-        "photo": 2,
-        "timely": 2,
-        "swipe": 1,
-        "total": 7
-      },
-      "desc": "W컨셉 무스탕 점퍼가 정가 절반이고 스튜디오 톰보이 셋업도 50%야. 겨울 아우터 살 거면 11.8까지 노려봐.",
-      "facts": [
-        [
-          "무스탕",
-          "18만원대"
-        ],
-        [
-          "셋업",
-          "50%"
-        ],
-        [
-          "시작",
-          "10.30"
-        ]
-      ],
-      "image": "assets/2026-10-28-2/02.jpg"
     },
     {
       "name": "스누피 눈 내린\n크록스 털 클로그",
@@ -100,6 +100,37 @@
       "image": "assets/2026-10-28-2/03.jpg"
     },
     {
+      "name": "쓱데이 열흘간\n반값 특가 열림",
+      "source_url": "https://www.ftoday.co.kr/news/articleView.html?idxno=368012",
+      "image_url": "https://cdn.ftoday.co.kr/news/photo/202610/368012_377928_2846.jpg",
+      "focus": "50% 50%",
+      "zoom": 1,
+      "credit": "사진 신세계 제공",
+      "cover_score": {
+        "subject": 2,
+        "photo": 0,
+        "timely": 2,
+        "swipe": 1,
+        "total": 5
+      },
+      "desc": "W컨셉 무스탕 점퍼가 정가 절반이고 스튜디오 톰보이 셋업도 50%야. 겨울 아우터 살 거면 11.8까지 노려봐.",
+      "facts": [
+        [
+          "무스탕",
+          "18만원대"
+        ],
+        [
+          "셋업",
+          "50%"
+        ],
+        [
+          "시작",
+          "10.30"
+        ]
+      ],
+      "image": "assets/2026-10-28-2/02.jpg"
+    },
+    {
       "name": "올영에 먼저 나온\n아이오페 겔 마스크",
       "source_url": "https://www.specialtimes.co.kr/news/articleView.html?idxno=478317",
       "image_url": "https://cdn.specialtimes.co.kr/news/photo/202610/478317_468148_111.jpg",
@@ -129,37 +160,6 @@
         ]
       ],
       "image": "assets/2026-10-28-2/04.jpg"
-    },
-    {
-      "name": "유니클로 디자이너\n콜라보 니트",
-      "source_url": "https://www.ftoday.co.kr/news/articleView.html?idxno=367752",
-      "image_url": "https://cdn.ftoday.co.kr/news/photo/202610/367752_377631_4417.jpg",
-      "focus": "50% 50%",
-      "zoom": 1,
-      "credit": "사진 유니클로 제공",
-      "cover_score": {
-        "subject": 3,
-        "photo": 2,
-        "timely": 2,
-        "swipe": 1,
-        "total": 8
-      },
-      "desc": "프란체스코 리소랑 만든 두 번째 캡슐이야. 봉제선 없이 짠 메리노 울 니트에 남녀 구분 없는 투톤 디자인.",
-      "facts": [
-        [
-          "출시",
-          "10.30"
-        ],
-        [
-          "소재",
-          "메리노 울"
-        ],
-        [
-          "구성",
-          "니트·비니"
-        ]
-      ],
-      "image": "assets/2026-10-28-2/05.jpg"
     }
   ],
   "outro": {
@@ -171,18 +171,11 @@
     ]
   },
   "sources": [
+    "파이낸셜투데이 10.21",
     "스트레이트뉴스 10.26",
-    "파이낸셜투데이 10.25",
     "베이비뉴스 10.27",
-    "스페셜타임스 10.26",
-    "파이낸셜투데이 10.21"
+    "파이낸셜투데이 10.25",
+    "스페셜타임스 10.26"
   ],
-  "caption": "이번주 뷰티·패션 신상 정리, 올리브영 신상부터 쓱데이 세일까지 먼저 챙길 다섯가지 ❄️\n\n한정판 홀리데이 컬렉션이랑 겨울 콜라보가 한꺼번에 풀리는 주\n품절되기 전에 날짜만 딱 모아봄\n\n1 헤라 홀리데이 스노우 왈츠, 카카오 10.26 · 백화점 11.2\n2 신세계 쓱데이 10.30~11.8, W컨셉 무스탕 18만원대\n3 크록스 피너츠 크리스마스 라인드 클로그, 10.30 출시\n4 아이오페 XMD 겔 마스크, 올리브영 10.26\n5 유니클로 F.RISSO 니트 캡슐, 10.30 출시\n\n같이 쇼핑할 친구한테 보내기\n나중에 꺼내 보려면 저장 📌\n\n출처: 스트레이트뉴스, 파이낸셜투데이, 베이비뉴스, 스페셜타임스\n#다섯가지 #뷰티신상 #패션신상 #쓱데이 #헤라홀리데이",
-  "cover_images": [
-    {
-      "image": "assets/2026-10-28-2/02.jpg",
-      "focus": "50% 50%",
-      "zoom": 1
-    }
-  ]
+  "caption": "이번주 뷰티·패션 신상 정리, 올리브영 신상부터 쓱데이 세일까지 먼저 챙길 다섯가지 ❄️\n\n한정판 홀리데이 컬렉션이랑 겨울 콜라보가 한꺼번에 풀리는 주\n품절되기 전에 날짜만 딱 모아봄\n\n1 유니클로 F.RISSO 니트 캡슐, 10.30 출시\n2 헤라 홀리데이 스노우 왈츠, 카카오 10.26 · 백화점 11.2\n3 크록스 피너츠 크리스마스 라인드 클로그, 10.30 출시\n4 신세계 쓱데이 10.30~11.8, W컨셉 무스탕 18만원대\n5 아이오페 XMD 겔 마스크, 올리브영 10.26\n\n같이 쇼핑할 친구한테 보내기\n나중에 꺼내 보려면 저장 📌\n\n출처: 스트레이트뉴스, 파이낸셜투데이, 베이비뉴스, 스페셜타임스\n#다섯가지 #뷰티신상 #패션신상 #쓱데이 #헤라홀리데이"
 }
