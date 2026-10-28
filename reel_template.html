@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<!-- 릴스 장면 템플릿 (1080x1920). make_reel.py가 장면마다 '사진 층'과 '글자 층'을 따로 찍는다.
+     사진 층만 천천히 확대하고 글자 층은 고정해 글씨가 흐려지지 않게 한다.
+     인스타 릴스 화면은 아래 약 330px(캡션·버튼)과 오른쪽 약 140px(아이콘)이 가려지므로 글씨는 그 밖에 둔다. -->
+<style>
+@font-face{font-family:P;src:url(fonts/Pretendard-Bold.woff2);font-weight:700}
+@font-face{font-family:P;src:url(fonts/Pretendard-ExtraBold.woff2);font-weight:800}
+@font-face{font-family:P;src:url(fonts/Pretendard-Black.woff2);font-weight:900}
+:root{--b1:#2F54FF;--b2:#00C2A8;--accent:linear-gradient(135deg,var(--b1),var(--b2))}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:transparent}
+body{font-family:P,sans-serif;color:#fff;word-break:keep-all;letter-spacing:-.03em;-webkit-font-smoothing:antialiased}
+.layer{position:absolute;inset:0}
+/* 사진 층 */
+.bg{position:absolute;inset:-60px;background-size:cover;background-position:center;filter:blur(46px) brightness(.45) saturate(1.2)}
+.full{position:absolute;inset:0;background-size:cover;background-position:center}
+.shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.55) 0%,rgba(0,0,0,0) 22%,rgba(0,0,0,0) 45%,rgba(0,0,0,.88) 78%,#000 100%)}
+.frame{position:absolute;left:40px;right:40px;top:260px;height:1020px;display:flex;justify-content:center;align-items:flex-start}
+.frame img{max-width:100%;max-height:100%;border-radius:30px;box-shadow:0 30px 80px rgba(0,0,0,.5)}
+/* 글자 층 */
+.top{position:absolute;left:56px;right:56px;top:120px;display:flex;align-items:center;justify-content:space-between}
+.pill{background:#fff;color:#1a1a1a;font-weight:800;font-size:34px;padding:12px 26px;border-radius:999px}
+.count{font-weight:900;font-size:44px}
+.count small{opacity:.6;font-size:32px}
+.bar{position:absolute;left:56px;right:56px;top:208px;display:flex;gap:10px}
+.bar i{flex:1;height:8px;border-radius:4px;background:rgba(255,255,255,.3)}
+.bar i.on{background:#fff}
+.name{position:absolute;left:56px;right:150px;top:var(--nt,1310px);font-weight:900;font-size:80px;line-height:1.14;text-shadow:0 4px 24px rgba(0,0,0,.5)}
+.chip{position:absolute;left:56px;top:calc(var(--nt,1310px) + 220px);display:flex;gap:14px;align-items:center}
+.chip span{background:var(--accent);font-weight:800;font-size:40px;padding:12px 26px;border-radius:16px}
+.chip em{font-style:normal;font-weight:700;font-size:34px;opacity:.85}
+.hook{position:absolute;left:56px;right:150px;bottom:470px}
+.hook .pill{display:inline-block;margin-bottom:34px}
+.hook h1{font-weight:900;font-size:124px;line-height:1.1;text-shadow:0 6px 30px rgba(0,0,0,.5)}
+.hook h1 b{background:var(--accent);padding:0 .1em;border-radius:.12em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.hook p{margin-top:34px;font-weight:800;font-size:42px;opacity:.92}
+.outro{position:absolute;left:56px;right:150px;top:420px}
+.outro h2{font-weight:900;font-size:104px;line-height:1.14}
+.outro .send{margin-top:70px;background:var(--accent);font-weight:900;font-size:52px;padding:30px 38px;border-radius:26px}
+.outro p{margin-top:34px;font-weight:800;font-size:44px;line-height:1.45;opacity:.9}
+.outro .handle{margin-top:60px;font-weight:900;font-size:46px}
+</style></head>
+<body><div id="root"></div>
+<script>
+const esc = s => String(s).replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+const br = s => esc(s).replace(/\n/g, '<br>');
+const mark = s => br(s).replace(/\[(.+?)\]/g, '<b>$1</b>');
+// 숫자가 든 사실(가격·날짜·할인)을 우선 보여준다
+const keyFact = it => (it.facts || []).find(f => /\d/.test(f[1])) || (it.facts || [])[0];
+window.scene = (post, kind, i, layer) => {
+  const root = document.getElementById('root');
+  document.body.style.background = layer === 'text' ? 'transparent' : '#000';
+  const items = post.items, n = items.length;
+  if (layer === 'photo') {
+    if (kind === 'hook') {
+      const c = post.cover_images && post.cover_images[0] || items[(post.cover_item || 1) - 1];
+      root.innerHTML = `<div class="layer"><div class="full" style="background-image:url('${c.image}');background-position:${c.focus || '50% 50%'}"></div><div class="shade"></div></div>`;
+    } else if (kind === 'item') {
+      const img = items[i].image;
+      root.innerHTML = `<div class="layer"><div class="bg" style="background-image:url('${img}')"></div><div class="frame"><img src="${img}"></div><div class="shade" style="opacity:.75"></div></div>`;
+    } else {
+      const img = items[0].image;
+      root.innerHTML = `<div class="layer"><div class="bg" style="background-image:url('${img}')"></div></div>`;
+    }
+    return;
+  }
+  if (kind === 'hook') {
+    root.innerHTML = `<div class="hook"><span class="pill">${esc(post.kicker)}</span><h1>${mark(post.title)}</h1><p>끝까지 보면 5개 다 나옴 →</p></div>`;
+  } else if (kind === 'item') {
+    const it = items[i], f = keyFact(it);
+    // 사진 아래에 바로 제목이 오게: 사진 표시 높이(가로 1000, 세로 최대 1020)로 제목 위치 계산
+    const ph = it.w && it.h ? Math.min(1020, 1000 * it.h / it.w) : 1020;
+    root.style.setProperty('--nt', Math.min(1310, 260 + ph + 70) + 'px');
+    const bar = items.map((_, k) => `<i class="${k <= i ? 'on' : ''}"></i>`).join('');
+    root.innerHTML = `<div class="top"><span class="pill">${esc(post.kicker.replace(/\s*✦\s*$/, ''))}</span><span class="count">${i + 1}<small>/${n}</small></span></div>
+      <div class="bar">${bar}</div>
+      <div class="name">${br(it.name)}</div>
+      ${f ? `<div class="chip"><span>${esc(f[1])}</span><em>${esc(f[0])}</em></div>` : ''}`;
+  } else {
+    const o = post.outro || {};
+    const send = (o.lines || [])[1] || '친구한테 보내기';
+    root.innerHTML = `<div class="outro"><h2>${br(o.question || '다섯 개 중에\n하나만 고른다면?')}</h2>
+      <div class="send">→ ${esc(send)}</div>
+      <p>가격·날짜는 카드뉴스에 정리해둠<br>저장해두고 꺼내보기 📌</p>
+      <div class="handle">매일 아침·저녁 5개씩 @${esc(post.handle || 'daseot.5')}</div></div>`;
+  }
+};
+</script></body></html>

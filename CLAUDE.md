@@ -14,7 +14,7 @@
 - 작성자 이메일: 262959588+jg0615121-source@users.noreply.github.com (개인 메일 쓰지 않음)
 
 ## 인스타 게시 (API 받기 전 임시)
-- 사용자 PC 작업 스케줄러 '다섯가지 인스타 게시'가 매일 07:30~21:30 매시간 `%LOCALAPPDATA%\daseot-browser\post-daily.js` 실행 (원본은 저장소 scripts/browser/post-daily.js, 고치면 PC에 다시 내려받기). 아침 편 posts/날짜.json, 19시 이후 저녁 편 posts/날짜-2.json. 해시태그는 캡션 끝에 그대로. 기록은 같은 폴더 post.log, 게시한 원고는 posted\원고이름.done.
+- 사용자 PC 작업 스케줄러 '다섯가지 인스타 게시'가 매일 07:30~21:30 매시간 `%LOCALAPPDATA%\daseot-browser\post-daily.js` 실행 (원본은 저장소 scripts/browser/post-daily.js, 고치면 PC에 다시 내려받기). 아침 편 posts/날짜.json, 12시 이후 아침 릴스, 19시 이후 저녁 편 posts/날짜-2.json, 21시 이후 저녁 릴스 (릴스는 Actions가 만든 reel.mp4와 원고의 reel_caption). 해시태그는 캡션 끝에 그대로. 기록은 같은 폴더 post.log, 게시한 원고는 posted\원고이름.done, 릴스는 posted\원고이름.reel.done.
 - 게시는 엣지 게시 전용 프로필(같은 폴더 profile, 디버깅 포트 9333) 창에서 한다. 이 창은 띄워 두고 닫지 않는다. 스크립트는 탭만 열고 닫는다.
 - 사용자가 평소 쓰는 브라우저(크롬, 엣지 기본 프로필, 웨일)는 열거나 닫지 않는다. 확인용 창도 함부로 띄우지 않는다.
 - IG_USER_ID/IG_ACCESS_TOKEN 시크릿을 넣어 API 게시를 켜는 날, 이 작업 스케줄러를 끌 것 (안 끄면 두 번 올라감).

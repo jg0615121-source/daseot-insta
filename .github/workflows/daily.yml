@@ -47,6 +47,7 @@ jobs:
         run: |
           pip install playwright pillow
           python -m playwright install --with-deps chromium
+          which ffmpeg || (sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg)
 
       - name: 실물 사진 받고 슬라이드 만들기
         if: steps.pick.outputs.posts != ''
@@ -54,6 +55,8 @@ jobs:
           for f in ${{ steps.pick.outputs.posts }}; do
             python scripts/fetch_images.py "$f"
             python render.py "$f"
+            # 세로 릴스 영상과 릴스 캡션 (실패해도 카드뉴스는 그대로 진행)
+            python scripts/make_reel.py "$f" || echo "릴스 생성 실패: $f"
           done
 
       - name: 사진과 슬라이드 저장
@@ -84,8 +87,9 @@ jobs:
           cd "$RUNNER_TEMP/images"
           for f in ${{ steps.pick.outputs.posts }}; do
             d=$(basename "$f" .json)
-            mkdir -p "$d" && rm -f "$d"/*.jpg
+            mkdir -p "$d" && rm -f "$d"/*.jpg "$d"/reel.mp4
             cp "$GITHUB_WORKSPACE/out/$d/"*.jpg "$d/"
+            cp "$GITHUB_WORKSPACE/out/$d/reel.mp4" "$d/" 2>/dev/null || true
             git add "$d"
           done
           git config user.name "daseot-bot"
