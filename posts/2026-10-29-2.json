@@ -1,0 +1,164 @@
+{
+  "handle": "daseot.5",
+  "date": "2026-10-29",
+  "category": "공연",
+  "kicker": "목요일 티켓 다섯가지 ✦",
+  "title": "달력에 적어둘\n[연말] 일정 5",
+  "cover_item": 3,
+  "items": [
+    {
+      "name": "해밀턴 한국 상륙\n티켓은 11.11 오픈",
+      "source_url": "https://www.newspim.com/news/view/20261027001145",
+      "image_url": "https://img.newspim.com/news/2026/10/27/2610271524415210.jpg",
+      "focus": "50% 50%",
+      "zoom": 1,
+      "credit": "사진 에스앤코 제공",
+      "cover_score": {
+        "subject": 2,
+        "photo": 2,
+        "timely": 2,
+        "swipe": 1,
+        "total": 7
+      },
+      "desc": "브로드웨이를 뒤집은 그 뮤지컬 월드투어가 부산부터 와. 서울은 내년 1월 세종문화회관 대극장에서 해.",
+      "facts": [
+        [
+          "부산",
+          "12.17~"
+        ],
+        [
+          "서울",
+          "1.21~"
+        ],
+        [
+          "오픈",
+          "11.11"
+        ]
+      ]
+    },
+    {
+      "name": "30주년 가요대전\n처음으로 이틀 함",
+      "source_url": "https://www.newspim.com/news/view/20261023000945",
+      "image_url": "https://img.newspim.com/news/2026/10/23/2610231518102230.jpg",
+      "focus": "50% 50%",
+      "zoom": 1,
+      "credit": "사진 SBS 제공",
+      "cover_score": {
+        "subject": 3,
+        "photo": 0,
+        "timely": 1,
+        "swipe": 1,
+        "total": 5
+      },
+      "desc": "스키즈, 투바투, 아이브, 라이즈, 코르티스까지 1차로만 22팀이야. 선배 가수 라인업은 추가로 공개된대.",
+      "facts": [
+        [
+          "날짜",
+          "12.24~25"
+        ],
+        [
+          "장소",
+          "일산 킨텍스"
+        ]
+      ]
+    },
+    {
+      "name": "이무진 겨울 투어\n티켓 다 풀렸음",
+      "source_url": "https://www.insight.co.kr/news/578849",
+      "image_url": "https://img.insight.co.kr/static/2026/10/22/1200/img_20261022175002_4n4huw83.webp",
+      "focus": "50% 50%",
+      "zoom": 1,
+      "credit": "사진 물음표 제공",
+      "cover_score": {
+        "subject": 2,
+        "photo": 3,
+        "timely": 2,
+        "swipe": 1,
+        "total": 8
+      },
+      "desc": "2년 만의 연말 전국투어 '겨울 인사'야. 고양, 대구, 부산 순서로 돌고 크리스마스엔 부산에서 해.",
+      "facts": [
+        [
+          "첫 공연",
+          "11.28 고양"
+        ],
+        [
+          "예매",
+          "NOL 티켓"
+        ]
+      ]
+    },
+    {
+      "name": "엔믹스 투어 피날레\n극장에서 봄",
+      "source_url": "https://www.newspim.com/news/view/20261026001185",
+      "image_url": "https://img.newspim.com/news/2026/10/26/2610261719299770.jpg",
+      "focus": "50% 50%",
+      "zoom": 1,
+      "credit": "사진 CJ 4DPLEX 제공",
+      "cover_score": {
+        "subject": 3,
+        "photo": 1,
+        "timely": 1,
+        "swipe": 1,
+        "total": 6
+      },
+      "desc": "인스파이어 아레나 마지막 공연을 CGV에서 생중계해. 스크린X로도 볼 수 있어서 티켓 못 구했으면 여기로.",
+      "facts": [
+        [
+          "상영",
+          "11.29"
+        ],
+        [
+          "예매",
+          "11.11"
+        ],
+        [
+          "어디",
+          "CGV"
+        ]
+      ]
+    },
+    {
+      "name": "인디게임 축제\n지금 사면 5천원",
+      "source_url": "https://www.wikitree.co.kr/articles/1168300",
+      "image_url": "https://cdnweb01.wikitree.co.kr/webdata/editor/202610/22/202610221237218611_game_press.jpeg",
+      "focus": "50% 50%",
+      "zoom": 1,
+      "credit": "사진 스마일게이트 제공",
+      "cover_score": {
+        "subject": 1,
+        "photo": 1,
+        "timely": 2,
+        "swipe": 1,
+        "total": 5
+      },
+      "desc": "100팀 넘는 인디게임을 직접 해볼 수 있는 축제 비버롹스야. 현장에서 사면 1만5천원이라 지금 사두는 게 이득.",
+      "facts": [
+        [
+          "얼리버드",
+          "11.1까지 5천원"
+        ],
+        [
+          "날짜",
+          "12.18~20 세텍"
+        ]
+      ]
+    }
+  ],
+  "outro": {
+    "question": "다섯 개 중에\n하나만 간다면?",
+    "lines": [
+      "번호로 댓글 남겨줘",
+      "연말에 같이 공연 갈 친구한테 보내기",
+      "저장해두고 티켓팅 날 꺼내보기"
+    ]
+  },
+  "sources": [
+    "뉴스핌 10.27",
+    "뉴스핌 10.23",
+    "인사이트 10.22",
+    "뉴스핌 10.26",
+    "위키트리 10.22"
+  ],
+  "caption": "이번주 콘서트 티켓 오픈 일정 정리, 해밀턴부터 가요대전까지 달력에 적어둘 다섯가지 🎫\n\n연말 공연은 오픈 날 놓치면 끝\n티켓팅 날짜랑 장소만 딱 모아봄\n\n1 뮤지컬 해밀턴 내한, 11.11 티켓 오픈\n2 SBS 가요대전 30주년, 12.24~25 킨텍스\n3 이무진 전국투어 '겨울 인사', 11.28 고양부터\n4 엔믹스 월드투어 피날레 CGV 생중계, 11.11 예매\n5 비버롹스 2026 얼리버드 5천원, 11.1까지\n\n연말에 같이 공연 갈 친구한테 보내기\n나중에 꺼내 보려면 저장 📌\n\n출처: 뉴스핌, 인사이트, 위키트리\n#다섯가지 #티켓팅 #연말콘서트 #해밀턴 #SBS가요대전"
+}
