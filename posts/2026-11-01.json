@@ -1,0 +1,160 @@
+{
+  "handle": "daseot.5",
+  "date": "2026-11-01",
+  "category": "혜택",
+  "kicker": "일요일 혜택 다섯가지 ✦",
+  "title": "그냥 넘기면 [손해]\n이번주 혜택 5",
+  "cover_item": 3,
+  "items": [
+    {
+      "name": "스와로브스키 케이크\n일찍 사면 최대 40%",
+      "source_url": "https://www.insight.co.kr/news/579681",
+      "image_url": "https://img.insight.co.kr/static/2026/10/29/1200/img_20261029103654_56uit7f2.jpg",
+      "focus": "50% 50%",
+      "zoom": 1,
+      "credit": "사진 파스쿠찌 제공",
+      "cover_score": {
+        "subject": 2,
+        "photo": 3,
+        "timely": 2,
+        "swipe": 1,
+        "total": 8
+      },
+      "desc": "스와로브스키 카페랑 만든 백조 케이크는 30%, 다른 케이크는 40% 빠져. 8일 지나면 할인폭이 줄어.",
+      "facts": [
+        [
+          "마감",
+          "11.8"
+        ],
+        [
+          "할인",
+          "최대 40%"
+        ],
+        [
+          "어디서",
+          "해피오더 앱"
+        ]
+      ]
+    },
+    {
+      "name": "PS플러스 11월 게임\n데드 아일랜드 2 뜸",
+      "source_url": "https://finalweapon.net/2026/10/28/playstation-plus-november-2026-monthly-games-lineup-revealed/",
+      "image_url": "https://finalweapon.net/wp-content/uploads/2026/10/PlayStation-Plus-Monthly-Games-November-2026.webp",
+      "focus": "50% 50%",
+      "zoom": 1,
+      "credit": "사진 플레이스테이션 제공",
+      "cover_score": {
+        "subject": 2,
+        "photo": 2,
+        "timely": 2,
+        "swipe": 1,
+        "total": 7
+      },
+      "desc": "툼레이더 IV~VI 리마스터, 몬스터 트레인 2까지 3종이야. 10월 게임은 2일까지 라이브러리에 담아둬.",
+      "facts": [
+        [
+          "11월 게임",
+          "11.3~11.30"
+        ],
+        [
+          "10월분 마감",
+          "11.2"
+        ]
+      ]
+    },
+    {
+      "name": "4대궁·종묘 입장료\n15일까지 0원",
+      "source_url": "https://www.newspim.com/news/view/20260924000131",
+      "image_url": "https://img.newspim.com/news/2026/09/24/260924162306603_w.jpg",
+      "focus": "50% 50%",
+      "zoom": 1,
+      "credit": "사진 뉴스핌",
+      "cover_score": {
+        "subject": 3,
+        "photo": 3,
+        "timely": 2,
+        "swipe": 1,
+        "total": 9
+      },
+      "desc": "경복궁·창덕궁·창경궁·덕수궁에 조선왕릉까지 표 없이 들어가. 창덕궁 후원만 따로 예매해야 해.",
+      "facts": [
+        [
+          "무료",
+          "~11.15"
+        ],
+        [
+          "후원만",
+          "5,000원 예매"
+        ]
+      ]
+    },
+    {
+      "name": "쿠팡 와우 회원이면\n최대 70% 할인 주간",
+      "source_url": "https://www.newspim.com/news/view/20261028001233",
+      "image_url": "https://img.newspim.com/news/2026/10/28/2610281457586500.jpg",
+      "focus": "50% 50%",
+      "zoom": 1,
+      "credit": "사진 쿠팡 제공",
+      "cover_score": {
+        "subject": 3,
+        "photo": 1,
+        "timely": 2,
+        "swipe": 1,
+        "total": 7
+      },
+      "desc": "37만 개 상품이 할인되고 매일 10시·17시에 1만·3만원 쿠폰이 선착순으로 풀려. 생필품 쟁일 타이밍.",
+      "facts": [
+        [
+          "기간",
+          "11.2~11.8"
+        ],
+        [
+          "쿠폰",
+          "하루 최대 4장"
+        ]
+      ]
+    },
+    {
+      "name": "11번가 그랜드십일절\n하루 1만1111P",
+      "source_url": "https://www.newspim.com/news/view/20261021000056",
+      "image_url": "https://img.newspim.com/news/2026/10/21/2610210813460050.jpg",
+      "focus": "50% 50%",
+      "zoom": 1,
+      "credit": "사진 11번가 제공",
+      "cover_score": {
+        "subject": 3,
+        "photo": 1,
+        "timely": 2,
+        "swipe": 1,
+        "total": 7
+      },
+      "desc": "참여 이벤트로 10일까지 매일 포인트를 주고, 11일 당일엔 최대 5만 포인트까지 줘. 180개 넘는 브랜드가 참여해.",
+      "facts": [
+        [
+          "기간",
+          "11.1~11.11"
+        ],
+        [
+          "11일",
+          "최대 5만P"
+        ]
+      ]
+    }
+  ],
+  "outro": {
+    "question": "다섯 개 중에\n제일 먼저 챙길 건?",
+    "lines": [
+      "번호로 댓글 남겨줘",
+      "장바구니 같이 채울 친구한테 보내기",
+      "저장해두고 결제 전에 꺼내보기"
+    ]
+  },
+  "sources": [
+    "인사이트 10.29",
+    "파이널웨폰 10.28",
+    "여행픽 10.28",
+    "뉴스핌 10.28",
+    "뉴스핌 10.30"
+  ],
+  "caption": "이번주 할인 혜택·이벤트 정리, 그냥 넘기면 손해인 것 다섯가지 💸\n\n쇼핑 대전이 한꺼번에 열리고 마감 임박한 혜택도 겹친 주야\n날짜만 챙겨도 아끼는 것만 골랐어\n\n1 파스쿠찌 크리스마스 케이크 최대 40%, 11.8 마감\n2 PS플러스 11월 게임 11.3 공개, 10월분 11.2 마감\n3 4대궁·종묘·조선왕릉 무료, 11.15까지\n4 쿠팡 와우 멤버스데이 최대 70%, 11.2~11.8\n5 11번가 그랜드십일절, 11.1~11.11\n\n장바구니 같이 채울 친구한테 보내기\n나중에 꺼내 보려면 저장 📌\n\n출처: 인사이트, 파이널웨폰, 여행픽, 지디넷코리아, 뉴스핌\n#다섯가지 #할인정보 #이벤트정보 #경복궁무료 #크리스마스케이크"
+}
