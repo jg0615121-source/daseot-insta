@@ -46,8 +46,11 @@ jobs:
         if: steps.pick.outputs.posts != ''
         run: |
           pip install playwright pillow
-          python -m playwright install --with-deps chromium
-          which ffmpeg || (sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg)
+          python -m playwright install chromium
+          # 우분투 미러가 아주 느린 날 설치가 20분 넘게 멈춘 적이 있어 시간 제한을 둠
+          # (러너에 크롬 실행용 라이브러리가 대부분 있어 글꼴 등 추가 패키지는 없어도 슬라이드가 만들어짐)
+          timeout 300 python -m playwright install-deps chromium || echo "install-deps 시간 초과, 건너뜀"
+          which ffmpeg || timeout 420 bash -c 'sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg' || echo "ffmpeg 설치 실패, 릴스는 건너뛸 수 있음"
 
       - name: 실물 사진 받고 슬라이드 만들기
         if: steps.pick.outputs.posts != ''
