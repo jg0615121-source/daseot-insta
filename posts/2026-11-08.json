@@ -10,8 +10,8 @@
       "name": "세븐일레븐 호빵\n2봉 사면 반값",
       "source_url": "https://www.newspim.com/news/view/20261105000067",
       "image_url": "https://img.newspim.com/news/2026/11/05/2611050811034380.jpg",
-      "focus": "50% 50%",
-      "zoom": 1,
+      "focus": "50% 100%",
+      "zoom": 1.8,
       "credit": "사진 세븐일레븐 제공",
       "cover_score": {
         "subject": 3,
