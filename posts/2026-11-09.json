@@ -1,0 +1,172 @@
+{
+  "handle": "daseot.5",
+  "date": "2026-11-09",
+  "category": "화제",
+  "kicker": "월요일 화제 다섯가지 ✦",
+  "title": "이번주 대화에\n[꼭 나올] 얘기 5",
+  "cover_item": 3,
+  "items": [
+    {
+      "name": "박진영·김유정 드라마\n2주째 화제성 1위",
+      "source_url": "https://www.wikitree.co.kr/articles/1171461",
+      "image_url": "https://cdnweb01.wikitree.co.kr/webdata/editor/202611/03/img_20261103162843_d3576afa.jpg",
+      "focus": "50% 50%",
+      "zoom": 1,
+      "credit": "사진 tvN 제공",
+      "cover_score": {
+        "subject": 3,
+        "photo": 3,
+        "timely": 1,
+        "swipe": 1,
+        "total": 8
+      },
+      "desc": "tvN '100일의 거짓말' 얘기야. 시청률 19.5% 닥터X를 누르고 화제성 1위를 지켰어. 이제 막 반환점 돌았음.",
+      "facts": [
+        [
+          "시청률",
+          "9.8%"
+        ],
+        [
+          "화제성",
+          "2주 1위"
+        ],
+        [
+          "방송",
+          "토일 9:10"
+        ]
+      ]
+    },
+    {
+      "name": "젠지 롤드컵 결승\n9년 만에 감",
+      "source_url": "https://www.insight.co.kr/news/581091",
+      "image_url": "https://img.insight.co.kr/static/2026/11/08/1200/img_20261108095712_tp2md5if.webp",
+      "focus": "50% 50%",
+      "zoom": 1,
+      "credit": "사진 라이엇 게임즈 제공",
+      "cover_score": {
+        "subject": 3,
+        "photo": 2,
+        "timely": 2,
+        "swipe": 1,
+        "total": 8
+      },
+      "desc": "젠지 이름으로는 창단 후 첫 결승이야. 상대는 T1과 BLG의 4강 승자, 결승은 이번 주말이야.",
+      "facts": [
+        [
+          "4강",
+          "IG에 3:0"
+        ],
+        [
+          "결승",
+          "11.15"
+        ]
+      ]
+    },
+    {
+      "name": "삼성 12년 만에\n한국시리즈 우승",
+      "source_url": "https://www.newspim.com/news/view/20261108000109",
+      "image_url": "https://img.newspim.com/news/2026/11/08/2611081714585750.jpg",
+      "focus": "50% 35%",
+      "zoom": 1,
+      "credit": "사진 삼성 라이온즈 제공",
+      "cover_score": {
+        "subject": 3,
+        "photo": 3,
+        "timely": 2,
+        "swipe": 1,
+        "total": 9
+      },
+      "desc": "1차전을 내주고 내리 네 판을 이겼어. MVP 구자욱은 시리즈 타율 5할을 찍었어.",
+      "facts": [
+        [
+          "5차전",
+          "12-1"
+        ],
+        [
+          "시리즈",
+          "4승 1패"
+        ],
+        [
+          "MVP",
+          "구자욱"
+        ]
+      ]
+    },
+    {
+      "name": "리센느 신곡 위드\n멜론 1위 직행",
+      "source_url": "https://www.newspim.com/news/view/20261104000129",
+      "image_url": "https://img.newspim.com/news/2026/11/04/261104083349182_w.jpg",
+      "focus": "50% 50%",
+      "zoom": 1,
+      "credit": "사진 뉴스핌",
+      "cover_score": {
+        "subject": 2,
+        "photo": 3,
+        "timely": 1,
+        "swipe": 1,
+        "total": 7
+      },
+      "desc": "발매 2시간 만에 멜론 톱100 꼭대기에 올랐어. 수록곡 4곡도 톱10에 같이 들어감.",
+      "facts": [
+        [
+          "발매",
+          "11.3"
+        ],
+        [
+          "멜론",
+          "2시간 1위"
+        ],
+        [
+          "앨범",
+          "미니 4집"
+        ]
+      ]
+    },
+    {
+      "name": "이해인 트리플악셀\n시니어 GP 첫 메달",
+      "source_url": "https://www.newspim.com/news/view/20261107000131",
+      "image_url": "https://img.newspim.com/news/2026/11/06/2611061952016560_w.jpg",
+      "focus": "50% 40%",
+      "zoom": 1,
+      "credit": "사진 로이터",
+      "cover_score": {
+        "subject": 2,
+        "photo": 2,
+        "timely": 2,
+        "swipe": 0,
+        "total": 6
+      },
+      "desc": "쇼트 6위에서 프리로 세 계단 뛰어올랐어. 첫 점프 트리플악셀을 깔끔하게 뛰어 9.60점 받았음.",
+      "facts": [
+        [
+          "순위",
+          "동메달"
+        ],
+        [
+          "총점",
+          "210.79"
+        ],
+        [
+          "프리",
+          "143.30"
+        ]
+      ]
+    }
+  ],
+  "outro": {
+    "question": "다섯 개 중에\n제일 먼저 말할 건?",
+    "lines": [
+      "번호로 댓글 남겨줘",
+      "점심에 수다 떨 친구한테 보내기",
+      "저장해두고 대화할 때 꺼내보기"
+    ]
+  },
+  "sources": [
+    "위키트리 11.4",
+    "인사이트 11.8",
+    "뉴스핌 11.8",
+    "뉴스핌 11.4",
+    "뉴스핌 11.7"
+  ],
+  "caption": "지난주 화제 이슈 정리, 이번주 대화에 꼭 나올 얘기 다섯가지 🔥\n\n12년 만에 우승한 삼성부터 9년 만에 결승 간 젠지,\n2주째 화제성 1위 드라마까지\n월요일에 할 얘기 다섯 개 모아봄\n\n1 '100일의 거짓말' 화제성 2주 연속 1위, 시청률 9.8%\n2 젠지 롤드컵 4강 IG에 3:0, 결승은 11.15\n3 삼성 한국시리즈 4승 1패, 12년 만에 우승\n4 리센느 '위드' 발매 2시간 만에 멜론 1위\n5 이해인 컵 오브 차이나 동메달, 시니어 GP 첫 메달\n\n점심에 수다 떨 친구한테 보내기\n나중에 꺼내 보려면 저장 📌\n\n출처: 위키트리, 인사이트, 뉴스핌\n#다섯가지 #주간이슈 #핫이슈 #한국시리즈 #롤드컵"
+}
