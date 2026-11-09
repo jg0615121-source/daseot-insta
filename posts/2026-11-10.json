@@ -1,0 +1,68 @@
+{
+  "handle": "daseot.5",
+  "date": "2026-11-10",
+  "category": "먹거리",
+  "kicker": "화요일 신메뉴 다섯가지 ✦",
+  "title": "이번주 신상 간식\n이것만 [먹으면 됨]",
+  "cover_item": 4,
+  "items": [
+    {
+      "name": "500만개 팔린 츄러스\n더 길어져서 돌아옴",
+      "source_url": "https://www.insight.co.kr/news/580587",
+      "image_url": "https://img.insight.co.kr/static/2026/11/04/1200/img_20261104103421_y0x5ghps.jpg",
+      "focus": "50% 50%",
+      "zoom": 1,
+      "credit": "사진 파리바게뜨 제공",
+      "cover_score": {"subject": 3, "photo": 2, "timely": 1, "swipe": 1, "total": 7},
+      "desc": "쫀득한 식감은 그대로 두고 길이랑 초코 코팅을 늘렸어. 생초콜릿 케이크, 초코쫀떡까지 겨울 초코 디저트만 30가지야.",
+      "facts": [["누적", "500만 개"], ["겨울", "초코 30종"], ["어디", "파리바게뜨"]]
+    },
+    {
+      "name": "찍어 먹고 녹여 먹는\nCU 치즈 시리즈",
+      "source_url": "https://www.newspim.com/news/view/20261108000096",
+      "image_url": "https://img.newspim.com/news/2026/11/08/2611081638392840.jpg",
+      "focus": "50% 50%",
+      "zoom": 1,
+      "credit": "사진 BGF리테일 제공",
+      "cover_score": {"subject": 3, "photo": 2, "timely": 1, "swipe": 1, "total": 7},
+      "desc": "맵닭강정, 불제육김밥은 할라피뇨 체다 소스에 찍어 먹고, 통모짜 떡갈비버거는 치즈가 쭉 늘어나. 전자레인지용 그라탕도 있어.",
+      "facts": [["어디", "CU"], ["소스", "할라피뇨"], ["출시", "순차"]]
+    },
+    {
+      "name": "오페라의 유령 라떼\n한남동에서 3주만",
+      "source_url": "https://www.newspim.com/news/view/20261109000569",
+      "image_url": "https://img.newspim.com/news/2026/11/09/2611091116189790.jpg",
+      "focus": "50% 50%",
+      "zoom": 1,
+      "credit": "사진 동서식품 제공",
+      "cover_score": {"subject": 2, "photo": 2, "timely": 2, "swipe": 1, "total": 7},
+      "desc": "맥심플랜트가 19세기 파리 오페라 극장처럼 변했어. 사면 배우 인터뷰 실린 신문이랑 콜라보 코스터를 줘.",
+      "facts": [["라떼", "7,400원"], ["세트", "15,000원"], ["기간", "~11.29"]]
+    },
+    {
+      "name": "하루 500개만 파는\nCU 생딸기 초코 샌드",
+      "source_url": "https://www.newspim.com/news/view/20261105000074",
+      "image_url": "https://img.newspim.com/news/2026/11/05/2611050814000170.jpg",
+      "focus": "50% 50%",
+      "zoom": 1,
+      "credit": "사진 BGF리테일 제공",
+      "cover_score": {"subject": 3, "photo": 3, "timely": 2, "swipe": 1, "total": 9},
+      "desc": "초코 카스텔라 사이에 초코 휩 크림이랑 생딸기를 꽉 채웠어. 앱 선착순이라 늦으면 못 사고, 18일엔 과일 샌드도 나와.",
+      "facts": [["판매", "~11.20"], ["하루", "500개"], ["예약", "포켓CU"]]
+    },
+    {
+      "name": "오뚜기 북엇국라면\n얼큰 버전 나옴",
+      "source_url": "https://www.wikitree.co.kr/articles/1171632",
+      "image_url": "https://cdnweb01.wikitree.co.kr/webdata/editor/202611/04/img_20261104093840_6a626f73.jpg",
+      "focus": "50% 50%",
+      "zoom": 1,
+      "credit": "사진 G마켓 제공",
+      "cover_score": {"subject": 2, "photo": 2, "timely": 2, "swipe": 1, "total": 7},
+      "desc": "구수한 북어 국물에 고춧가루를 더해 칼칼해졌어. 3봉 사면 원조 북엇국라면 1봉을 더 줘(한정 수량).",
+      "facts": [["예약", "~11.12"], ["첫날", "2.5만 개"], ["어디", "G마켓"]]
+    }
+  ],
+  "outro": {"question": "다섯 개 중에\n하나만 먹는다면?", "lines": ["번호로 댓글 남겨줘", "편의점 털러 갈 친구한테 보내기", "저장해두고 간식 고를 때 꺼내보기"]},
+  "sources": ["인사이트 11.4", "뉴스핌 11.8", "뉴스핌 11.9", "뉴스핌 11.5", "위키트리 11.4"],
+  "caption": "이번주 편의점 신상·카페 신메뉴 정리, 이것만 먹으면 되는 다섯가지 🍓\n\n하루 500개만 파는 생딸기 샌드부터\n500만 개 팔린 츄러스 업그레이드까지\n가격이랑 기간만 딱 모아봄\n\n1 파리바게뜨 롱롱 초코 쫀득 츄러스, 초코 디저트 30종\n2 CU 치즈 딥핑·멜팅 시리즈 순차 출시\n3 맥심플랜트 오페라의 유령 라떼 7,400원, 11.29까지\n4 CU 딸기 초코 휩 카스텔라 샌드, 11.20까지 하루 500개\n5 G마켓 단독 얼큰 북엇국라면, 11.12까지 사전예약\n\n편의점 털러 갈 친구한테 보내기\n나중에 꺼내 보려면 저장 📌\n\n출처: 인사이트, 뉴스핌, 위키트리\n#다섯가지 #편의점신상 #신메뉴 #CU신상 #파리바게뜨"
+}
