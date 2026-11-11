@@ -1,0 +1,168 @@
+{
+  "handle": "daseot.5",
+  "date": "2026-11-12",
+  "category": "캐릭터",
+  "kicker": "목요일 콜라보 다섯가지 ✦",
+  "title": "이번주 [품절각]\n콜라보 굿즈 5",
+  "cover_item": 2,
+  "items": [
+    {
+      "name": "주술회전 아크릴 주는\n맘스터치 세트",
+      "source_url": "https://www.wikitree.co.kr/articles/1172063",
+      "image_url": "https://cdnweb01.wikitree.co.kr/webdata/editor/202611/05/img_20261105120713_a4dfe82b.jpg",
+      "focus": "50% 50%",
+      "zoom": 1,
+      "credit": "사진 맘스터치 제공",
+      "cover_score": {
+        "subject": 3,
+        "photo": 2,
+        "timely": 2,
+        "swipe": 1,
+        "total": 8
+      },
+      "desc": "최대 25cm짜리 메가 아크릴 스탠드가 세트마다 하나씩 들어 있어. 캐릭터는 랜덤이고 매장 재고가 떨어지면 일찍 끝나.",
+      "facts": [
+        [
+          "판매",
+          "~11.29"
+        ],
+        [
+          "스탠드",
+          "6종 랜덤"
+        ],
+        [
+          "크기",
+          "최대 25cm"
+        ]
+      ]
+    },
+    {
+      "name": "롯데월드가 통째로\n쿠키런 왕국 됨",
+      "source_url": "https://www.insight.co.kr/news/581169",
+      "image_url": "https://img.insight.co.kr/static/2026/11/09/1200/img_20261109100936_l4x212s5.jpg",
+      "focus": "50% 50%",
+      "zoom": 1,
+      "credit": "사진 롯데월드 제공",
+      "cover_score": {
+        "subject": 3,
+        "photo": 3,
+        "timely": 1,
+        "swipe": 1,
+        "total": 8
+      },
+      "desc": "서울은 눈 덮인 디저트 왕국, 부산은 마법학당으로 꾸며. 콜라보 메뉴를 1만원 넘게 사면 띠부씰을 랜덤으로 줘.",
+      "facts": [
+        [
+          "서울",
+          "11.21~"
+        ],
+        [
+          "부산",
+          "11.28~"
+        ],
+        [
+          "띠부씰",
+          "1만원 이상"
+        ]
+      ]
+    },
+    {
+      "name": "젤라또 피케 파우치\n배라에서 4,900원",
+      "source_url": "https://www.wikitree.co.kr/articles/1172129",
+      "image_url": "https://cdnweb01.wikitree.co.kr/webdata/editor/202611/05/img_20261105142837_e30dc240.webp",
+      "focus": "50% 50%",
+      "zoom": 1,
+      "credit": "사진 배스킨라빈스 제공",
+      "cover_score": {
+        "subject": 2,
+        "photo": 2,
+        "timely": 2,
+        "swipe": 1,
+        "total": 7
+      },
+      "desc": "쿼터 이상 사면 베어 패턴 파우치를 추가로 살 수 있어. 솜사탕 넣은 한정 맛 레몬베리 코튼캔디도 같이 나왔어.",
+      "facts": [
+        [
+          "가격",
+          "4,900원"
+        ],
+        [
+          "조건",
+          "쿼터 이상"
+        ],
+        [
+          "판매",
+          "소진 시까지"
+        ]
+      ]
+    },
+    {
+      "name": "한 달 만에 반 넘게\n팔린 쿠로미 방한화",
+      "source_url": "https://www.insight.co.kr/news/581447",
+      "image_url": "https://img.insight.co.kr/static/2026/11/10/1200/img_20261110153943_4q6wckq5.jpg",
+      "focus": "50% 50%",
+      "zoom": 1,
+      "credit": "사진 르꼬끄 스포르티브 제공",
+      "cover_score": {
+        "subject": 3,
+        "photo": 2,
+        "timely": 1,
+        "swipe": 1,
+        "total": 7
+      },
+      "desc": "르꼬끄 쿠로미 9종 중에 겨울 신발 '미뇽'이 제일 잘 나가. 테디 퍼 재킷이랑 미니 크로스백도 40% 넘게 팔렸어.",
+      "facts": [
+        [
+          "판매율",
+          "50%대"
+        ],
+        [
+          "어디",
+          "무신사·29CM"
+        ]
+      ]
+    },
+    {
+      "name": "핸드크림 사면\n다마고치 굿즈 줌",
+      "source_url": "https://www.fntoday.co.kr/news/articleView.html?idxno=397107",
+      "image_url": "https://www.fntoday.co.kr/news/photo/202611/397107_321577_326.jpg",
+      "focus": "50% 50%",
+      "zoom": 1,
+      "credit": "사진 LG생활건강 제공",
+      "cover_score": {
+        "subject": 2,
+        "photo": 2,
+        "timely": 1,
+        "swipe": 1,
+        "total": 6
+      },
+      "desc": "비욘드 핸드크림·바디로션 7종이 다마고치 옷을 입었어. 구성에 따라 이어폰 케이스나 랜덤 키링이 따라와.",
+      "facts": [
+        [
+          "어디",
+          "올리브영"
+        ],
+        [
+          "기간",
+          "11월 한 달"
+        ]
+      ]
+    }
+  ],
+  "outro": {
+    "question": "다섯 개 중에\n하나만 고른다면?",
+    "lines": [
+      "번호로 댓글 남겨줘",
+      "덕질 같이 하는 친구한테 보내기",
+      "저장해두고 굿즈 사러 갈 때 꺼내보기"
+    ]
+  },
+  "sources": [
+    "위키트리 11.5",
+    "인사이트 11.9",
+    "위키트리 11.5",
+    "인사이트 11.10",
+    "파이낸스투데이 11.5"
+  ],
+  "caption": "이번주 캐릭터 콜라보 굿즈 정리, 주술회전부터 쿠키런·쿠로미까지 품절각 다섯가지 🧸\n\n버거 세트엔 아크릴 스탠드, 놀이공원엔 쿠키런 왕국\n한정 수량이라 늦으면 없음\n날짜랑 받는 법만 딱 모아봄\n\n1 맘스터치 x 주술회전 메가 아크릴 세트, 11.29까지\n2 쿠키런 x 롯데월드 겨울 축제, 서울 11.21부터\n3 배라 x 젤라또 피케 파우치 4,900원, 소진 시까지\n4 르꼬끄 x 쿠로미 방한화, 판매율 50%대\n5 비욘드 x 다마고치 한정판, 올리브영 11월 한 달\n\n덕질 같이 하는 친구한테 보내기\n나중에 꺼내 보려면 저장 📌\n\n출처: 위키트리, 인사이트, 파이낸스투데이\n#다섯가지 #캐릭터굿즈 #콜라보굿즈 #주술회전 #쿠키런"
+}

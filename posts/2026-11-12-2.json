@@ -1,0 +1,160 @@
+{
+  "handle": "daseot.5",
+  "date": "2026-11-12",
+  "category": "공연",
+  "kicker": "목요일 티켓 다섯가지 ✦",
+  "title": "연말 공연 티켓\n이것만 [잡으면 됨]",
+  "cover_item": 2,
+  "items": [
+    {
+      "name": "성시경 연말 콘서트\n오늘 밤 8시 오픈",
+      "source_url": "https://www.topstarnews.net/news/articleView.html?idxno=16263918",
+      "image_url": "https://cdn.topstarnews.net/news/photo/202610/16263918_2072655_1845.jpg",
+      "focus": "50% 50%",
+      "zoom": 1,
+      "credit": "사진 에스케이재원 제공",
+      "cover_score": {
+        "subject": 2,
+        "photo": 2,
+        "timely": 2,
+        "swipe": 1,
+        "total": 7
+      },
+      "desc": "12월 31일 밤 9시 공연으로 시작해서 새해 1월 3일까지 나흘 동안 KSPO돔에서 해. 예매는 NOL에서 열려.",
+      "facts": [
+        [
+          "공연",
+          "12.31~1.3"
+        ],
+        [
+          "일반예매",
+          "11.12 20시"
+        ]
+      ]
+    },
+    {
+      "name": "데이식스 연말 콘서트\n다음주 티켓 오픈",
+      "source_url": "https://www.topstarnews.net/news/articleView.html?idxno=16273727",
+      "image_url": "https://cdn.topstarnews.net/news/photo/202611/16273727_2084902_757.jpg",
+      "focus": "50% 50%",
+      "zoom": 1,
+      "credit": "사진 JYP엔터테인먼트 제공",
+      "cover_score": {
+        "subject": 3,
+        "photo": 2,
+        "timely": 2,
+        "swipe": 1,
+        "total": 8
+      },
+      "desc": "12월 18일부터 사흘 동안 KSPO돔에서 하는 스페셜 공연이야. 전석 15만4천원이고 일반예매는 회차당 2장까지.",
+      "facts": [
+        [
+          "선예매",
+          "11.19 20시"
+        ],
+        [
+          "일반예매",
+          "11.20 20시"
+        ]
+      ]
+    },
+    {
+      "name": "캣츠아이 첫 내한\nKSPO돔 입성",
+      "source_url": "https://www.newspim.com/news/view/20261029000850",
+      "image_url": "https://img.newspim.com/news/2026/10/29/2610291351454450.jpg",
+      "focus": "50% 50%",
+      "zoom": 1,
+      "credit": "사진 라이브네이션코리아 제공",
+      "cover_score": {
+        "subject": 2,
+        "photo": 1,
+        "timely": 2,
+        "swipe": 1,
+        "total": 6
+      },
+      "desc": "월드투어 아시아 일정에 서울이 들어갔어. 오늘 낮 12시에 일반예매가 열렸고 1인 4장까지 살 수 있어.",
+      "facts": [
+        [
+          "공연",
+          "2.4 KSPO돔"
+        ],
+        [
+          "일반예매",
+          "11.12 12시"
+        ]
+      ]
+    },
+    {
+      "name": "딘딘·존박 공연이\n토요일마다 공짜",
+      "source_url": "https://www.insight.co.kr/news/581564",
+      "image_url": "https://img.insight.co.kr/static/2026/11/11/1200/img_20261111111712_p1c9741a.jpg",
+      "focus": "50% 50%",
+      "zoom": 1,
+      "credit": "사진 시몬스 제공",
+      "cover_score": {
+        "subject": 1,
+        "photo": 2,
+        "timely": 2,
+        "swipe": 1,
+        "total": 6
+      },
+      "desc": "이천 시몬스 테라스 크리스마스 조명 속에서 6주 동안 무료 공연을 해. 좌석은 선착순이라 일찍 가는 게 좋아.",
+      "facts": [
+        [
+          "첫 공연",
+          "11.14 딘딘"
+        ],
+        [
+          "입장",
+          "무료 선착순"
+        ]
+      ]
+    },
+    {
+      "name": "리센느 데뷔 첫\n단독 콘서트 확정",
+      "source_url": "https://www.insight.co.kr/news/581531",
+      "image_url": "https://img.insight.co.kr/static/2026/11/11/1200/img_20261111101757_eb876341.jpg",
+      "focus": "50% 50%",
+      "zoom": 1,
+      "credit": "사진 쿠팡플레이 제공",
+      "cover_score": {
+        "subject": 2,
+        "photo": 1,
+        "timely": 1,
+        "swipe": 1,
+        "total": 5
+      },
+      "desc": "데뷔 3년 만에 여는 첫 단독 콘서트야. 올림픽홀에서 사흘 동안 하고 예매는 12월 쿠팡플레이 앱에서 열려.",
+      "facts": [
+        [
+          "공연",
+          "2.19~21"
+        ],
+        [
+          "장소",
+          "올림픽홀"
+        ],
+        [
+          "예매",
+          "12월"
+        ]
+      ]
+    }
+  ],
+  "outro": {
+    "question": "다섯 개 중에\n하나만 간다면?",
+    "lines": [
+      "번호로 댓글 남겨줘",
+      "티켓팅 같이 할 친구한테 보내기",
+      "저장해두고 티켓팅 날 꺼내보기"
+    ]
+  },
+  "sources": [
+    "톱스타뉴스 10.30",
+    "톱스타뉴스 11.11",
+    "톱스타뉴스 11.10",
+    "인사이트 11.11",
+    "인사이트 11.11"
+  ],
+  "caption": "이번주 콘서트 티켓 오픈 일정 정리, 성시경·데이식스 연말 공연부터 무료 공연까지 다섯가지 🎫\n\n연말 공연은 오픈 날 놓치면 끝\n예매 날짜랑 시간만 딱 모아봄\n\n1 성시경 연말 콘서트, 11.12 밤 8시 일반예매\n2 데이식스 The Present, 11.19 선예매·11.20 일반예매\n3 캣츠아이 첫 내한, 2.4 KSPO돔\n4 시몬스 테라스 무료 공연, 11.14 딘딘부터\n5 리센느 첫 단독 콘서트, 2.19~21 올림픽홀\n\n티켓팅 같이 할 친구한테 보내기\n나중에 꺼내 보려면 저장 📌\n\n출처: 톱스타뉴스, 뉴스핌, 인사이트\n#다섯가지 #티켓팅 #연말콘서트 #데이식스 #성시경"
+}
