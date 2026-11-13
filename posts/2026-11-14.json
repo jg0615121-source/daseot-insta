@@ -1,0 +1,176 @@
+{
+  "handle": "daseot.5",
+  "date": "2026-11-14",
+  "category": "나들이",
+  "kicker": "토요일 나들이 다섯가지 ✦",
+  "title": "주말 어디 갈지\n[고민 끝]인 곳 5",
+  "cover_item": 3,
+  "items": [
+    {
+      "name": "45개 뷰티 브랜드\nDDP에 다 모임",
+      "source_url": "https://www.insight.co.kr/news/581820",
+      "image_url": "https://img.insight.co.kr/static/2026/11/12/1200/img_20261112160800_0r925qh7.webp",
+      "focus": "50% 50%",
+      "zoom": 1,
+      "credit": "사진 컬리 제공",
+      "cover_score": {
+        "subject": 2,
+        "photo": 2,
+        "timely": 2,
+        "swipe": 1,
+        "total": 7
+      },
+      "desc": "아침·낮·저녁·밤 시간대별 루틴으로 부스를 나눴어. 두피 진단 같은 체험도 있고 내일이 마지막 날이야.",
+      "facts": [
+        [
+          "어디서",
+          "DDP"
+        ],
+        [
+          "마감",
+          "11.15"
+        ],
+        [
+          "시간",
+          "10~19시"
+        ]
+      ]
+    },
+    {
+      "name": "커피 덕후 성지\n카페쇼 오늘 끝",
+      "source_url": "https://www.newspim.com/news/view/20261111001015",
+      "image_url": "https://img.newspim.com/news/2026/11/11/261111142216349_w.jpg",
+      "focus": "50% 50%",
+      "zoom": 1,
+      "credit": "사진 뉴스핌",
+      "cover_score": {
+        "subject": 2,
+        "photo": 2,
+        "timely": 2,
+        "swipe": 1,
+        "total": 7
+      },
+      "desc": "코엑스 전관을 돌며 원두와 커피 머신을 직접 맛보고 써볼 수 있어. 올해는 빵 부스 골목이 새로 생겼어.",
+      "facts": [
+        [
+          "어디서",
+          "코엑스"
+        ],
+        [
+          "마감",
+          "11.14"
+        ],
+        [
+          "신설",
+          "베이커리존"
+        ]
+      ]
+    },
+    {
+      "name": "북촌 한옥 통째로\n어그 부츠 팝업",
+      "source_url": "https://www.ftoday.co.kr/news/articleView.html?idxno=369499",
+      "image_url": "https://cdn.ftoday.co.kr/news/photo/202611/369499_379618_5521.jpg",
+      "focus": "50% 50%",
+      "zoom": 1,
+      "credit": "사진 신세계인터내셔날 제공",
+      "cover_score": {
+        "subject": 3,
+        "photo": 2,
+        "timely": 2,
+        "swipe": 1,
+        "total": 8
+      },
+      "desc": "한옥엔 클래식 부츠, 양옥엔 신상이 있어. 부츠 모양 쿠키 파는 카페도 있고 주말엔 마당에서 DJ 공연을 해.",
+      "facts": [
+        [
+          "어디서",
+          "북촌 가회동"
+        ],
+        [
+          "기간",
+          "~11.22"
+        ],
+        [
+          "운영",
+          "12~19시"
+        ]
+      ]
+    },
+    {
+      "name": "영종도에 생긴\n알프스 크리스마스 마을",
+      "source_url": "https://www.wikitree.co.kr/articles/1173114",
+      "image_url": "https://cdnweb01.wikitree.co.kr/webdata/editor/202611/09/img_20261109145114_6bc2e410.jpg",
+      "focus": "50% 50%",
+      "zoom": 1,
+      "credit": "사진 파라다이스 제공",
+      "cover_score": {
+        "subject": 2,
+        "photo": 2,
+        "timely": 2,
+        "swipe": 1,
+        "total": 7
+      },
+      "desc": "북유럽 스키 마을처럼 꾸민 마켓에 포토존과 디저트 가게가 모였어. 해 지면 미디어 파사드 쇼도 켜져.",
+      "facts": [
+        [
+          "입장",
+          "무료"
+        ],
+        [
+          "마켓",
+          "11~20시"
+        ],
+        [
+          "기간",
+          "~1.3"
+        ]
+      ]
+    },
+    {
+      "name": "흑백요리사 셰프\n남대문 밤 주막 열림",
+      "source_url": "https://www.insight.co.kr/news/581483",
+      "image_url": "https://img.insight.co.kr/static/2026/11/11/1200/img_20261111084117_7056sv4k.jpg",
+      "focus": "50% 50%",
+      "zoom": 1,
+      "credit": "사진 서울시 제공",
+      "cover_score": {
+        "subject": 2,
+        "photo": 1,
+        "timely": 2,
+        "swipe": 1,
+        "total": 6
+      },
+      "desc": "장사천재 조사장 조서형 셰프 메뉴를 예약 없이 바로 주문해. 플리마켓이랑 셰프와 도는 맛집 투어도 있어.",
+      "facts": [
+        [
+          "시작",
+          "11.14"
+        ],
+        [
+          "시간",
+          "18~21시"
+        ],
+        [
+          "휴무",
+          "일요일"
+        ]
+      ]
+    }
+  ],
+  "outro": {
+    "question": "다섯 개 중에\n하나만 고른다면?",
+    "lines": [
+      "번호로 댓글 남겨줘",
+      "이번 주말 같이 놀러 갈 친구한테 보내기",
+      "저장해두고 나가기 전에 꺼내보기"
+    ]
+  },
+  "sources": [
+    "인사이트 11.12",
+    "뉴스핌 11.11",
+    "파이낸셜투데이 11.12",
+    "위키트리 11.9",
+    "인사이트 11.11"
+  ],
+  "caption": "이번 주말 가볼 만한 곳 정리, 오늘 끝나는 카페쇼부터 북촌 어그 팝업까지 주말 나들이 다섯가지 ☕\n\n이번 주말에 열려 있는 곳만 골랐어\n오늘·내일 끝나는 것도 있으니 날짜 먼저 확인해\n\n1 컬리뷰티페스타, DDP 11.15까지\n2 서울카페쇼, 코엑스 11.14 마지막 날\n3 어그 북촌 한옥 팝업, 11.22까지\n4 파라다이스시티 크리스마스 마켓, 입장 무료\n5 서울 달빛미식회, 남대문시장 11.14 시작\n\n이번 주말 같이 놀러 갈 친구한테 보내기\n나중에 꺼내 보려면 저장 📌\n\n출처: 인사이트, 뉴스핌, 파이낸셜투데이, 위키트리\n#다섯가지 #주말나들이 #가볼만한곳 #서울카페쇼 #어그팝업"
+}
