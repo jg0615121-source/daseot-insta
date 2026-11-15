@@ -7,7 +7,7 @@
 @font-face{font-family:P;src:url(fonts/Pretendard-Bold.woff2);font-weight:700}
 @font-face{font-family:P;src:url(fonts/Pretendard-ExtraBold.woff2);font-weight:800}
 @font-face{font-family:P;src:url(fonts/Pretendard-Black.woff2);font-weight:900}
-:root{--b1:#2F54FF;--b2:#00C2A8;--accent:linear-gradient(135deg,var(--b1),var(--b2))}
+:root{--tom:#FF5B2E;--ink:#1E1915;--cream:#FFF4E6;--b1:var(--tom);--accent:var(--tom)}
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{width:1080px;height:1920px;overflow:hidden;background:transparent}
 body{font-family:P,sans-serif;color:#fff;word-break:keep-all;letter-spacing:-.03em;-webkit-font-smoothing:antialiased}
@@ -20,7 +20,7 @@ body{font-family:P,sans-serif;color:#fff;word-break:keep-all;letter-spacing:-.03
 .frame img{max-width:100%;max-height:100%;border-radius:30px;box-shadow:0 30px 80px rgba(0,0,0,.5)}
 /* 글자 층 */
 .top{position:absolute;left:56px;right:56px;top:120px;display:flex;align-items:center;justify-content:space-between}
-.pill{background:#fff;color:#1a1a1a;font-weight:800;font-size:34px;padding:12px 26px;border-radius:999px}
+.pill{background:var(--cream);color:var(--ink);font-weight:800;font-size:34px;padding:12px 26px;border-radius:999px}
 .count{font-weight:900;font-size:44px}
 .count small{opacity:.6;font-size:32px}
 .bar{position:absolute;left:56px;right:56px;top:208px;display:flex;gap:10px}
@@ -28,16 +28,16 @@ body{font-family:P,sans-serif;color:#fff;word-break:keep-all;letter-spacing:-.03
 .bar i.on{background:#fff}
 .name{position:absolute;left:56px;right:150px;top:var(--nt,1310px);font-weight:900;font-size:80px;line-height:1.14;text-shadow:0 4px 24px rgba(0,0,0,.5)}
 .chip{position:absolute;left:56px;top:calc(var(--nt,1310px) + 220px);display:flex;gap:14px;align-items:center}
-.chip span{background:var(--accent);font-weight:800;font-size:40px;padding:12px 26px;border-radius:16px}
+.chip span{background:var(--accent);color:var(--ink);font-weight:800;font-size:40px;padding:12px 26px;border-radius:16px}
 .chip em{font-style:normal;font-weight:700;font-size:34px;opacity:.85}
 .hook{position:absolute;left:56px;right:150px;bottom:470px}
 .hook .pill{display:inline-block;margin-bottom:34px}
 .hook h1{font-weight:900;font-size:124px;line-height:1.1;text-shadow:0 6px 30px rgba(0,0,0,.5)}
-.hook h1 b{background:var(--accent);padding:0 .1em;border-radius:.12em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.hook h1 b{background:var(--accent);color:var(--ink);padding:0 .1em;border-radius:.12em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
 .hook p{margin-top:34px;font-weight:800;font-size:42px;opacity:.92}
 .outro{position:absolute;left:56px;right:150px;top:420px}
 .outro h2{font-weight:900;font-size:104px;line-height:1.14}
-.outro .send{margin-top:70px;background:var(--accent);font-weight:900;font-size:52px;padding:30px 38px;border-radius:26px}
+.outro .send{margin-top:70px;background:var(--accent);color:var(--ink);font-weight:900;font-size:52px;padding:30px 38px;border-radius:26px}
 .outro p{margin-top:34px;font-weight:800;font-size:44px;line-height:1.45;opacity:.9}
 .outro .handle{margin-top:60px;font-weight:900;font-size:46px}
 </style></head>
