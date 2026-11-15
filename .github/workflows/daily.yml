@@ -58,8 +58,8 @@ jobs:
           for f in ${{ steps.pick.outputs.posts }}; do
             python scripts/fetch_images.py "$f"
             python render.py "$f"
-            # 세로 릴스 영상과 릴스 캡션 (실패해도 카드뉴스는 그대로 진행)
-            python scripts/make_reel.py "$f" || echo "릴스 생성 실패: $f"
+            # 릴스는 2026-11-16부터 안 만듦 (ZOOM-IN 충주는 카드뉴스만). 다시 하려면 아래 줄 주석 해제
+            # python scripts/make_reel.py "$f" || echo "릴스 생성 실패: $f"
           done
 
       - name: 사진과 슬라이드 저장
