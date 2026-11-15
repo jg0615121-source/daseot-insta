@@ -1,7 +1,7 @@
 """원고 하나로 세로 릴스 영상(out/원고이름/reel.mp4)과 릴스 캡션(원고의 reel_caption)을 만든다.
 
 카드뉴스 슬라이드를 그대로 이어 붙이지 않고 릴스 전용 장면으로 다시 짠다 (2026-10-28 결정).
-  훅(2.2초): 표지 사진을 화면 가득 + 표지 제목 → 품목 5개(각 2.6초): 사진 + 큰 제목 + 핵심 숫자 → 마무리(2.6초): 공유·저장 유도
+  훅(2.2초): 표지 사진을 화면 가득 + 표지 제목 → 품목 3~5개(각 2.6초): 사진 + 큰 제목 + 핵심 숫자 → 마무리(2.6초): 공유·저장 유도
 사진 층만 천천히 확대하고 글자 층은 고정해서 글씨가 흐려지지 않게 한다. 장면 사이는 0.25초 겹쳐 넘김.
 fetch_images.py 다음에 실행 (assets 사진과 cover_images 필요). ffmpeg 필요.
 사용법: python3 scripts/make_reel.py posts/2026-10-28.json
@@ -19,10 +19,10 @@ def reel_caption(post):
     lines = post["caption"].strip().split("\n")
     first = lines[0].strip()
     items = [l for l in lines if re.match(r"^[1-5] ", l)]
-    tags = next((l for l in reversed(lines) if l.strip().startswith("#")), "#다섯가지")
-    return "\n".join([first, "", "15초 요약 👇", *items, "",
+    tags = next((l for l in reversed(lines) if l.strip().startswith("#")), "#줌인충주")
+    return "\n".join([first, "", "한눈에 요약 👇", *items, "",
                       "가격·날짜·장소는 같은 날 카드뉴스에 정리해둠 📌",
-                      f"매일 아침·저녁 5개씩 @{post.get('handle', 'daseot.5')}", "", tags])
+                      f"충주에서 뭐 하지? 할 거리는 @{post.get('handle', 'zoomin.chungju')}", "", tags])
 
 
 def shoot(post, tmp):
