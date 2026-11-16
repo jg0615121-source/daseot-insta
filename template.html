@@ -111,7 +111,7 @@ function cover(p){
     </div></section>`;
 }
 // 숫자가 든 값(가격, 날짜)은 강조색
-const factRow = ([k,v]) => `<div><em>${esc(k)}</em><b${/\d|무료/.test(v)?' class="hi"':""}>${esc(v)}</b></div>`;
+const factRow = ([k,v]) => `<div><em>${esc(k)}</em><b${k!=="어디" && /\d|무료/.test(v)?' class="hi"':""}>${esc(v)}</b></div>`;
 function item(p,i){
   const it = p.items[i], n = p.items.length;
   return `<section class="item">
