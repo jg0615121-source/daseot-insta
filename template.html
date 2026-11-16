@@ -2,80 +2,79 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8">
+<!-- ZOOM-IN 충주 카드뉴스 (v2, 2026-11-16): 동네 잡지처럼.
+     크림색 종이 + 꽉 찬 사진 + 굵은 먹색 제목 + 가는 선. 흐린 배경·둥근 카드·그림자·그라데이션은 쓰지 않는다 (AI 느낌 나서).
+     강조색은 토마토 오렌지 하나, 숫자는 세리프 이탤릭. 사진 모서리의 초점 틀이 로고와 같은 표시. -->
 <style>
 @font-face{font-family:P;src:url(fonts/Pretendard-Medium.woff2);font-weight:500}
 @font-face{font-family:P;src:url(fonts/Pretendard-SemiBold.woff2);font-weight:600}
 @font-face{font-family:P;src:url(fonts/Pretendard-Bold.woff2);font-weight:700}
 @font-face{font-family:P;src:url(fonts/Pretendard-ExtraBold.woff2);font-weight:800}
 @font-face{font-family:P;src:url(fonts/Pretendard-Black.woff2);font-weight:900}
+@font-face{font-family:S;src:url(fonts/instrument-serif-latin-400-italic.woff2);font-style:italic}
 
-:root{ --k:1; --pad:56px; --b1:#2F54FF; --b2:#00C2A8; --pink:#FF3D6E; --accent:linear-gradient(135deg,var(--b1),var(--b2)); }
+:root{ --k:1; --pad:64px; --tom:#FF5B2E; --ink:#1E1915; --paper:#F7F0E4; --sand:#E9DECB; --mute:#8C7F70; --line:#1E1915; }
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{width:1080px;height:1350px;overflow:hidden;background:#000}
-body{font-family:P,sans-serif;color:#fff;-webkit-font-smoothing:antialiased;word-break:keep-all;letter-spacing:-.03em;position:relative}
-img{display:block;width:100%;height:100%;object-fit:cover}
+html,body{width:1080px;height:1350px;overflow:hidden;background:var(--paper)}
+body{font-family:P,sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased;word-break:keep-all;letter-spacing:-.03em;position:relative}
+.num{font-family:S,serif;font-style:italic;letter-spacing:0}
 
-/* 사진 영역: 가로·세로 비율이 제각각인 보도자료 사진을 잘라내지 않고 통째로 보여준다.
-   뒤에는 같은 사진을 흐리게 깔아 빈 곳을 채운다 */
-.blur{position:absolute;inset:-60px;background-size:cover;background-position:center;filter:blur(46px) saturate(1.3) brightness(.42)}
-.dim{position:absolute;inset:0;background:linear-gradient(rgba(0,0,0,.25),rgba(0,0,0,.15) 40%,rgba(0,0,0,.75) 75%,rgba(0,0,0,.9))}
-.photo{position:absolute;left:var(--pad);right:var(--pad);top:120px;height:var(--ph,700px);display:grid;place-items:center}
-.photo figure{overflow:hidden;border-radius:26px;box-shadow:0 18px 50px rgba(0,0,0,.45);background:#111}
-figure img{display:block;width:100%;height:100%;object-fit:cover}
+/* 사진 칸: 비율이 맞으면 꽉 채우고, 안 맞으면 모래색 바탕 위에 통째로 (자르지 않음) */
+.pic{position:absolute;left:0;right:0;overflow:hidden;background:var(--sand)}
+.pic img{display:block;width:100%;height:100%;object-fit:cover}
+.pic.whole img{object-fit:contain}
+/* 초점 틀: 로고와 같은 네 모서리 */
+.vf i{position:absolute;width:58px;height:58px;border:0 solid var(--paper)}
+.vf .a{left:36px;top:36px;border-left-width:7px;border-top-width:7px}
+.vf .b{right:36px;top:36px;border-right-width:7px;border-top-width:7px}
+.vf .c{left:36px;bottom:36px;border-left-width:7px;border-bottom-width:7px}
+.vf .d{right:36px;bottom:36px;border-right-width:7px;border-bottom-width:7px}
+.pic.whole .vf i{border-color:var(--ink)}
 
-.mark{position:absolute;left:var(--pad);top:44px;display:flex;align-items:center;gap:10px;
-  font-weight:800;font-size:26px;letter-spacing:-.04em;text-shadow:0 1px 10px rgba(0,0,0,.45)}
-.mark svg{width:42px;height:42px;border-radius:50%;background:#FAFAF7;flex:none}
-.credit{position:absolute;right:var(--pad);top:52px;font-weight:600;font-size:19px;opacity:.8}
+/* 위·아래 띠: 잡지 머리글처럼 작은 글자 + 가는 선 */
+.mast{position:absolute;left:var(--pad);right:var(--pad);display:flex;justify-content:space-between;align-items:baseline;
+  font-weight:800;font-size:22px;letter-spacing:.02em}
+.mast b{font-weight:900}
+.mast .num{font-size:30px}
 
-.foot{position:absolute;left:var(--pad);right:var(--pad);bottom:60px}
-.pill{display:inline-block;background:#fff;font-weight:800;font-size:calc(30px * var(--k));
-  padding:10px 20px 11px;border-radius:999px;letter-spacing:-.03em;color:var(--b1)}
-.title{margin-top:22px;font-weight:900;font-size:calc(104px * var(--k));line-height:1.12;letter-spacing:-.06em}
-.title b{background:var(--accent);color:#fff;padding:0 .12em;border-radius:.12em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+/* 표지 */
+.cov .pic{top:0;height:800px}
+.cov .panel{position:absolute;left:var(--pad);right:var(--pad);top:848px;bottom:56px;display:flex;flex-direction:column}
+.kick{font-weight:800;font-size:calc(28px * var(--k));color:var(--tom);letter-spacing:-.01em}
+.title{margin-top:18px;font-weight:900;font-size:calc(100px * var(--k));line-height:1.08;letter-spacing:-.065em}
+.title em{font-style:normal;color:var(--tom)}
+.cov .mast{position:static;margin-top:auto;padding-top:18px;border-top:3px solid var(--line)}
 
-/* 표지: 사진 한 장을 꽉 채우고, 제목은 다섯 개 묶음 전체를 궁금하게 (내용은 안쪽에서) */
-.cov{position:absolute;inset:0}
-.cov>figure{position:absolute;inset:0;overflow:hidden}
-.cov .photo{top:120px}
-.shade{position:absolute;left:0;right:0;bottom:0;height:62%;
-  background:linear-gradient(to bottom,rgba(0,0,0,0) 0%,rgba(0,0,0,.55) 38%,rgba(0,0,0,.88) 100%)}
-.topshade{position:absolute;left:0;right:0;top:0;height:170px;background:linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,0))}
-.swipe{position:absolute;right:var(--pad);bottom:66px;font-weight:700;font-size:28px;color:rgba(255,255,255,.75)}
+/* 안쪽 장 */
+.item .mast{top:44px}
+.item .pic{top:100px}
+.body{position:absolute;left:var(--pad);right:var(--pad);bottom:52px}
+.no{font-size:calc(92px * var(--k));line-height:.8;color:var(--tom)}
+.head2{margin-top:14px;font-weight:900;font-size:calc(64px * var(--k));line-height:1.12;letter-spacing:-.06em}
+.desc{margin-top:16px;font-weight:600;font-size:calc(31px * var(--k));line-height:1.5;color:#4C4239}
+.facts{margin-top:22px;border-top:3px solid var(--line)}
+.facts div{display:flex;justify-content:space-between;align-items:baseline;padding:13px 0;border-bottom:1.5px solid #CDBFAA}
+.facts em{font-style:normal;font-weight:700;font-size:calc(24px * var(--k));color:var(--mute)}
+.facts b{font-weight:800;font-size:calc(32px * var(--k));letter-spacing:-.04em;max-width:78%;text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.facts b.hi{color:var(--tom)}
+.credit{margin-top:12px;font-weight:500;font-size:18px;color:var(--mute);text-align:right}
 
-/* 안쪽 슬라이드: 위는 사진, 아래는 흰 시트(번호 → 제목 → 설명 → 핵심 정보). 가장 중요한 수치를 가장 크게 */
-.prog{position:absolute;right:var(--pad);top:58px;display:flex;gap:8px}
-.prog i{width:34px;height:6px;border-radius:3px;background:rgba(255,255,255,.3)}
-.prog i.on{background:#fff}
-.sheet{position:absolute;left:0;right:0;bottom:0;background:#fff;color:#111;border-radius:44px 44px 0 0;
-  padding:46px var(--pad) 40px}
-.no{font-weight:900;font-size:40px;letter-spacing:-.02em;background:var(--accent);-webkit-background-clip:text;background-clip:text;color:transparent}
-.no small{font-size:26px;color:#B5B5B5;-webkit-text-fill-color:#B5B5B5;margin-left:4px}
-.head2{font-weight:900;font-size:calc(66px * var(--k));line-height:1.15;letter-spacing:-.055em;margin-top:10px}
-.desc{margin-top:18px;font-weight:600;font-size:calc(34px * var(--k));line-height:1.5;letter-spacing:-.035em;color:#4A4A4A}
-.facts{display:flex;margin-top:28px;background:#F4F5F8;border-radius:22px;padding:22px 0}
-.facts div{flex:1;padding:0 26px;border-left:2px solid #E3E5EA;min-width:0}
-.facts div:first-child{border-left:0}
-.facts em{display:block;font-style:normal;font-weight:600;font-size:calc(23px * var(--k));color:#8B8F98}
-.facts b{display:block;margin-top:6px;font-weight:800;font-size:calc(36px * var(--k));letter-spacing:-.04em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.facts b.num{color:var(--b1)}
-.credit2{margin-top:18px;text-align:right;font-weight:500;font-size:19px;color:#A2A6AE}
-
-/* 마지막 슬라이드: 다섯 개 한눈에 다시 보기(저장할 이유) + 질문 + 공유 버튼 */
-.outro{position:absolute;inset:0;background:#0E0E0E;padding:118px var(--pad) 60px;display:flex;flex-direction:column}
-.recap{display:flex;flex-direction:column;gap:14px}
-.recap div{display:flex;align-items:center;gap:22px;background:#1B1B1D;border-radius:22px;padding:14px 22px 14px 14px}
-.recap figure{width:92px;height:92px;border-radius:16px;overflow:hidden;flex:none;background:#000}
-.recap span{flex:none;width:40px;height:40px;border-radius:50%;background:var(--accent);display:grid;place-items:center;font-weight:900;font-size:22px}
-.recap p{flex:1;min-width:0;font-weight:800;font-size:31px;letter-spacing:-.04em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.recap p small{display:block;margin-top:4px;font-weight:600;font-size:23px;color:#9A9AA0}
-.ask{margin-top:44px;font-weight:900;font-size:68px;line-height:1.15;letter-spacing:-.06em}
-.todo{margin-top:26px;display:flex;flex-direction:column}
-.todo div{font-weight:700;font-size:32px;color:rgba(255,255,255,.75);padding:16px 0}
-/* 공유(DM 보내기)가 비팔로워 도달에 가장 큰 신호라 두 번째 줄(공유 문구)을 버튼처럼 강조 */
-.todo div.send{margin:6px 0;padding:24px 30px;border-radius:20px;background:var(--accent);color:#fff;font-weight:800;font-size:34px}
-.src{margin-top:auto;font-weight:500;font-size:19px;line-height:1.6;color:rgba(255,255,255,.4)}
-.handle{position:absolute;right:var(--pad);bottom:28px;font-weight:600;font-size:20px;color:rgba(255,255,255,.55)}
+/* 마무리 장: 한 장에 다시 보기(저장할 이유) + 질문 + 공유 */
+.outro{position:absolute;inset:0;padding:44px var(--pad) 52px;display:flex;flex-direction:column}
+.outro .mast{position:static}
+.recap{margin-top:40px;border-top:3px solid var(--line)}
+.recap div{display:flex;align-items:center;gap:26px;padding:20px 0;border-bottom:1.5px solid #CDBFAA}
+.recap .num{flex:none;width:52px;font-size:52px;line-height:1;color:var(--tom)}
+.recap p{flex:1;min-width:0;font-weight:800;font-size:33px;letter-spacing:-.045em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.recap p small{display:block;margin-top:5px;font-weight:600;font-size:23px;color:var(--mute)}
+.recap figure{flex:none;width:96px;height:96px;overflow:hidden;background:var(--sand)}
+.recap figure img{width:100%;height:100%;object-fit:cover;display:block}
+.ask{margin-top:48px;font-weight:900;font-size:66px;line-height:1.12;letter-spacing:-.065em}
+.todo{margin-top:26px}
+.todo div{font-weight:700;font-size:30px;color:#4C4239;padding:12px 0}
+/* 공유(DM 보내기)가 비팔로워 도달에 가장 큰 신호라 두 번째 줄을 가장 크게 */
+.todo div.send{margin:8px 0;padding:24px 28px;background:var(--tom);color:var(--ink);font-weight:900;font-size:34px}
+.src{margin-top:auto;font-weight:500;font-size:18px;line-height:1.6;color:var(--mute)}
 </style>
 </head>
 <body>
@@ -83,97 +82,90 @@ figure img{display:block;width:100%;height:100%;object-fit:cover}
 <script>
 const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const br = s => esc(s).replace(/\n/g,"<br>");
-// focus: 사진에서 보여줄 위치, zoom: 확대 배율 (모델 등 불필요한 부분을 잘라낼 때)
+// 제목 속 [ ]로 감싼 말은 강조색 글자로
+const title = s => br(s).replace(/\[([^\]]+)\]/g,"<em>$1</em>");
+// focus: 사진에서 보여줄 위치, zoom: 확대 배율 (불필요한 부분을 잘라낼 때)
 const img = (src,focus,zoom) => `<img src="${esc(src)}" style="object-position:${esc(focus||"50% 50%")};transform:scale(${+zoom||1});transform-origin:${esc(focus||"50% 50%")}" alt="">`;
-const fig = (src,focus,zoom) => `<figure>${img(src,focus,zoom)}</figure>`;
-// 프로필 사진(brand/profile.jpg)과 같은 말풍선 로고
-const logo = `<svg viewBox="0 0 640 640"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2F54FF"/><stop offset="1" stop-color="#00C2A8"/></linearGradient></defs>
-  <path d="M200 170 h240 a90 90 0 0 1 90 90 v80 a90 90 0 0 1 -90 90 h-120 l-78 66 v-66 h-42 a90 90 0 0 1 -90 -90 v-80 a90 90 0 0 1 90 -90 z" fill="none" stroke="url(#lg)" stroke-width="44" stroke-linejoin="round"/>
-  <g fill="url(#lg)"><circle cx="210" cy="300" r="24"/><circle cx="265" cy="300" r="24"/><circle cx="320" cy="300" r="24"/><circle cx="375" cy="300" r="24"/></g><circle cx="430" cy="300" r="24" fill="#FF3D6E"/></svg>`;
-const mark = `<div class="mark">${logo}다섯가지</div>`;
+const vf = `<div class="vf"><i class="a"></i><i class="b"></i><i class="c"></i><i class="d"></i></div>`;
+// 칸 비율과 사진 비율이 비슷하거나 fit:"cover"면 꽉 채움, 아니면 통째로
+const wholeOr = (it, W, H) => {
+  if (it.fit === "cover") return "";
+  if (it.fit === "whole") return " whole";
+  if (!(it.w && it.h)) return "";
+  const r = (it.w/it.h) / (W/H);
+  return (r > 0.72 && r < 1.38 && Math.min(it.w,it.h) >= 700) ? "" : " whole";
+};
+const two = n => String(n).padStart(2,"0");
+const md = d => d ? d.slice(5).replace("-",".") : "";
 
 function cover(p){
-  // 사진은 cover_item 품목 1장(fetch_images.py가 cover_images로 채움). 다섯 장 모아 넣으면 아무것도 안 보임
+  // 사진은 cover_item 품목 1장 (fetch_images.py가 cover_images로 채움)
   const c = (p.cover_images && p.cover_images[0]) || p.items[0];
-  // 크고 세로에 가까운 사진만 화면을 꽉 채움. 작거나 가로형이면 억지로 키워 자르지 않고 통째로 넣음
-  const full = c.fit === "cover" || (c.w && c.h && Math.min(c.w,c.h) >= 900 && c.w/c.h <= 1.05);
-  const pic = full ? fig(c.image,c.focus,c.zoom)
-    : `<div class="blur" style="background-image:url('${esc(c.image)}')"></div><div class="dim"></div>
-       <div class="photo"><figure data-fit>${img(c.image,c.focus,c.zoom)}</figure></div>`;
-  return `<section class="cov">${pic}</section>
-    ${full?'<div class="shade"></div><div class="topshade"></div>':""}${mark}
-    <div class="foot"><span class="pill">${esc(p.kicker)}</span><h1 class="title">${title(p.title)}</h1></div>
-    <div class="swipe">넘겨보기 →</div>`;
+  const n = p.items.length;
+  return `<section class="cov">
+    <div class="pic${wholeOr(c,1080,800)}" data-pic>${img(c.image,c.focus,c.zoom)}${vf}</div>
+    <div class="panel foot">
+      <div class="kick">${esc(String(p.kicker||"").replace(/\s*✦\s*$/,""))}</div>
+      <h1 class="title">${title(p.title)}</h1>
+      <div class="mast"><span><b>ZOOM-IN</b> 충주 · ${esc(md(p.date))}</span><span><span class="num">${two(n)}</span> 넘겨보기 →</span></div>
+    </div></section>`;
 }
-// 제목 속 [ ]로 감싼 말은 강조색으로
-const title = s => br(s).replace(/\[([^\]]+)\]/g,"<b>$1</b>");
-// 사진을 통째로 보여줄 칸 크기 계산. fit:"cover"면 칸을 꽉 채워 자름
-function photoBox(it, W, H){
-  const r = (it.w && it.h) ? it.w/it.h : 4/3;
-  if (it.fit === "cover") return [W,H];
-  let w = W, h = W/r;
-  if (h > H){ h = H; w = H*r; }
-  // 칸 비율과 거의 같으면 꽉 채움
-  if (w/W > .9 && h/H > .9) return [W,H];
-  return [Math.round(w), Math.round(h)];
-}
-// 숫자가 든 값(가격, 할인율, 날짜)은 강조색
-const factCell = ([k,v]) => `<div><em>${esc(k)}</em><b${/\d/.test(v)?' class="num"':""}>${esc(v)}</b></div>`;
+// 숫자가 든 값(가격, 날짜)은 강조색
+const factRow = ([k,v]) => `<div><em>${esc(k)}</em><b${k!=="어디" && /\d|무료/.test(v)?' class="hi"':""}>${esc(v)}</b></div>`;
 function item(p,i){
   const it = p.items[i], n = p.items.length;
-  const prog = p.items.map((_,j)=>`<i${j===i?' class="on"':""}></i>`).join("");
-  return `<div class="blur" style="background-image:url('${esc(it.image)}')"></div><div class="dim"></div>
-    <div class="photo"><figure data-fit>${img(it.image,it.focus,it.zoom)}</figure></div>${mark}<div class="prog">${prog}</div>
-    <div class="sheet foot">
-      <div class="no">${String(i+1).padStart(2,"0")}<small>/ ${String(n).padStart(2,"0")}</small></div>
+  return `<section class="item">
+    <div class="mast"><span><b>ZOOM-IN</b> 충주</span><span><span class="num">${two(i+1)}</span> / ${two(n)}</span></div>
+    <div class="pic${wholeOr(it,1080,700)}" data-pic>${img(it.image,it.focus,it.zoom)}${vf}</div>
+    <div class="body foot">
+      <div class="no num">${two(i+1)}</div>
       <h2 class="head2">${br(it.name)}</h2>
       <p class="desc">${br(it.desc)}</p>
-      ${(it.facts||[]).length?`<div class="facts">${it.facts.map(factCell).join("")}</div>`:""}
-      ${it.credit?`<div class="credit2">${esc(it.credit)}</div>`:""}
-    </div>`;
+      ${(it.facts||[]).length?`<div class="facts">${it.facts.map(factRow).join("")}</div>`:""}
+      ${it.credit?`<div class="credit">${esc(it.credit)}</div>`:""}
+    </div></section>`;
 }
 function outro(p){
-  // 다섯 개를 한 줄씩 다시 보여줌: 이 장만 저장해도 쓸모 있게
+  // 품목을 한 줄씩 다시 보여줌: 이 장만 저장해도 쓸모 있게
   const rows = p.items.map((it,j)=>{
     const f = (it.facts||[]).find(([k,v])=>/\d/.test(v)) || (it.facts||[])[0];
-    return `<div><figure>${img(it.image,it.focus,it.zoom)}</figure><span>${j+1}</span>
-      <p>${esc(it.name.replace(/\n/g," "))}${f?`<small>${esc(f[0])} ${esc(f[1])}</small>`:""}</p></div>`;
+    return `<div><span class="num">${two(j+1)}</span><p>${esc(it.name.replace(/\n/g," "))}${f?`<small>${esc(f[0])} ${esc(f[1])}</small>`:""}</p><figure>${img(it.image,it.focus,it.zoom)}</figure></div>`;
   }).join("");
-  return `<section class="outro">${mark}
+  const o = p.outro || {question:"", lines:[]};
+  return `<section class="outro">
+    <div class="mast"><span><b>ZOOM-IN</b> 충주</span><span>@${esc(p.handle)}</span></div>
     <div class="recap">${rows}</div>
-    <h2 class="ask">${br(p.outro.question)}</h2>
-    <div class="todo">${p.outro.lines.map((l,j)=>`<div${j===1?' class="send"':""}>${j===1?"➜ ":""}${br(l)}</div>`).join("")}</div>
+    <h2 class="ask">${br(o.question)}</h2>
+    <div class="todo">${(o.lines||[]).map((l,j)=>`<div${j===1?' class="send"':""}>${j===1?"→ ":""}${br(l)}</div>`).join("")}</div>
     <p class="src">출처  ${(p.sources||[]).map(esc).join(" / ")}</p>
-  </section><div class="handle">@${esc(p.handle)}</div>`;
+  </section>`;
 }
+function setK(k){ document.documentElement.style.setProperty("--k", k); }
 function render(p, slide){
   const n = p.items.length, root = document.getElementById("root");
+  setK(1);
   root.innerHTML = slide===0 ? cover(p) : slide<=n ? item(p,slide-1) : outro(p);
-  const foot = root.querySelector(".foot");
-  let k = 1; document.documentElement.style.setProperty("--k", k);
-  if (slide===0 && root.querySelector("[data-fit]")) return fitPhoto(root, foot, p.cover_images ? p.cover_images[0] : p.items[0]);
   if (slide>n){
     const o = root.querySelector(".outro");
     return {k:1, fits: o.scrollHeight <= 1350};
   }
+  const foot = root.querySelector(".foot");
+  let k = 1;
   if (slide===0){
-    const over = () => foot && foot.getBoundingClientRect().top < 1350*0.56;
-    while (over() && k > 0.74){ k -= 0.02; document.documentElement.style.setProperty("--k", k); }
+    // 제목이 칸을 넘치면 글자를 줄임
+    const over = () => foot.scrollHeight > foot.clientHeight + 1;
+    while (over() && k > 0.74){ k -= 0.02; setK(k); }
     return {k:+k.toFixed(2), fits:!over()};
   }
-  return fitPhoto(root, foot, p.items[slide-1]);
-}
-// 글 덩어리 위에 남는 공간을 사진 칸으로. 사진 칸이 너무 작아지면 글자를 줄임
-function fitPhoto(root, foot, it){
-  let k = 1;
-  const gap = foot.classList.contains("sheet") ? 28 : 36;
-  const room = () => foot.getBoundingClientRect().top - gap - 120;
-  while (room() < 520 && k > 0.74){ k -= 0.02; document.documentElement.style.setProperty("--k", k); }
-  const H = Math.min(room(), 760), W = 1080 - 2*56;
-  const [w,h] = photoBox(it, W, H);
-  const box = root.querySelector(".photo"), f = root.querySelector("[data-fit]");
-  box.style.setProperty("--ph", H+"px"); f.style.width = w+"px"; f.style.height = h+"px";
-  return {k:+k.toFixed(2), fits: room() >= 440};
+  // 안쪽 장: 글 덩어리 위에 남는 공간이 사진 칸. 사진 칸이 너무 작아지면 글자를 줄임
+  const pic = root.querySelector("[data-pic]");
+  const room = () => foot.getBoundingClientRect().top - 36 - 100;
+  while (room() < 560 && k > 0.74){ k -= 0.02; setK(k); }
+  const H = Math.min(room(), 760);
+  pic.style.height = H + "px";
+  const it = p.items[slide-1];
+  pic.className = "pic" + wholeOr(it,1080,H);
+  return {k:+k.toFixed(2), fits: room() >= 460};
 }
 window.render = render;
 </script>

@@ -16,7 +16,7 @@ def render(post_path):
     for it in post["items"] + post.get("cover_images", []):
         if it.get("image") and (HERE / it["image"]).exists():
             it["w"], it["h"] = Image.open(HERE / it["image"]).size
-    total = len(post["items"]) + 2  # 표지 + 다섯 품목 + 마무리
+    total = len(post["items"]) + 2  # 표지 + 품목(3~5개) + 마무리
     with sync_playwright() as p:
         b = p.chromium.launch()
         page = b.new_page(viewport={"width": 1080, "height": 1350})

@@ -1,0 +1,116 @@
+{
+  "handle": "zoomin.chungju",
+  "date": "2026-11-19",
+  "category": "이번 주말",
+  "kicker": "이번 주말 충주 ✦",
+  "title": "이번 주말 충주\n[여기 3곳] 찜",
+  "cover_item": 2,
+  "items": [
+    {
+      "name": "백남준까지 온\n서충주 미디어아트",
+      "source_url": "https://www.webeconomy.co.kr/news/articleView.html?idxno=2376317",
+      "image_url": "https://cdn.naewoeilbo.com/news/photo/202611/2454454_1474390_3119.jpg",
+      "fit": "whole",
+      "credit": "사진 충주시 제공",
+      "cover_score": {
+        "subject": 2,
+        "photo": 0,
+        "timely": 2,
+        "swipe": 1,
+        "total": 5
+      },
+      "desc": "작가 32명의 미디어아트가 옛 연구소 건물을 채웠어. 백남준 〈TV Repair man〉도 있고, 매일 11시·14시 도슨트 해설. 수요일은 밤 9시까지.",
+      "facts": [
+        [
+          "어디",
+          "옛 포스코건설 기술연구소"
+        ],
+        [
+          "기간",
+          "11.18~12.26"
+        ],
+        [
+          "관람료",
+          "5천원 (충주시민 반값)"
+        ]
+      ],
+      "image": "assets/2026-11-19/01.jpg"
+    },
+    {
+      "name": "찬바람 불 땐\n수안보 무료 족욕",
+      "source_url": "https://www.webeconomy.co.kr/news/articleView.html?idxno=2363844",
+      "image_url": "https://cdn.webeconomy.co.kr/news/photo/202611/2363844_1174378_1128.jpg",
+      "credit": "사진 충주시 제공",
+      "cover_score": {
+        "subject": 3,
+        "photo": 2,
+        "timely": 1,
+        "swipe": 1,
+        "total": 7
+      },
+      "desc": "온천수에 발 담그는 족욕길이 공짜야. 수건 하나만 챙겨 가면 끝. 운영 시간은 계절마다 바뀌니 수안보관광안내소(043-845-7829)에 먼저 확인.",
+      "facts": [
+        [
+          "어디",
+          "수안보 족욕길"
+        ],
+        [
+          "이용",
+          "무료"
+        ]
+      ],
+      "image": "assets/2026-11-19/02.jpg",
+      "focus": "50% 85%"
+    },
+    {
+      "name": "탄금호 앞 북위크\n독서모임도 무료",
+      "source_url": "https://www.webeconomy.co.kr/news/articleView.html?idxno=2370199",
+      "image_url": "https://cdn.webeconomy.co.kr/news/photo/202611/2370199_1180940_2610.jpg",
+      "fit": "whole",
+      "credit": "사진 충주시 제공",
+      "cover_score": {
+        "subject": 1,
+        "photo": 0,
+        "timely": 2,
+        "swipe": 1,
+        "total": 4
+      },
+      "desc": "17~22일 북위크 동안 서가와 문장 수집 벽이 열려. 토요일 독서모임은 20명이라 혼자 가도 어색하지 않아. 신청은 네이버 예약.",
+      "facts": [
+        [
+          "어디",
+          "워케이션센터 3층"
+        ],
+        [
+          "독서모임",
+          "11.21(토) 15시"
+        ],
+        [
+          "참가비",
+          "무료"
+        ]
+      ],
+      "image": "assets/2026-11-19/03.jpg"
+    }
+  ],
+  "outro": {
+    "question": "이번 주말\n어디부터 갈래?",
+    "lines": [
+      "번호로 댓글 남겨줘",
+      "이번 주말 같이 놀 친구한테 보내기",
+      "저장해두고 나가기 전에 꺼내보기"
+    ]
+  },
+  "sources": [
+    "충주시 11.11·11.16",
+    "웹이코노미 11.5",
+    "내외일보 11.16"
+  ],
+  "caption": "이번 주말 충주 가볼만한곳, 새로 연 전시부터 공짜 족욕까지 3곳 🔍\n\n이번 주에 막 문 연 미디어아트 전시, 찬바람 불 때 딱인 온천 족욕,\n책 좋아하면 반가울 무료 독서모임까지 골랐어.\n\n1 충주본색: 미디어 도큐멘타 (서충주 옛 포스코건설 기술연구소, 11.18~12.26)\n2 수안보 무료 족욕길\n3 탄금호 북위크 + 무료 독서모임 (워케이션센터, 모임 21일 15시)\n\n이번 주말 같이 놀 친구한테 보내기\n나가기 전에 꺼내 보려면 저장 📌\n\n출처: 충주시, 웹이코노미, 내외일보\n#줌인충주 #충주 #충주가볼만한곳 #충주전시 #수안보온천",
+  "cover_images": [
+    {
+      "image": "assets/2026-11-19/02.jpg",
+      "focus": "50% 85%"
+    }
+  ]
+}
