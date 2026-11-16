@@ -8,8 +8,11 @@ const TARGETS = ['cj_yoyak', 'hotchungju', 'cj___insta', 'chungju_gajago', 'foo_
   'chungsta', 'cj_hoit', 'chungju_mohip', 'cjtaste_', 'zoomin._center', 'q:충주가볼만한곳', 'q:충주축제'];
 const log = m => fs.appendFileSync(path.join(HOME, 'post.log'), new Date().toISOString() + ' [refs] ' + m + '\n');
 
-const r = spawnSync(process.execPath, [path.join(HOME, 'refs.js'), ...TARGETS], { cwd: HOME, encoding: 'utf8', timeout: 90 * 60e3 });
-if (!/OK \d+/.test(r.stdout || '')) { log('수집 실패 ' + (r.stdout || '').slice(-200)); process.exit(1); }
+// SKIP_COLLECT=1 이면 수집은 건너뛰고 지난번 refs.json으로 올리기만 (올리기 실패 뒤 다시 할 때)
+if (process.env.SKIP_COLLECT !== '1') {
+  const r = spawnSync(process.execPath, [path.join(HOME, 'refs.js'), ...TARGETS], { cwd: HOME, encoding: 'utf8', timeout: 90 * 60e3 });
+  if (!/OK \d+/.test(r.stdout || '')) { log('수집 실패 ' + (r.stdout || '').slice(-200)); process.exit(1); }
+}
 const data = JSON.parse(fs.readFileSync(path.join(HOME, 'refs.json'), 'utf8'));
 const today = new Date(Date.now() + 9 * 3600e3).toISOString().slice(0, 10);
 const since = new Date(Date.now() - 14 * 864e5).toISOString().slice(0, 10);
@@ -34,9 +37,11 @@ fs.writeFileSync(path.join(HOME, 'refs-latest.md'), body);
 // 저장소에 올리기 (있으면 sha 붙여 덮어쓰기)
 let sha = '';
 try { sha = execFileSync('gh', ['api', `repos/${REPO}/contents/${FILE}`, '--jq', '.sha'], { windowsHide: true }).toString().trim(); } catch {}
-const args = ['api', '-X', 'PUT', `repos/${REPO}/contents/${FILE}`, '-f', `message=참고 계정 수집 ${today}`,
-  '-f', 'content=' + Buffer.from(body).toString('base64'),
-  '-f', 'committer[name]=daseot-bot', '-f', 'committer[email]=daseot-bot@users.noreply.github.com'];
-if (sha) args.push('-f', 'sha=' + sha);
+// 내용이 길어 명령줄 인자로 넘기면 ENAMETOOLONG이 나서 JSON 파일로 넘긴다
+const req = { message: `참고 계정 수집 ${today}`, content: Buffer.from(body).toString('base64'),
+  committer: { name: 'daseot-bot', email: 'daseot-bot@users.noreply.github.com' }, ...(sha ? { sha } : {}) };
+const reqFile = path.join(HOME, 'refs-put.json');
+fs.writeFileSync(reqFile, JSON.stringify(req));
+const args = ['api', '-X', 'PUT', `repos/${REPO}/contents/${FILE}`, '--input', reqFile];
 try { execFileSync('gh', args, { windowsHide: true }); log(`올림 ${rows.length}건`); }
 catch (e) { log('올리기 실패 ' + String(e.message).slice(0, 200)); process.exit(1); }
