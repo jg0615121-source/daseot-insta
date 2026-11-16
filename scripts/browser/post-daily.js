@@ -2,26 +2,23 @@
 // 엣지 전용 프로필 창(profile 폴더, 디버깅 포트 9333)은 늘 띄워 두고 이 스크립트는 거기에 붙어 탭 하나만 쓰고 닫는다.
 // 창이 꺼져 있으면 새로 띄우고, 다 써도 창은 닫지 않는다 (로그인 유지, 사람이 바로 볼 수 있게).
 // PC 작업 스케줄러 '다섯가지 인스타 게시'가 07:30부터 21:30까지 매시간 실행. 위치: %LOCALAPPDATA%\daseot-browser\post-daily.js
-// ZOOM-IN 충주 (2026-11-16부터): 원고가 있는 날만 카드뉴스 1편 posts/날짜.json(19시~, 퇴근 뒤 주말 계획 세우는 시간. POST_HOUR로 바꿈). 릴스와 저녁 편은 안 올림 (사용자 결정).
-// 예전처럼 릴스·저녁 편까지 올리려면 REELS=1 환경변수로 실행.
-// 릴스는 Actions가 만든 reel.mp4(이미지 저장소)와 원고의 reel_caption을 쓴다. 같은 편 카드뉴스가 올라간 뒤에만 올린다.
+// ZOOM-IN 충주 (2026-11-16부터): 원고가 있는 날 릴스(12시~, 점심에 새 사람에게 닿게) → 카드뉴스(19시~, 퇴근 뒤 주말 계획). REEL_HOUR, POST_HOUR로 바꿈.
+// 저녁 편(날짜-2)은 없다.
+// 릴스는 Actions가 만든 reel.mp4(이미지 저장소)와 원고의 reel_caption을 쓴다. 카드뉴스와 상관없이 먼저 올라갈 수 있다.
 // 해시태그는 캡션 맨 끝에 그대로 둔다 (인스타 검색이 캡션을 읽음, 게시물당 최대 5개).
 // 시험: set DRY=1 && node post-daily.js 2026-10-24  (공유 직전까지만, 날짜를 주면 시간 상관없이 전부 시도)
 const fs = require('fs'), path = require('path'), { execFileSync, spawn } = require('child_process');
 const { chromium } = require('playwright-core');
 const HOME = __dirname, LOG = path.join(HOME, 'post.log'), DRY = process.env.DRY === '1';
-const EVENING_HOUR = +(process.env.EVENING_HOUR || 19), NOON_REEL = 12, NIGHT_REEL = 21;
 const PORT = 9333, EDGE = process.env.EDGE || 'C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe';
 const log = m => { fs.appendFileSync(LOG, new Date().toISOString() + ' ' + m + '\n'); console.log(m); };
 const now = new Date(Date.now() + 9 * 3600e3), day = process.argv[2] || now.toISOString().slice(0, 10);
 const hour = process.argv[2] ? 99 : now.getUTCHours();
-// 순서대로 시도: 카드뉴스가 릴스보다 먼저
-const REELS = process.env.REELS === '1', POST_HOUR = +(process.env.POST_HOUR || (REELS ? 7 : 19));
+// 순서대로 시도: 점심 릴스 → 저녁 카드뉴스
+const REEL_HOUR = +(process.env.REEL_HOUR || 12), POST_HOUR = +(process.env.POST_HOUR || 19);
 const jobs = [
+  ...(hour >= REEL_HOUR ? [{ id: day, reel: true }] : []),
   ...(hour >= POST_HOUR ? [{ id: day, reel: false }] : []),
-  ...(REELS && hour >= NOON_REEL ? [{ id: day, reel: true }] : []),
-  ...(REELS && hour >= EVENING_HOUR ? [{ id: day + '-2', reel: false }] : []),
-  ...(REELS && hour >= NIGHT_REEL ? [{ id: day + '-2', reel: true }] : []),
 ];
 const mark = (id, reel) => path.join(HOME, 'posted', id + (reel ? '.reel' : '') + '.done');
 const RAW = id => `https://raw.githubusercontent.com/jg0615121-source/daseot-images/main/${id}/`;
@@ -60,7 +57,6 @@ async function publish(page, files, text, video) {
 // 할 일 하나를 준비한다. 이미 올렸거나 아직 준비 안 됐으면 null
 async function prepare(tok, { id, reel }) {
   if (fs.existsSync(mark(id, reel))) return null;
-  if (reel && !fs.existsSync(mark(id, false))) return null;  // 같은 편 카드뉴스 먼저
   const r = await fetch(`https://api.github.com/repos/jg0615121-source/daseot-insta/contents/posts/${id}.json`,
     { headers: { ...(tok ? { Authorization: 'token ' + tok } : {}), Accept: 'application/vnd.github.raw' } });
   if (!r.ok) { if (!reel) log(id + ' 원고 없음'); return null; }
