@@ -35,8 +35,16 @@ def render(post_path):
             f = out / f"{i+1:02d}.jpg"  # 인스타 API는 JPEG만 받음
             page.screenshot(path=str(f), type="jpeg", quality=93)
             files.append(f)
+        # 한 장 요약 (프로필 한 줄의 오른쪽 칸, 저장용 단일 이미지)
+        page.evaluate("p => window.render(p,'summary')", post)
+        page.wait_for_load_state("networkidle"); page.wait_for_timeout(250)
+        fit = page.evaluate("p => window.render(p,'summary')", post)
+        if not fit["fits"]:
+            print("참고: 한 장 요약 글이 넘쳐 잘릴 수 있음")
+        f = out / "summary.jpg"
+        page.screenshot(path=str(f), type="jpeg", quality=93)
         b.close()
-    return files
+    return files + [f]
 
 if __name__ == "__main__":
     for f in render(sys.argv[1]):

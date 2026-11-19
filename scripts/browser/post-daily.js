@@ -2,7 +2,7 @@
 // 엣지 전용 프로필 창(profile 폴더, 디버깅 포트 9333)은 늘 띄워 두고 이 스크립트는 거기에 붙어 탭 하나만 쓰고 닫는다.
 // 창이 꺼져 있으면 새로 띄우고, 다 써도 창은 닫지 않는다 (로그인 유지, 사람이 바로 볼 수 있게).
 // PC 작업 스케줄러 '다섯가지 인스타 게시'가 07:30부터 21:30까지 매시간 실행. 위치: %LOCALAPPDATA%\daseot-browser\post-daily.js
-// ZOOM-IN 충주 (2026-11-16부터): 원고가 있는 날 릴스(12시~, 점심에 새 사람에게 닿게) → 카드뉴스(19시~, 퇴근 뒤 주말 계획). REEL_HOUR, POST_HOUR로 바꿈.
+// ZOOM-IN 충주: 원고가 있는 날 릴스(12시~) → 카드뉴스(19시~) → 한 장 요약(20시~). REEL_HOUR, POST_HOUR, SUM_HOUR로 바꿈.
 // 저녁 편(날짜-2)은 없다.
 // 릴스는 Actions가 만든 reel.mp4(이미지 저장소)와 원고의 reel_caption을 쓴다. 카드뉴스와 상관없이 먼저 올라갈 수 있다.
 // 해시태그는 캡션 맨 끝에 그대로 둔다 (인스타 검색이 캡션을 읽음, 게시물당 최대 5개).
@@ -14,13 +14,16 @@ const PORT = 9333, EDGE = process.env.EDGE || 'C:\\Program Files (x86)\\Microsof
 const log = m => { fs.appendFileSync(LOG, new Date().toISOString() + ' ' + m + '\n'); console.log(m); };
 const now = new Date(Date.now() + 9 * 3600e3), day = process.argv[2] || now.toISOString().slice(0, 10);
 const hour = process.argv[2] ? 99 : now.getUTCHours();
-// 순서대로 시도: 점심 릴스 → 저녁 카드뉴스
-const REEL_HOUR = +(process.env.REEL_HOUR || 12), POST_HOUR = +(process.env.POST_HOUR || 19);
+// 한 편 = 프로필 한 줄 3칸 (2026-11-19 사용자와 정함). 인스타는 최신이 왼쪽에 오므로
+// 릴스(오른쪽 칸, 12시~) → 카드뉴스(가운데, 19시~) → 한 장 요약(왼쪽, 20시~) 순서를 꼭 지킨다.
+// 앞 칸이 안 올라갔으면 뒤 칸은 기다린다 (줄 모양이 밀리지 않게).
+const REEL_HOUR = +(process.env.REEL_HOUR || 12), POST_HOUR = +(process.env.POST_HOUR || 19), SUM_HOUR = +(process.env.SUM_HOUR || 20);
 const jobs = [
-  ...(hour >= REEL_HOUR ? [{ id: day, reel: true }] : []),
-  ...(hour >= POST_HOUR ? [{ id: day, reel: false }] : []),
+  ...(hour >= REEL_HOUR ? [{ id: day, kind: 'reel' }] : []),
+  ...(hour >= POST_HOUR ? [{ id: day, kind: 'card', after: 'reel' }] : []),
+  ...(hour >= SUM_HOUR ? [{ id: day, kind: 'sum', after: 'card' }] : []),
 ];
-const mark = (id, reel) => path.join(HOME, 'posted', id + (reel ? '.reel' : '') + '.done');
+const mark = (id, kind) => path.join(HOME, 'posted', id + ({ reel: '.reel', card: '', sum: '.sum' }[kind]) + '.done');
 const RAW = id => `https://raw.githubusercontent.com/jg0615121-source/daseot-images/main/${id}/`;
 
 async function grab(id, name, dir) {
@@ -55,24 +58,33 @@ async function publish(page, files, text, video) {
 }
 
 // 할 일 하나를 준비한다. 이미 올렸거나 아직 준비 안 됐으면 null
-async function prepare(tok, { id, reel }) {
-  if (fs.existsSync(mark(id, reel))) return null;
+async function prepare(tok, { id, kind, after }) {
+  const reel = kind === 'reel';
+  if (fs.existsSync(mark(id, kind))) return null;
+  if (after && !fs.existsSync(mark(id, after))) return null;  // 앞 칸 먼저
   const r = await fetch(`https://api.github.com/repos/jg0615121-source/daseot-insta/contents/posts/${id}.json`,
     { headers: { ...(tok ? { Authorization: 'token ' + tok } : {}), Accept: 'application/vnd.github.raw' } });
-  if (!r.ok) { if (!reel) log(id + ' 원고 없음'); return null; }
+  if (!r.ok) { if (reel) log(id + ' 원고 없음'); return null; }
   const p = await r.json();
-  if (!reel && p.published_id) { fs.writeFileSync(mark(id, false), 'api'); return null; }
+  if (kind === 'card' && p.published_id) { fs.writeFileSync(mark(id, 'card'), 'api'); return null; }
   const dir = path.join(HOME, 'slides', id); fs.mkdirSync(dir, { recursive: true });
   if (reel) {
     if (!p.reel_caption) { log(id + ' 릴스 캡션 없음'); return null; }
     const v = await grab(id, 'reel.mp4', dir);
     if (!v) { log(id + ' 릴스 영상 아직 없음'); return null; }
-    return { id, reel, files: [v], caption: p.reel_caption.trim() };
+    return { id, kind, reel, files: [v], caption: p.reel_caption.trim() };
+  }
+  if (kind === 'sum') {
+    const f = await grab(id, 'summary.jpg', dir);
+    if (!f) { log(id + ' 한 장 요약 아직 없음'); return null; }
+    const tags = (p.caption.trim().split('\n').reverse().find(l => l.trim().startsWith('#')) || '#줌인충주 #충주').trim();
+    const k = String(p.kicker || '').replace(/\s*✦\s*$/, '');
+    return { id, kind, reel, files: [f], caption: `${k} 한 장 정리 📌\n저장해두고 나가기 전에 꺼내보기\n\n자세한 건 옆 칸 카드뉴스와 릴스에\n\n${tags}` };
   }
   const files = [];
   for (let i = 1; i <= 10; i++) { const f = await grab(id, String(i).padStart(2, '0') + '.jpg', dir); if (!f) break; files.push(f); }
   if (files.length < 2) { log(id + ' 슬라이드 아직 없음'); return null; }
-  return { id, reel, files, caption: p.caption.trim() };
+  return { id, kind, reel, files, caption: p.caption.trim() };
 }
 
 // 떠 있는 엣지 게시 전용 창에 붙는다. 없으면 띄운다
@@ -89,7 +101,7 @@ async function openEdge() {
 }
 
 (async () => {
-  if (jobs.every(j => fs.existsSync(mark(j.id, j.reel)))) return;
+  if (jobs.every(j => fs.existsSync(mark(j.id, j.kind)))) return;
   fs.mkdirSync(path.join(HOME, 'posted'), { recursive: true });
   // 작업 스케줄러에서 cmd.exe 실행이 막혀(EPERM) 셸 없이 gh를 부르고, 실패해도 공개 저장소라 토큰 없이 진행
   let tok = '';
@@ -100,10 +112,10 @@ async function openEdge() {
       const t = await prepare(tok, job);
       if (!t) continue;
       if (!page) { browser = await openEdge(); page = await browser.contexts()[0].newPage(); }
-      const what = t.reel ? '릴스' : '카드뉴스';
+      const what = { reel: '릴스', card: '카드뉴스', sum: '한 장 요약' }[t.kind];
       if (await publish(page, t.files, t.caption, t.reel)) {
-        if (!DRY) fs.writeFileSync(mark(t.id, t.reel), 'browser');
-        log(`${t.id} ${what} 게시 완료${t.reel ? '' : ' ' + t.files.length + '장'}`);
+        if (!DRY) fs.writeFileSync(mark(t.id, t.kind), 'browser');
+        log(`${t.id} ${what} 게시 완료${t.kind === 'card' ? ' ' + t.files.length + '장' : ''}`);
         await page.waitForTimeout(5000);
       } else log(`${t.id} ${what} 게시 확인 시간 초과`);
     }

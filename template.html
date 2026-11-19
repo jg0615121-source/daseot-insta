@@ -75,6 +75,22 @@ body{font-family:P,sans-serif;color:var(--ink);-webkit-font-smoothing:antialiase
 /* 공유(DM 보내기)가 비팔로워 도달에 가장 큰 신호라 두 번째 줄을 가장 크게 */
 .todo div.send{margin:8px 0;padding:24px 28px;background:var(--tom);color:var(--ink);font-weight:900;font-size:34px}
 .src{margin-top:auto;font-weight:500;font-size:18px;line-height:1.6;color:var(--mute)}
+
+/* 한 장 요약 (프로필 한 줄의 오른쪽 칸): 이번 편 품목을 한 장에. 저장용 */
+.sum{position:absolute;inset:0;padding:44px var(--pad) 48px;display:flex;flex-direction:column}
+.sum .mast{position:static}
+.sum h1{margin-top:40px;font-weight:900;font-size:calc(84px * var(--k));line-height:1.06;letter-spacing:-.065em}
+.sum h1 em{font-style:normal;color:var(--tom)}
+.sum .rows{margin-top:30px;border-top:3px solid var(--line);flex:1;display:flex;flex-direction:column}
+.sum .row{flex:1;display:flex;gap:28px;align-items:center;border-bottom:1.5px solid #CDBFAA;padding:16px 0;min-height:0}
+.sum .row figure{flex:none;height:100%;aspect-ratio:1;max-height:250px;overflow:hidden;background:var(--sand)}
+.sum .row figure img{width:100%;height:100%;object-fit:cover;display:block}
+.sum .row .bd{flex:1;min-width:0}
+.sum .row .num{font-size:calc(46px * var(--k));line-height:1;color:var(--tom)}
+.sum .row h3{margin-top:6px;font-weight:900;font-size:calc(38px * var(--k));line-height:1.15;letter-spacing:-.05em}
+.sum .row p{margin-top:8px;font-weight:700;font-size:calc(25px * var(--k));line-height:1.45;color:#4C4239}
+.sum .row p b{color:var(--tom);font-weight:800}
+.sum .foot2{margin-top:22px;display:flex;justify-content:space-between;font-weight:800;font-size:24px}
 </style>
 </head>
 <body>
@@ -141,7 +157,29 @@ function outro(p){
   </section>`;
 }
 function setK(k){ document.documentElement.style.setProperty("--k", k); }
+function summary(p){
+  const k = esc(String(p.kicker||"").replace(/\s*✦\s*$/,""));
+  const rows = p.items.map((it,j)=>{
+    const f = it.facts||[];
+    const line = f.map(([a,b])=>`${esc(a)} ${a!=="어디" && /\d|무료/.test(b)?`<b>${esc(b)}</b>`:esc(b)}`).join(" · ");
+    return `<div class="row"><figure>${img(it.image,it.focus,it.zoom)}</figure><div class="bd"><span class="num">${two(j+1)}</span><h3>${esc(it.name.replace(/\n/g," "))}</h3><p>${line}</p></div></div>`;
+  }).join("");
+  return `<section class="sum">
+    <div class="mast"><span><b>ZOOM-IN</b> 충주 · ${esc(md(p.date))}</span><span>저장용 한 장</span></div>
+    <h1>${k}<br><em>한 장 정리</em></h1>
+    <div class="rows">${rows}</div>
+    <div class="foot2"><span>나가기 전에 꺼내보기 📌</span><span>@${esc(p.handle)}</span></div>
+  </section>`;
+}
 function render(p, slide){
+  if (slide === "summary"){
+    const root = document.getElementById("root"); let k = 1; setK(1);
+    root.innerHTML = summary(p);
+    const s = root.querySelector(".sum");
+    const over = () => [...s.querySelectorAll(".row .bd")].some(b => b.scrollHeight > b.parentElement.clientHeight - 20);
+    while (over() && k > 0.7){ k -= 0.03; setK(k); }
+    return {k:+k.toFixed(2), fits: !over()};
+  }
   const n = p.items.length, root = document.getElementById("root");
   setK(1);
   root.innerHTML = slide===0 ? cover(p) : slide<=n ? item(p,slide-1) : outro(p);
