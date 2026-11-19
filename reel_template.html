@@ -2,176 +2,170 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<!-- ZOOM-IN 충주 릴스 (v3, 2026-11-16). 카드뉴스와 같은 잡지 디자인 (크림 종이, 먹색 제목, 토마토 강조, 세리프 숫자).
-     scripts/make_reel.py 가 window.build(원고) → window.ready() → window.seek(초) 로 프레임마다 찍는다.
-     원칙 (docs/benchmark.md): 0프레임부터 제목이 보임(넘김 방지), 장면마다 '초점 맞추기' 줌인(로고의 초점 틀),
-     사진은 계속 천천히 움직임, 글자는 흐려지지 않게 고정, 인스타 화면 아래쪽 300px·오른쪽 160px엔 중요한 글자를 두지 않음. -->
+<!-- ZOOM-IN 충주 릴스 v4 (2026-11-20). 조회 100만 넘는 인기 릴스(popup_dangni, pickstival 등)를 보고 다시 짬:
+     · 9~13초로 짧게  · 1초 안팎마다 화면이 바뀜(같은 사진을 넓게→가깝게→옆으로)  · 위쪽 제목 고정
+     · 가운데 말투 자막이 계속 바뀜  · 첫 화면과 장면마다 감정 스티커('공짜!', '미쳤다')  · 끝은 행동 유도
+     디자인은 카드뉴스와 같은 잡지 톤(크림·먹색·토마토, 초점 틀). 인스타 화면 아래 300px·오른쪽 160px엔 중요한 글자를 두지 않음.
+     scripts/make_reel.py 가 window.build(원고) → window.ready() → window.seek(초) 로 프레임마다 찍는다. -->
 <style>
-@font-face{font-family:P;src:url(fonts/Pretendard-SemiBold.woff2);font-weight:600}
 @font-face{font-family:P;src:url(fonts/Pretendard-Bold.woff2);font-weight:700}
 @font-face{font-family:P;src:url(fonts/Pretendard-ExtraBold.woff2);font-weight:800}
 @font-face{font-family:P;src:url(fonts/Pretendard-Black.woff2);font-weight:900}
 @font-face{font-family:S;src:url(fonts/instrument-serif-latin-400-italic.woff2);font-style:italic}
-:root{--tom:#FF5B2E;--ink:#1E1915;--paper:#F7F0E4;--sand:#E9DECB;--mute:#8C7F70}
+:root{--tom:#FF5B2E;--ink:#1E1915;--paper:#F7F0E4;--sand:#E9DECB}
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{width:1080px;height:1920px;overflow:hidden;background:var(--paper)}
+html,body{width:1080px;height:1920px;overflow:hidden;background:var(--ink)}
 body{font-family:P,sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased;word-break:keep-all;letter-spacing:-.03em;position:relative}
 .num{font-family:S,serif;font-style:italic;letter-spacing:0}
-.scene{position:absolute;inset:0;display:none}
-.scene.on{display:block}
 
-/* 위 띠 + 진행 막대: 모든 장면에 고정 */
-.mast{position:absolute;left:64px;right:64px;top:70px;display:flex;justify-content:space-between;align-items:baseline;font-weight:800;font-size:30px;z-index:5}
-.mast b{font-weight:900}
-.bar{position:absolute;left:64px;right:64px;top:126px;height:6px;display:flex;gap:8px;z-index:5}
-.bar i{flex:1;background:#D9CBB5;position:relative;overflow:hidden}
-.bar i b{position:absolute;left:0;top:0;bottom:0;background:var(--ink);width:0}
+/* 사진: 화면 가득. 포스터처럼 통째로 봐야 하는 건 크림 바탕 위에 */
+#bg{position:absolute;inset:0;overflow:hidden;background:var(--sand)}
+#bg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;will-change:transform}
+#bg.whole{background:var(--paper)}
+#bg.whole img{object-fit:contain;top:300px;height:760px}
+#shade{position:absolute;inset:0;background:linear-gradient(rgba(30,25,21,.55),rgba(30,25,21,0) 26%,rgba(30,25,21,0) 55%,rgba(30,25,21,.55));pointer-events:none}
+#bg.whole + #shade{display:none}
+/* 초점 틀 (로고와 같은 표시): 컷마다 조여 듦 */
+#vf{position:absolute;left:70px;right:70px;top:330px;height:1150px;will-change:transform}
+#vf i{position:absolute;width:90px;height:90px;border:0 solid var(--paper)}
+#vf .a{left:0;top:0;border-left-width:11px;border-top-width:11px}
+#vf .b{right:0;top:0;border-right-width:11px;border-top-width:11px}
+#vf .c{left:0;bottom:0;border-left-width:11px;border-bottom-width:11px}
+#vf .d{right:0;bottom:0;border-right-width:11px;border-bottom-width:11px}
+#bg.whole ~ #vf{top:282px;height:796px}
+#bg.whole ~ #vf i{border-color:var(--ink)}
 
-/* 사진 칸 + 초점 틀 */
-.pic{position:absolute;left:0;right:0;overflow:hidden;background:var(--sand)}
-.pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;will-change:transform}
-.pic.whole img{object-fit:contain}
-.vf{position:absolute;inset:0;will-change:transform}
-.vf i{position:absolute;width:84px;height:84px;border:0 solid var(--paper)}
-.pic.whole .vf i{border-color:var(--ink)}
-.vf .a{left:44px;top:44px;border-left-width:10px;border-top-width:10px}
-.vf .b{right:44px;top:44px;border-right-width:10px;border-top-width:10px}
-.vf .c{left:44px;bottom:44px;border-left-width:10px;border-bottom-width:10px}
-.vf .d{right:44px;bottom:44px;border-right-width:10px;border-bottom-width:10px}
+/* 위쪽 고정 제목 (끝까지 그대로) */
+#top{position:absolute;left:56px;right:56px;top:96px;z-index:5}
+#top .tag{display:inline-block;background:var(--tom);color:var(--ink);font-weight:900;font-size:34px;padding:8px 18px}
+#top h1{margin-top:12px;display:inline-block;background:var(--paper);font-weight:900;font-size:66px;line-height:1.12;letter-spacing:-.06em;padding:10px 20px 14px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+#top h1 em{font-style:normal;color:var(--tom)}
+#bar{position:absolute;left:56px;right:56px;top:66px;height:8px;display:flex;gap:8px;z-index:5}
+#bar i{flex:1;background:rgba(247,240,228,.45);position:relative;overflow:hidden}
+#bar i b{position:absolute;left:0;top:0;bottom:0;background:var(--paper)}
 
-/* 훅(첫 장면) */
-.hook .pic{top:170px;height:1000px}
-.hook .txt{position:absolute;left:64px;right:120px;top:1215px}
-.kick{font-weight:800;font-size:38px;color:var(--tom)}
-.hook h1{margin-top:16px;font-weight:900;font-size:124px;line-height:1.06;letter-spacing:-.065em}
-.hook h1 em{font-style:normal;color:var(--tom)}
-.hook .sub{margin-top:26px;font-weight:800;font-size:36px;color:var(--mute)}
-
-/* 품목 장면 */
-.item .pic{top:170px;height:1010px}
-.item .txt{position:absolute;left:64px;right:150px;top:1205px}
-.item .no{font-size:118px;line-height:.8;color:var(--tom);will-change:transform}
-.item h2{margin-top:14px;font-weight:900;font-size:84px;line-height:1.1;letter-spacing:-.06em}
-.chips{margin-top:26px;display:flex;flex-wrap:wrap;gap:12px}
-.chips span{display:inline-flex;align-items:baseline;gap:12px;padding:12px 20px;border:3px solid var(--ink);font-weight:800;font-size:34px;background:var(--paper);will-change:transform}
-.chips span em{font-style:normal;font-weight:700;font-size:26px;color:var(--mute)}
-.chips span.hi{background:var(--tom);border-color:var(--tom)}
-.chips span.hi em{color:var(--ink)}
+/* 가운데 말투 자막: 계속 바뀜 */
+#sub{position:absolute;left:60px;right:180px;top:1080px;z-index:6;text-align:left}
+#sub span{display:inline;background:var(--ink);color:var(--paper);font-weight:900;font-size:70px;line-height:1.36;letter-spacing:-.05em;padding:4px 20px 8px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+#sub span em{font-style:normal;color:var(--tom)}
+#no{position:absolute;left:60px;top:930px;z-index:6;font-size:150px;line-height:1;color:var(--paper);text-shadow:0 4px 24px rgba(0,0,0,.35)}
+#bg.whole ~ #no{color:var(--tom);text-shadow:none}
+/* 스티커: 감정 한마디 */
+#pop{position:absolute;right:150px;top:820px;z-index:7;background:var(--tom);color:var(--ink);font-weight:900;font-size:76px;padding:14px 28px 18px;transform-origin:center;will-change:transform;border:6px solid var(--ink)}
+/* 장소·날짜 한 줄 (자막 아래) */
+#info{position:absolute;left:60px;right:180px;top:1420px;z-index:6;font-weight:800;font-size:38px;color:var(--paper);text-shadow:0 2px 12px rgba(0,0,0,.6)}
+#bg.whole ~ #info{color:var(--ink);text-shadow:none}
 
 /* 마무리 */
-.outro .wrap{position:absolute;left:64px;right:150px;top:200px}
-.outro h3{font-weight:800;font-size:36px;color:var(--tom)}
-.recap{margin-top:20px;border-top:4px solid var(--ink)}
-.recap div{display:flex;align-items:center;gap:26px;padding:24px 0;border-bottom:2px solid #CDBFAA;will-change:transform}
-.recap .num{flex:none;width:70px;font-size:70px;line-height:1;color:var(--tom)}
-.recap p{flex:1;min-width:0;font-weight:900;font-size:44px;letter-spacing:-.05em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.recap p small{display:block;margin-top:6px;font-weight:700;font-size:30px;color:var(--mute)}
-.recap figure{flex:none;width:120px;height:120px;overflow:hidden;background:var(--sand)}
-.recap figure img{width:100%;height:100%;object-fit:cover;display:block}
-.outro h2{margin-top:56px;font-weight:900;font-size:92px;line-height:1.08;letter-spacing:-.065em}
-.send{margin-top:36px;padding:30px 34px;background:var(--tom);font-weight:900;font-size:44px;will-change:transform}
-.save{margin-top:24px;font-weight:800;font-size:36px;color:#4C4239}
-.handle{margin-top:20px;font-weight:800;font-size:32px;color:var(--mute)}
+#end{position:absolute;inset:0;background:var(--paper);display:none;z-index:8;padding:300px 64px 0}
+#end h2{font-weight:900;font-size:96px;line-height:1.08;letter-spacing:-.065em}
+#end h2 em{font-style:normal;color:var(--tom)}
+#end .list{margin-top:40px;border-top:4px solid var(--ink)}
+#end .list div{display:flex;gap:22px;align-items:baseline;padding:20px 0;border-bottom:2px solid #CDBFAA;font-weight:900;font-size:44px;letter-spacing:-.05em;will-change:transform}
+#end .list .num{color:var(--tom);font-size:60px}
+#end .send{margin-top:40px;display:inline-block;background:var(--tom);font-weight:900;font-size:48px;padding:24px 32px;will-change:transform}
+#end .h{margin-top:28px;font-weight:800;font-size:34px;color:#6C6158}
 </style>
 </head>
 <body>
-<div id="root"></div>
+<div id="bg"><img id="img"></div><div id="shade"></div>
+<div id="vf"><i class="a"></i><i class="b"></i><i class="c"></i><i class="d"></i></div>
+<div id="bar"></div>
+<div id="top"><span class="tag" id="tag"></span><br><h1 id="hd"></h1></div>
+<div id="no" class="num"></div>
+<div id="pop"></div>
+<div id="sub"></div>
+<div id="info"></div>
+<div id="end"></div>
 <script>
 const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-const br = s => esc(s).replace(/\n/g, '<br>');
+const em = s => esc(s).replace(/\[([^\]]+)\]/g, '<em>$1</em>').replace(/\n/g, '<br>');
 const two = n => String(n).padStart(2, '0');
 const clamp = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
 const out3 = x => 1 - Math.pow(1 - clamp(x), 3);
-const back = x => { x = clamp(x); const c = 1.7; return 1 + (c + 1) * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2); };
-const VF = '<div class="vf"><i class="a"></i><i class="b"></i><i class="c"></i><i class="d"></i></div>';
-// 사진 칸 비율과 맞으면 꽉 채우고, 아니면 통째로 (카드뉴스 template.html과 같은 기준)
-const whole = (it, W, H) => {
-  if (it.fit === 'cover') return '';
-  if (it.fit === 'whole') return ' whole';
-  if (!(it.w && it.h)) return '';
-  const r = (it.w / it.h) / (W / H);
-  return (r > 0.72 && r < 1.38 && Math.min(it.w, it.h) >= 700) ? '' : ' whole';
-};
-const pic = (it, H) => `<div class="pic${whole(it, 1080, H)}"><img src="${esc(it.image)}" style="object-position:${esc(it.focus || '50% 50%')}">${VF}</div>`;
-// 핵심 정보 칩: '어디' + 숫자 든 값 하나(날짜·가격) 강조
-const chips = it => {
-  const f = it.facts || [];
-  const where = f.find(([k]) => k === '어디');
-  const key = f.find(([k, v]) => k !== '어디' && /\d|무료/.test(v));
-  return [where, key].filter(Boolean).map(([k, v]) => `<span class="${v === (key || [])[1] ? 'hi' : ''}"><em>${esc(k)}</em>${esc(v)}</span>`).join('');
-};
+const back = x => { x = clamp(x); const c = 2.2; return 1 + (c + 1) * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2); };
+const whole = it => it.fit === 'whole' || (it.fit !== 'cover' && it.w && it.h && (it.w / it.h > 0.95 || Math.min(it.w, it.h) < 500));
+const $ = id => document.getElementById(id);
 
-const D = { hook: 2.3, item: 3.0, outro: 3.6 };
-let S = [], post = null;
+// 품목마다 말투 자막 2~3줄. 원고에 reel_lines 가 있으면 그대로, 없으면 제목·정보로 만든다
+const linesOf = it => {
+  if (it.reel_lines && it.reel_lines.length) return it.reel_lines;
+  const f = it.facts || [], where = (f.find(([k]) => k === '어디') || [])[1];
+  const key = f.find(([k, v]) => k !== '어디' && /\d|무료/.test(v));
+  return [it.name.replace(/\n/g, ' '), key ? `${key[0]} [${key[1]}]` : (where ? `[${where}]` : '')].filter(Boolean);
+};
+const popOf = it => it.reel_pop || ((it.facts || []).some(([, v]) => /무료/.test(v)) ? '공짜!' : (it.facts || []).some(([, v]) => /반값|50%/.test(v)) ? '반값!' : '');
+const infoOf = it => { const f = it.facts || []; const w = (f.find(([k]) => k === '어디') || [])[1]; const d = (f.find(([k, v]) => k !== '어디' && /\d/.test(v)) || [])[1]; return ['📍 ' + (w || ''), d].filter(x => x && x !== '📍 ').join('  ·  '); };
+
+// 컷: 같은 사진을 넓게 → 가깝게 → 옆으로. [시작배율, 끝배율, x이동(px), y이동]
+const CUTS = [[1.0, 1.08, 0, 0], [1.32, 1.4, -60, -40], [1.18, 1.24, 70, 30]];
+const HOOK = 1.6, PER = 2.6, END = 2.4, CUT = PER / 3;
+let post, S = [];
 
 window.build = p => {
   post = p;
   const n = p.items.length;
   const c = (p.cover_images && p.cover_images[0]) || p.items[(p.cover_item || 1) - 1];
-  const kicker = esc(String(p.kicker || '').replace(/\s*✦\s*$/, ''));
-  const bar = `<div class="bar">${p.items.map(() => '<i><b></b></i>').join('')}</div>`;
-  let t = 0, html = '';
-  S = [];
-  const add = (kind, i, inner) => { S.push({ kind, i, t0: t, d: D[kind] }); t += D[kind]; html += `<section class="scene ${kind}" data-k="${S.length - 1}">${inner}</section>`; };
-  add('hook', -1, `<div class="mast"><span><b>ZOOM-IN</b> 충주</span><span>${kicker}</span></div>
-    ${pic(c, 1000)}
-    <div class="txt"><div class="kick">${kicker}</div><h1>${br(p.reel_hook || p.title).replace(/\[([^\]]+)\]/g, '<em>$1</em>')}</h1>
-    <div class="sub">끝까지 보면 ${n}곳 다 나옴 →</div></div>`);
-  p.items.forEach((it, i) => add('item', i, `<div class="mast"><span><b>ZOOM-IN</b> 충주</span><span><span class="num">${two(i + 1)}</span> / ${two(n)}</span></div>${bar}
-    ${pic(it, 1010)}
-    <div class="txt"><div class="no num">${two(i + 1)}</div><h2>${br(it.name)}</h2><div class="chips">${chips(it)}</div></div>`));
-  const rows = p.items.map((it, j) => {
-    const f = (it.facts || []).find(([k, v]) => k !== '어디' && /\d/.test(v)) || (it.facts || [])[0];
-    return `<div><span class="num">${two(j + 1)}</span><p>${esc(it.name.replace(/\n/g, ' '))}${f ? `<small>${esc(f[0])} ${esc(f[1])}</small>` : ''}</p><figure><img src="${esc(it.image)}" style="object-position:${esc(it.focus || '50% 50%')}"></figure></div>`;
-  }).join('');
-  const o = p.outro || {};
-  add('outro', -1, `<div class="mast"><span><b>ZOOM-IN</b> 충주</span><span>@${esc(p.handle || 'zoomin.chungju')}</span></div>
-    <div class="wrap"><h3>${kicker} 정리</h3><div class="recap">${rows}</div>
-    <h2>${br(o.question || '이 중에\n하나만 간다면?')}</h2>
-    <div class="send">→ ${esc((o.lines || [])[1] || '같이 갈 친구한테 보내기')}</div>
-    <div class="save">저장해두고 나가기 전에 꺼내보기 📌</div>
-    <div class="handle">충주에서 뭐 하지? @${esc(p.handle || 'zoomin.chungju')}</div></div>`);
-  document.getElementById('root').innerHTML = html;
-  return t;
+  S = [{ k: 'hook', t0: 0, d: HOOK, it: c }];
+  p.items.forEach((it, i) => S.push({ k: 'item', i, t0: HOOK + PER * i, d: PER, it }));
+  S.push({ k: 'end', t0: HOOK + PER * n, d: END });
+  $('tag').textContent = String(p.kicker || '').replace(/\s*✦\s*$/, '');
+  $('hd').innerHTML = em(p.reel_hook || p.title);
+  $('bar').innerHTML = p.items.map(() => '<i><b></b></i>').join('');
+  $('end').innerHTML = `<h2>${em(p.reel_end || '이번 주말\n[여기]로 정했다')}</h2>
+    <div class="list">${p.items.map((it, j) => `<div><span class="num">${two(j + 1)}</span>${esc(it.name.replace(/\n/g, ' '))}</div>`).join('')}</div>
+    <div class="send">→ ${esc(((p.outro || {}).lines || [])[1] || '같이 갈 친구 태그하기')}</div>
+    <div class="h">저장해두고 주말에 꺼내봐 📌 @${esc(p.handle || 'zoomin.chungju')}</div>`;
+  // 사진 미리 불러오기
+  window._imgs = [...new Set(S.filter(s => s.it).map(s => s.it.image))].map(src => { const im = new Image(); im.src = src; return im; });
+  return HOOK + PER * n + END;
 };
-
 window.ready = async () => {
   await document.fonts.ready;
-  await Promise.all([...document.images].map(im => im.complete ? 0 : new Promise(r => { im.onload = im.onerror = r; })));
+  await Promise.all((window._imgs || []).map(im => im.complete ? 0 : new Promise(r => { im.onload = im.onerror = r; })));
 };
 
-// 초점 맞추기: 장면 시작 0.45초 동안 사진이 살짝 크게 시작해 제자리로, 초점 틀은 바깥에서 안으로 조여 듦
-const focusIn = (sc, lt, d, kb) => {
-  const img = sc.querySelector('.pic img'), vf = sc.querySelector('.vf');
-  const snap = out3(lt / 0.45);
-  // 포스터처럼 통째로 넣은 사진은 잘리면 안 되니 아주 조금만 움직임
-  if (sc.querySelector('.pic.whole')) kb = [0.94, 0.99, 0];
-  // 켄 번스: 장면 내내 천천히 확대 (kb: 시작→끝 배율), 짝수·홀수 장면마다 이동 방향을 바꿈
-  const z = ((sc.querySelector('.pic.whole') ? 1.04 : 1.12) - (sc.querySelector('.pic.whole') ? 0.04 : 0.12) * snap) * (kb[0] + (kb[1] - kb[0]) * clamp(lt / d));
-  const dx = kb[2] * clamp(lt / d);
-  if (img) img.style.transform = `translateX(${dx}px) scale(${z})`;
-  if (vf) vf.style.transform = `scale(${1.18 - 0.18 * snap})`;
-  if (vf) vf.style.opacity = String(clamp(lt / 0.15));
-};
-
+let shown = '';
 window.seek = t => {
   let k = S.findIndex(s => t < s.t0 + s.d); if (k < 0) k = S.length - 1;
   const s = S[k], lt = t - s.t0;
-  document.querySelectorAll('.scene').forEach(e => e.classList.toggle('on', +e.dataset.k === k));
-  const sc = document.querySelector(`.scene[data-k="${k}"]`);
-  if (s.kind === 'hook') {
-    focusIn(sc, lt, s.d, [1, 1.08, 0]);
-  } else if (s.kind === 'item') {
-    focusIn(sc, lt, s.d, [1, 1.1, s.i % 2 ? 30 : -30]);
-    // 진행 막대: 지난 품목은 꽉, 지금 품목은 시간만큼 차오름
-    sc.querySelectorAll('.bar i b').forEach((b, j) => b.style.width = (j < s.i ? 100 : j > s.i ? 0 : 100 * clamp(lt / s.d)) + '%');
-    // 번호는 옆에서 밀려 들어오고, 제목·칩은 0프레임부터 보임 (칩만 살짝 튀어나옴)
-    const no = sc.querySelector('.no'); no.style.transform = `translateX(${-60 * (1 - out3(lt / 0.35))}px)`;
-    sc.querySelectorAll('.chips span').forEach((c, j) => { const x = back((lt - 0.25 - 0.12 * j) / 0.4); c.style.transform = `scale(${0.85 + 0.15 * x})`; });
-  } else {
-    sc.querySelectorAll('.recap div').forEach((r, j) => { const x = out3((lt - 0.08 * j) / 0.4); r.style.transform = `translateX(${-40 * (1 - x)}px)`; });
-    const send = sc.querySelector('.send'); const x = back((lt - 0.5) / 0.45); send.style.transform = `scale(${0.9 + 0.1 * x})`;
+  const end = s.k === 'end';
+  $('end').style.display = end ? 'block' : 'none';
+  if (end) {
+    $('end').querySelectorAll('.list div').forEach((r, j) => r.style.transform = `translateX(${-50 * (1 - out3((lt - 0.08 * j) / 0.35))}px)`);
+    const x = back((lt - 0.4) / 0.4); $('end').querySelector('.send').style.transform = `scale(${0.85 + 0.15 * x})`;
+    return;
   }
+  // 사진과 컷
+  const it = s.it, ci = s.k === 'hook' ? 0 : Math.min(2, Math.floor(lt / CUT)), ct = s.k === 'hook' ? lt / HOOK : (lt - ci * CUT) / CUT;
+  if (shown !== it.image) { $('img').src = it.image; $('img').style.objectPosition = it.focus || '50% 50%'; shown = it.image; }
+  $('bg').className = whole(it) ? 'whole' : '';
+  const [z0, z1, dx, dy] = whole(it) ? [[1, 1.03, 0, 0], [1.07, 1.1, 0, -16], [1.04, 1.07, 0, 12]][ci] : CUTS[ci];
+  const punch = 1 + 0.06 * (1 - out3(ct * CUT / 0.18));  // 컷이 바뀔 때 살짝 튀는 줌
+  $('img').style.transform = `translate(${dx * ct}px,${dy * ct}px) scale(${(z0 + (z1 - z0) * ct) * punch})`;
+  const snap = out3((s.k === 'hook' ? lt : lt - ci * CUT) / 0.3);
+  $('vf').style.transform = `scale(${1.12 - 0.12 * snap})`;
+  $('vf').style.opacity = ci === 0 || s.k === 'hook' ? '1' : '0';
+  // 진행 막대
+  $('bar').querySelectorAll('b').forEach((b, j) => b.style.width = (s.k === 'hook' ? 0 : j < s.i ? 100 : j > s.i ? 0 : 100 * clamp(lt / PER)) + '%');
+  if (s.k === 'hook') {
+    $('no').textContent = '';
+    $('sub').innerHTML = `<span>${em(post.reel_hook_sub || '충주 사람만 아는 거 알려줌')}</span>`;
+    $('info').textContent = `끝까지 보면 ${post.items.length}곳 다 나옴 →`;
+    const pop = post.reel_hook_pop || '미쳤다';
+    $('pop').textContent = pop; $('pop').style.display = pop ? 'block' : 'none';
+    $('pop').style.transform = `rotate(-8deg) scale(${0.4 + 0.6 * back(lt / 0.35)})`;
+    return;
+  }
+  $('no').textContent = two(s.i + 1);
+  $('no').style.transform = `translateX(${-80 * (1 - out3(lt / 0.25))}px)`;
+  const L = linesOf(it), li = Math.min(L.length - 1, Math.floor(lt / (PER / L.length)));
+  $('sub').innerHTML = `<span>${em(L[li])}</span>`;
+  $('info').textContent = infoOf(it);
+  const pop = popOf(it);
+  $('pop').style.display = pop && lt > 0.9 ? 'block' : 'none';
+  $('pop').textContent = pop;
+  $('pop').style.transform = `rotate(-8deg) scale(${0.4 + 0.6 * back((lt - 0.9) / 0.3)})`;
 };
 </script>
 </body>
