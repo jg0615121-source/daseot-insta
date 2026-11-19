@@ -1,0 +1,9 @@
+{
+  "_설명": "릴스 배경음악. 모두 Kevin MacLeod (incompetech.com), CC BY 4.0. 쓰면 릴스 캡션에 출처를 적는다 (make_reel.py가 자동으로). 원곡에서 신나는 구간 40초만 잘라 둠.",
+  "tracks": [
+    {"file": "funkorama.mp3", "title": "Funkorama", "mood": "펑키, 신나는"},
+    {"file": "life_of_riley.mp3", "title": "Life of Riley", "mood": "경쾌, 나들이"},
+    {"file": "carefree.mp3", "title": "Carefree", "mood": "밝은, 여유"},
+    {"file": "wholesome.mp3", "title": "Wholesome", "mood": "따뜻한, 산책"}
+  ]
+}
