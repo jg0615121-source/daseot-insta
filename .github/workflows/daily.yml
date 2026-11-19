@@ -90,9 +90,9 @@ jobs:
           cd "$RUNNER_TEMP/images"
           for f in ${{ steps.pick.outputs.posts }}; do
             d=$(basename "$f" .json)
-            mkdir -p "$d" && rm -f "$d"/*.jpg "$d"/reel.mp4
+            mkdir -p "$d" && rm -f "$d"/*.jpg "$d"/*.mp4
             cp "$GITHUB_WORKSPACE/out/$d/"*.jpg "$d/"
-            cp "$GITHUB_WORKSPACE/out/$d/reel.mp4" "$d/" 2>/dev/null || true
+            cp "$GITHUB_WORKSPACE/out/$d/"*.mp4 "$d/" 2>/dev/null || true
             git add "$d"
           done
           git config user.name "daseot-bot"

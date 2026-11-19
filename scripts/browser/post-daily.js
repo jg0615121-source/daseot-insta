@@ -2,7 +2,8 @@
 // 엣지 전용 프로필 창(profile 폴더, 디버깅 포트 9333)은 늘 띄워 두고 이 스크립트는 거기에 붙어 탭 하나만 쓰고 닫는다.
 // 창이 꺼져 있으면 새로 띄우고, 다 써도 창은 닫지 않는다 (로그인 유지, 사람이 바로 볼 수 있게).
 // PC 작업 스케줄러 '다섯가지 인스타 게시'가 07:30부터 21:30까지 매시간 실행. 위치: %LOCALAPPDATA%\daseot-browser\post-daily.js
-// ZOOM-IN 충주: 원고가 있는 날 릴스(12시~) → 카드뉴스(19시~) → 한 장 요약(20시~). REEL_HOUR, POST_HOUR, SUM_HOUR로 바꿈.
+// ZOOM-IN 충주: 원고가 있는 날 릴스 A(12시~) → 카드뉴스(19시~) → 다음 날 릴스 B(19시~). REEL_HOUR, POST_HOUR, REELB_HOUR.
+// 시험: node post-daily.js 날짜 [b]  (b를 주면 그 날짜의 릴스 B까지)
 // 저녁 편(날짜-2)은 없다.
 // 릴스는 Actions가 만든 reel.mp4(이미지 저장소)와 원고의 reel_caption을 쓴다. 카드뉴스와 상관없이 먼저 올라갈 수 있다.
 // 해시태그는 캡션 맨 끝에 그대로 둔다 (인스타 검색이 캡션을 읽음, 게시물당 최대 5개).
@@ -14,16 +15,18 @@ const PORT = 9333, EDGE = process.env.EDGE || 'C:\\Program Files (x86)\\Microsof
 const log = m => { fs.appendFileSync(LOG, new Date().toISOString() + ' ' + m + '\n'); console.log(m); };
 const now = new Date(Date.now() + 9 * 3600e3), day = process.argv[2] || now.toISOString().slice(0, 10);
 const hour = process.argv[2] ? 99 : now.getUTCHours();
-// 한 편 = 프로필 한 줄 3칸 (2026-11-19 사용자와 정함). 인스타는 최신이 왼쪽에 오므로
-// 릴스(오른쪽 칸, 12시~) → 카드뉴스(가운데, 19시~) → 한 장 요약(왼쪽, 20시~) 순서를 꼭 지킨다.
+// 한 편 = 프로필 한 줄 3칸 [릴스 B | 카드뉴스 | 릴스 A] (2026-11-20 사용자와 정함). 세로 열이 늘 같은 종류가 되게
+// 인스타는 최신이 왼쪽에 오므로 게시일 12시~ 릴스 A(오른쪽) → 19시~ 카드뉴스(가운데) → 다음 날 19시~ 릴스 B(왼쪽).
 // 앞 칸이 안 올라갔으면 뒤 칸은 기다린다 (줄 모양이 밀리지 않게).
-const REEL_HOUR = +(process.env.REEL_HOUR || 12), POST_HOUR = +(process.env.POST_HOUR || 19), SUM_HOUR = +(process.env.SUM_HOUR || 20);
+const REEL_HOUR = +(process.env.REEL_HOUR || 12), POST_HOUR = +(process.env.POST_HOUR || 19), REELB_HOUR = +(process.env.REELB_HOUR || 19);
+const prev = new Date(Date.parse(day) - 864e5).toISOString().slice(0, 10);
 const jobs = [
-  ...(hour >= REEL_HOUR ? [{ id: day, kind: 'reel' }] : []),
-  ...(hour >= POST_HOUR ? [{ id: day, kind: 'card', after: 'reel' }] : []),
-  ...(hour >= SUM_HOUR ? [{ id: day, kind: 'sum', after: 'card' }] : []),
+  ...(process.argv[2] ? [] : (hour >= REELB_HOUR ? [{ id: prev, kind: 'reelb', after: 'card' }] : [])),
+  ...(hour >= REEL_HOUR ? [{ id: day, kind: 'reela' }] : []),
+  ...(hour >= POST_HOUR ? [{ id: day, kind: 'card', after: 'reela' }] : []),
+  ...(process.argv[3] === 'b' ? [{ id: day, kind: 'reelb', after: 'card' }] : []),
 ];
-const mark = (id, kind) => path.join(HOME, 'posted', id + ({ reel: '.reel', card: '', sum: '.sum' }[kind]) + '.done');
+const mark = (id, kind) => path.join(HOME, 'posted', id + ({ reela: '.reel', reelb: '.reelb', card: '' }[kind]) + '.done');
 const RAW = id => `https://raw.githubusercontent.com/jg0615121-source/daseot-images/main/${id}/`;
 
 async function grab(id, name, dir) {
@@ -59,7 +62,7 @@ async function publish(page, files, text, video) {
 
 // 할 일 하나를 준비한다. 이미 올렸거나 아직 준비 안 됐으면 null
 async function prepare(tok, { id, kind, after }) {
-  const reel = kind === 'reel';
+  const reel = kind === 'reela' || kind === 'reelb';
   if (fs.existsSync(mark(id, kind))) return null;
   if (after && !fs.existsSync(mark(id, after))) return null;  // 앞 칸 먼저
   const r = await fetch(`https://api.github.com/repos/jg0615121-source/daseot-insta/contents/posts/${id}.json`,
@@ -69,17 +72,12 @@ async function prepare(tok, { id, kind, after }) {
   if (kind === 'card' && p.published_id) { fs.writeFileSync(mark(id, 'card'), 'api'); return null; }
   const dir = path.join(HOME, 'slides', id); fs.mkdirSync(dir, { recursive: true });
   if (reel) {
-    if (!p.reel_caption) { log(id + ' 릴스 캡션 없음'); return null; }
-    const v = await grab(id, 'reel.mp4', dir);
-    if (!v) { log(id + ' 릴스 영상 아직 없음'); return null; }
-    return { id, kind, reel, files: [v], caption: p.reel_caption.trim() };
-  }
-  if (kind === 'sum') {
-    const f = await grab(id, 'summary.jpg', dir);
-    if (!f) { log(id + ' 한 장 요약 아직 없음'); return null; }
-    const tags = (p.caption.trim().split('\n').reverse().find(l => l.trim().startsWith('#')) || '#줌인충주 #충주').trim();
-    const k = String(p.kicker || '').replace(/\s*✦\s*$/, '');
-    return { id, kind, reel, files: [f], caption: `${k} 한 장 정리 📌\n저장해두고 나가기 전에 꺼내보기\n\n자세한 건 옆 칸 카드뉴스와 릴스에\n\n${tags}` };
+    const tag = kind === 'reela' ? 'a' : 'b';
+    const cap = p['reel_caption_' + tag];
+    if (!cap) { log(id + ' 릴스 ' + tag + ' 캡션 없음'); return null; }
+    const v = await grab(id, `reel_${tag}.mp4`, dir);
+    if (!v) { log(id + ' 릴스 ' + tag + ' 영상 아직 없음'); return null; }
+    return { id, kind, reel, files: [v], caption: cap.trim() };
   }
   const files = [];
   for (let i = 1; i <= 10; i++) { const f = await grab(id, String(i).padStart(2, '0') + '.jpg', dir); if (!f) break; files.push(f); }
@@ -112,7 +110,7 @@ async function openEdge() {
       const t = await prepare(tok, job);
       if (!t) continue;
       if (!page) { browser = await openEdge(); page = await browser.contexts()[0].newPage(); }
-      const what = { reel: '릴스', card: '카드뉴스', sum: '한 장 요약' }[t.kind];
+      const what = { reela: '릴스 A', reelb: '릴스 B', card: '카드뉴스' }[t.kind];
       if (await publish(page, t.files, t.caption, t.reel)) {
         if (!DRY) fs.writeFileSync(mark(t.id, t.kind), 'browser');
         log(`${t.id} ${what} 게시 완료${t.kind === 'card' ? ' ' + t.files.length + '장' : ''}`);

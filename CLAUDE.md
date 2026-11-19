@@ -14,7 +14,7 @@
 - 작성자 이메일: 262959588+jg0615121-source@users.noreply.github.com (개인 메일 쓰지 않음)
 
 ## 인스타 게시 (API 받기 전 임시)
-- 사용자 PC 작업 스케줄러 '다섯가지 인스타 게시'가 매일 07:30~21:30 매시간 `%LOCALAPPDATA%\daseot-browser\post-daily.js` 실행 (원본은 저장소 scripts/browser/post-daily.js, 고치면 PC에 다시 내려받기). 2026-11-16부터 계정은 ZOOM-IN 충주: 원고가 있는 날 posts/날짜.json 으로 프로필 한 줄 3칸을 순서대로: 12:30 릴스(reel.mp4, reel_caption) → 19:30 카드뉴스 → 20:30 한 장 요약(summary.jpg) (REEL_HOUR, POST_HOUR, SUM_HOUR). 앞 칸이 안 올라가면 뒤 칸은 기다림. 한 장 요약은 posted\원고이름.sum.done. 저녁 편은 없음. 해시태그는 캡션 끝에 그대로. 기록은 같은 폴더 post.log, 게시한 원고는 posted\원고이름.done, 릴스는 posted\원고이름.reel.done.
+- 사용자 PC 작업 스케줄러 '다섯가지 인스타 게시'가 매일 07:30~21:30 매시간 `%LOCALAPPDATA%\daseot-browser\post-daily.js` 실행 (원본은 저장소 scripts/browser/post-daily.js, 고치면 PC에 다시 내려받기). 2026-11-16부터 계정은 ZOOM-IN 충주: 원고가 있는 날 posts/날짜.json 으로 프로필 한 줄 3칸 [릴스 B | 카드뉴스 | 릴스 A]을 순서대로: 게시일 12:30 릴스 A(reel_a.mp4, reel_caption_a) → 19:30 카드뉴스 → 다음 날 19:30 릴스 B(reel_b.mp4, reel_caption_b) (REEL_HOUR, POST_HOUR, REELB_HOUR). 앞 칸이 안 올라가면 뒤 칸은 기다림. 기록은 posted\원고이름.reel.done(A), .done(카드), .reelb.done(B). 저녁 편은 없음. 해시태그는 캡션 끝에 그대로. 기록은 같은 폴더 post.log,
 - 게시는 엣지 게시 전용 프로필(같은 폴더 profile, 디버깅 포트 9333) 창에서 한다. 이 창은 띄워 두고 닫지 않는다. 스크립트는 탭만 열고 닫는다.
 - 사용자가 평소 쓰는 브라우저(크롬, 엣지 기본 프로필, 웨일)는 열거나 닫지 않는다. 확인용 창도 함부로 띄우지 않는다.
 - IG_USER_ID/IG_ACCESS_TOKEN 시크릿을 넣어 API 게시를 켜는 날, 이 작업 스케줄러를 끌 것 (안 끄면 두 번 올라감).
