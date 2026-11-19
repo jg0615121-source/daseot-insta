@@ -82,6 +82,22 @@ def main(post_path):
                 print(f"경고: {i}번 사진 실패 {e}")
         if not it.get("image"):
             raise SystemExit(f"{i}번 품목 사진을 못 받음. 이 게시물은 올리지 않음.")
+    # 릴스용 추가 사진: 품목의 reel_images(주소 목록)를 assets/원고/NN_k.jpg 로 받아 reel_imgs 에 넣는다.
+    # 실패한 주소는 건너뛴다 (릴스는 받은 사진 + 대표 사진으로 만든다)
+    for i, it in enumerate(post["items"], 1):
+        urls = it.get("reel_images") or []
+        if not urls or it.get("reel_imgs"):
+            continue
+        got = []
+        for k, url in enumerate(urls, 1):
+            dest = folder / f"{i:02d}_{k}.jpg"
+            try:
+                size = save(url, dest, referer=it.get("source_url"))
+                got.append(str(dest.relative_to(ROOT)).replace("\\", "/"))
+                print(f"{i}번 릴스 사진 {k} {size}")
+            except Exception as e:
+                print(f"경고: {i}번 릴스 사진 {k} 실패 {e}")
+        it["reel_imgs"] = got
     # 표지: cover_item(1~5)으로 고른 품목 사진 1장. 없으면 cover_score 최고점, 그것도 없으면 1번 품목
     if not post.get("cover_images"):
         it = post["items"][pick_cover(post) - 1]

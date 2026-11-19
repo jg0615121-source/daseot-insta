@@ -1,4 +1,9 @@
-"""원고 하나로 세로 릴스 영상(out/원고이름/reel.mp4)과 릴스 캡션(원고의 reel_caption)을 만든다.
+"""원고 하나로 세로 릴스 영상과 릴스 캡션을 만든다.
+
+v5 (2026-11-20): 프로필 한 줄 [릴스 | 카드뉴스 | 릴스]. 원고의 reels(품목 번호 2개, 없으면 표지 품목과 1번 품목)마다
+한 곳 릴스(reel_spot.html, 9초 안팎)를 out/원고이름/reel_a.mp4, reel_b.mp4 로 만들고 캡션은 reel_caption_a, reel_caption_b.
+품목에 reel_imgs(fetch_images.py가 reel_images 주소로 받은 추가 사진)가 있으면 컷마다 다른 사진을 쓴다.
+아래는 v3~v4 설명 (여러 곳 릴스 reel_template.html, 지금은 안 씀):
 
 v3 (2026-11-16, ZOOM-IN 충주): 인사이트상 조회는 릴스에서 나와서 릴스를 다시 한다 (사용자 결정).
 카드뉴스와 같은 잡지 디자인. 훅 2.3초(0프레임부터 제목) → 품목마다 3초(초점 맞추기 줌인 + 천천히 움직이는 사진,
@@ -20,7 +25,7 @@ FPS, W, H = 30, 1080, 1920
 MUSIC = ROOT / "assets" / "music"
 
 
-def pick_music(post, stem):
+def pick_music(post, stem, skip=None):
     """원고에 music 이 있으면 그 곡, 없으면 원고 이름으로 정해지는 곡 (같은 원고는 늘 같은 곡)."""
     try:
         tracks = json.loads((MUSIC / "tracks.json").read_text(encoding="utf-8"))["tracks"]
@@ -33,6 +38,8 @@ def pick_music(post, stem):
     for t in tracks:
         if want and want in (t["file"], t["title"]):
             return t
+    if skip and len(tracks) > 1:
+        tracks = [t for t in tracks if t["file"] != skip["file"]]
     return tracks[zlib.crc32(stem.encode()) % len(tracks)]
 
 
@@ -49,7 +56,7 @@ def reel_caption(post, track=None):
                       tags])
 
 
-def render(post, out, track=None):
+def render(post, out, track=None, spot=None):
     with sync_playwright() as p:
         kw = {}
         exe = os.environ.get("CHROMIUM_PATH")  # 클라우드 세션처럼 브라우저가 따로 깔린 곳
@@ -57,8 +64,8 @@ def render(post, out, track=None):
             kw["executable_path"] = exe
         b = p.chromium.launch(**kw)
         page = b.new_page(viewport={"width": W, "height": H})
-        page.goto((ROOT / "reel_template.html").as_uri())
-        total = page.evaluate("p => window.build(p)", post)
+        page.goto((ROOT / ("reel_spot.html" if spot else "reel_template.html")).as_uri())
+        total = page.evaluate("([p, i]) => window.build(p, i)", [post, spot])
         page.evaluate("window.ready()")
         n = int(round(total * FPS))
         ff = subprocess.Popen(
@@ -94,11 +101,37 @@ def main(post_path):
     for it in shot["items"] + shot.get("cover_images", []):
         if it.get("image") and (ROOT / it["image"]).exists():
             it["w"], it["h"] = Image.open(ROOT / it["image"]).size
-    track = pick_music(post, post_path.stem)
-    total = render(shot, out / "reel.mp4", track)
-    post["reel_caption"] = reel_caption(post, track)
+        it["imgsize"] = {src: list(Image.open(ROOT / src).size) for src in [it.get("image"), *it.get("reel_imgs", [])]
+                         if src and (ROOT / src).exists()}
+    # 한 곳 릴스 두 개 (프로필 한 줄의 양옆 칸)
+    n = len(post["items"])
+    picks = [int(x) for x in post.get("reels", [])][:2]
+    if len(picks) < 2:
+        cands = [int(post.get("cover_item", 1)), 1, 2, 3]
+        picks = list(dict.fromkeys([*picks, *[c for c in cands if 1 <= c <= n]]))[:2]
+    used = None
+    for tag, idx in zip("ab", picks):
+        track = pick_music(post, f"{post_path.stem}-{tag}", skip=used)
+        used = track
+        total = render(shot, out / f"reel_{tag}.mp4", track, spot=idx)
+        post[f"reel_caption_{tag}"] = spot_caption(post, post["items"][idx - 1], track)
+        print(out / f"reel_{tag}.mp4", f"{idx}번 품목", f"{total:.1f}초", f"음악 {track['title']}" if track else "무음")
+    post.pop("reel_caption", None)
     post_path.write_text(json.dumps(post, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print(out / "reel.mp4", f"{total:.1f}초", f"음악 {track['title']}" if track else "무음")
+
+
+def spot_caption(post, it, track=None):
+    """한 곳 릴스 캡션: 검색될 첫 줄 + 고른 이유 + 정보 + 카드뉴스 안내 + 음악 출처 + 해시태그."""
+    lines = post["caption"].strip().split("\n")
+    tags = next((l for l in reversed(lines) if l.strip().startswith("#")), "#줌인충주 #충주")
+    k = str(post.get("kicker", "")).replace("✦", "").strip()
+    name = it["name"].replace("\n", " ")
+    facts = [f"{a} {b}" for a, b in it.get("facts", [])]
+    return "\n".join([f"{name} 📍 {k} 충주 가볼만한곳", "", it.get("desc", ""), "", *facts, "",
+                      f"{k} 충주 다른 곳은 프로필 카드뉴스에 정리해둠 📌",
+                      f"충주에서 뭐 하지? @{post.get('handle', 'zoomin.chungju')}", "",
+                      *([f"🎵 {track['title']} - Kevin MacLeod (incompetech.com) / CC BY 4.0", ""] if track else []),
+                      tags])
 
 
 if __name__ == "__main__":
